@@ -29,6 +29,7 @@ import {
   shouldBehaveBatchRemoveAndWrite,
   shouldBehaveBatchWithdraw,
   shouldBehaveBatchWriteObjectToLand,
+  shouldBehaveChangeBasePlate,
   shouldBehaveChangeWallPaper,
   shouldBehaveCheckAllDepositStatus,
   shouldBehaveCheckAllDepositStatusAfterInit,
@@ -203,7 +204,27 @@ describe("Unit tests PhiMap", function () {
         200,
         0,
       );
-    await this.questObject.connect(this.signers.admin).getObject(this.signers.alice.address, 1);
+    await this.basePlate
+      .connect(this.signers.admin)
+      .createBasePlate(
+        1,
+        "FmdcpWkS4lfGJxgx1H0SifowHxwLkNAxogUhSNgH-Xw",
+        { x: 8, y: 8, z: 0 },
+        this.signers.bob.address,
+        200,
+        0,
+      );
+    await this.basePlate
+      .connect(this.signers.admin)
+      .createBasePlate(
+        2,
+        "FmdcpWkS4lfGJxgx1H0SifowHxwLkNAxogUhSNgH-Xw",
+        { x: 8, y: 8, z: 0 },
+        this.signers.bob.address,
+        200,
+        0,
+      );
+    await await this.questObject.connect(this.signers.admin).getObject(this.signers.alice.address, 1);
     await this.questObject.connect(this.signers.admin).getObject(this.signers.alice.address, 2);
     await this.questObject.connect(this.signers.admin).getObject(this.signers.alice.address, 3);
   });
@@ -237,6 +258,7 @@ describe("Unit tests PhiMap", function () {
     shouldBehaveCheckAllDepositStatusAfterInit();
     CantWriteObjectToLand();
     shouldBehaveChangeWallPaper();
+    shouldBehaveChangeBasePlate();
     shouldflipLockMap();
     // shouldBehaveWithdrawWallPaper();
     shouldBehaveSave();

@@ -375,6 +375,21 @@ export function shouldBehaveChangeWallPaper(): void {
   });
 }
 
+export function shouldBehaveChangeBasePlate(): void {
+  it("should ChangeBasePlate", async function () {
+    await this.basePlate.connect(this.signers.alice).batchBasePlate([1]);
+    const lastBasePlate = await this.phiMap.connect(this.signers.alice).checkBasePlate("test");
+    expect(lastBasePlate.contractAddress).to.equal("0x0000000000000000000000000000000000000000");
+    await this.phiMap.connect(this.signers.alice).changeBasePlate("test", this.basePlate.address, 1);
+    const currentBasePlate = await this.phiMap.connect(this.signers.alice).checkBasePlate("test");
+    expect(currentBasePlate.contractAddress).to.equal(this.basePlate.address);
+    await this.basePlate.connect(this.signers.alice).batchBasePlate([2]);
+    await this.phiMap.connect(this.signers.alice).changeBasePlate("test", this.basePlate.address, 2);
+    const secondBasePlate = await this.phiMap.connect(this.signers.alice).checkBasePlate("test");
+    expect(secondBasePlate.tokenId).to.equal(2);
+  });
+}
+
 export function shouldflipLockMap(): void {
   it("should flipLockMap", async function () {
     await this.phiMap.connect(this.signers.admin).flipLockMap();
