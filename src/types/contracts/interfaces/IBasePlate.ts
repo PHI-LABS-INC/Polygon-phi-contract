@@ -25,7 +25,7 @@ import type {
   utils,
 } from "ethers";
 
-export declare namespace IWallPaper {
+export declare namespace IBasePlate {
   export type SizeStruct = {
     x: BigNumberish;
     y: BigNumberish;
@@ -39,10 +39,10 @@ export declare namespace IWallPaper {
   };
 }
 
-export interface IWallPaperInterface extends utils.Interface {
+export interface IBasePlateInterface extends utils.Interface {
   functions: {
     "balanceOf(address,uint256)": FunctionFragment;
-    "batchWallPaperFromShop(address,uint256[])": FunctionFragment;
+    "batchBasePlateFromShop(address,uint256[])": FunctionFragment;
     "getObjectsPrice(uint256[])": FunctionFragment;
     "getSize(uint256)": FunctionFragment;
     "safeTransferFrom(address,address,uint256,uint256,bytes)": FunctionFragment;
@@ -52,7 +52,7 @@ export interface IWallPaperInterface extends utils.Interface {
   getFunction(
     nameOrSignatureOrTopic:
       | "balanceOf"
-      | "batchWallPaperFromShop"
+      | "batchBasePlateFromShop"
       | "getObjectsPrice"
       | "getSize"
       | "safeTransferFrom"
@@ -64,7 +64,7 @@ export interface IWallPaperInterface extends utils.Interface {
     values: [string, BigNumberish]
   ): string;
   encodeFunctionData(
-    functionFragment: "batchWallPaperFromShop",
+    functionFragment: "batchBasePlateFromShop",
     values: [string, BigNumberish[]]
   ): string;
   encodeFunctionData(
@@ -83,7 +83,7 @@ export interface IWallPaperInterface extends utils.Interface {
 
   decodeFunctionResult(functionFragment: "balanceOf", data: BytesLike): Result;
   decodeFunctionResult(
-    functionFragment: "batchWallPaperFromShop",
+    functionFragment: "batchBasePlateFromShop",
     data: BytesLike
   ): Result;
   decodeFunctionResult(
@@ -100,12 +100,12 @@ export interface IWallPaperInterface extends utils.Interface {
   events: {};
 }
 
-export interface IWallPaper extends BaseContract {
+export interface IBasePlate extends BaseContract {
   connect(signerOrProvider: Signer | Provider | string): this;
   attach(addressOrName: string): this;
   deployed(): Promise<this>;
 
-  interface: IWallPaperInterface;
+  interface: IBasePlateInterface;
 
   queryFilter<TEvent extends TypedEvent>(
     event: TypedEventFilter<TEvent>,
@@ -133,7 +133,7 @@ export interface IWallPaper extends BaseContract {
       overrides?: CallOverrides
     ): Promise<[BigNumber]>;
 
-    batchWallPaperFromShop(
+    batchBasePlateFromShop(
       to: string,
       tokenIds: BigNumberish[],
       overrides?: PayableOverrides & { from?: string | Promise<string> }
@@ -147,7 +147,7 @@ export interface IWallPaper extends BaseContract {
     getSize(
       tokenId: BigNumberish,
       overrides?: CallOverrides
-    ): Promise<[IWallPaper.SizeStructOutput]>;
+    ): Promise<[IBasePlate.SizeStructOutput]>;
 
     safeTransferFrom(
       from: string,
@@ -170,7 +170,7 @@ export interface IWallPaper extends BaseContract {
     overrides?: CallOverrides
   ): Promise<BigNumber>;
 
-  batchWallPaperFromShop(
+  batchBasePlateFromShop(
     to: string,
     tokenIds: BigNumberish[],
     overrides?: PayableOverrides & { from?: string | Promise<string> }
@@ -184,7 +184,7 @@ export interface IWallPaper extends BaseContract {
   getSize(
     tokenId: BigNumberish,
     overrides?: CallOverrides
-  ): Promise<IWallPaper.SizeStructOutput>;
+  ): Promise<IBasePlate.SizeStructOutput>;
 
   safeTransferFrom(
     from: string,
@@ -207,7 +207,7 @@ export interface IWallPaper extends BaseContract {
       overrides?: CallOverrides
     ): Promise<BigNumber>;
 
-    batchWallPaperFromShop(
+    batchBasePlateFromShop(
       to: string,
       tokenIds: BigNumberish[],
       overrides?: CallOverrides
@@ -221,7 +221,7 @@ export interface IWallPaper extends BaseContract {
     getSize(
       tokenId: BigNumberish,
       overrides?: CallOverrides
-    ): Promise<IWallPaper.SizeStructOutput>;
+    ): Promise<IBasePlate.SizeStructOutput>;
 
     safeTransferFrom(
       from: string,
@@ -244,7 +244,7 @@ export interface IWallPaper extends BaseContract {
       overrides?: CallOverrides
     ): Promise<BigNumber>;
 
-    batchWallPaperFromShop(
+    batchBasePlateFromShop(
       to: string,
       tokenIds: BigNumberish[],
       overrides?: PayableOverrides & { from?: string | Promise<string> }
@@ -282,7 +282,7 @@ export interface IWallPaper extends BaseContract {
       overrides?: CallOverrides
     ): Promise<PopulatedTransaction>;
 
-    batchWallPaperFromShop(
+    batchBasePlateFromShop(
       to: string,
       tokenIds: BigNumberish[],
       overrides?: PayableOverrides & { from?: string | Promise<string> }

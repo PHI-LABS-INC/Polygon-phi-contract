@@ -77,6 +77,10 @@ declare module "hardhat/types/runtime" {
       signerOrOptions?: ethers.Signer | FactoryOptions
     ): Promise<Contracts.IERC165__factory>;
     getContractFactory(
+      name: "IBasePlate",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.IBasePlate__factory>;
+    getContractFactory(
       name: "IFreeObject",
       signerOrOptions?: ethers.Signer | FactoryOptions
     ): Promise<Contracts.IFreeObject__factory>;
@@ -97,9 +101,13 @@ declare module "hardhat/types/runtime" {
       signerOrOptions?: ethers.Signer | FactoryOptions
     ): Promise<Contracts.IQuestObject__factory>;
     getContractFactory(
-      name: "IWallpaper",
+      name: "IWallPaper",
       signerOrOptions?: ethers.Signer | FactoryOptions
-    ): Promise<Contracts.IWallpaper__factory>;
+    ): Promise<Contracts.IWallPaper__factory>;
+    getContractFactory(
+      name: "BasePlate",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.BasePlate__factory>;
     getContractFactory(
       name: "FreeObject",
       signerOrOptions?: ethers.Signer | FactoryOptions
@@ -222,6 +230,11 @@ declare module "hardhat/types/runtime" {
       signer?: ethers.Signer
     ): Promise<Contracts.IERC165>;
     getContractAt(
+      name: "IBasePlate",
+      address: string,
+      signer?: ethers.Signer
+    ): Promise<Contracts.IBasePlate>;
+    getContractAt(
       name: "IFreeObject",
       address: string,
       signer?: ethers.Signer
@@ -247,10 +260,15 @@ declare module "hardhat/types/runtime" {
       signer?: ethers.Signer
     ): Promise<Contracts.IQuestObject>;
     getContractAt(
-      name: "IWallpaper",
+      name: "IWallPaper",
       address: string,
       signer?: ethers.Signer
-    ): Promise<Contracts.IWallpaper>;
+    ): Promise<Contracts.IWallPaper>;
+    getContractAt(
+      name: "BasePlate",
+      address: string,
+      signer?: ethers.Signer
+    ): Promise<Contracts.BasePlate>;
     getContractAt(
       name: "FreeObject",
       address: string,

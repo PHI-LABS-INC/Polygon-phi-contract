@@ -4,9 +4,9 @@
 
 /* eslint-disable */
 import type {
-  IWallPaper,
-  IWallPaperInterface,
-} from "../../../contracts/interfaces/IWallPaper";
+  IBasePlate,
+  IBasePlateInterface,
+} from "../../../contracts/interfaces/IBasePlate";
 import type { Provider } from "@ethersproject/providers";
 import { Contract, Signer, utils } from "ethers";
 
@@ -48,7 +48,7 @@ const _abi = [
         type: "uint256[]",
       },
     ],
-    name: "batchWallPaperFromShop",
+    name: "batchBasePlateFromShop",
     outputs: [],
     stateMutability: "payable",
     type: "function",
@@ -100,7 +100,7 @@ const _abi = [
             type: "uint8",
           },
         ],
-        internalType: "struct IWallPaper.Size",
+        internalType: "struct IBasePlate.Size",
         name: "",
         type: "tuple",
       },
@@ -156,15 +156,15 @@ const _abi = [
   },
 ];
 
-export class IWallPaper__factory {
+export class IBasePlate__factory {
   static readonly abi = _abi;
-  static createInterface(): IWallPaperInterface {
-    return new utils.Interface(_abi) as IWallPaperInterface;
+  static createInterface(): IBasePlateInterface {
+    return new utils.Interface(_abi) as IBasePlateInterface;
   }
   static connect(
     address: string,
     signerOrProvider: Signer | Provider
-  ): IWallPaper {
-    return new Contract(address, _abi, signerOrProvider) as IWallPaper;
+  ): IBasePlate {
+    return new Contract(address, _abi, signerOrProvider) as IBasePlate;
   }
 }

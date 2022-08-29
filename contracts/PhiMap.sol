@@ -41,6 +41,11 @@ contract PhiMap is AccessControlUpgradeable, IERC1155ReceiverUpgradeable, Reentr
         address contractAddress;
         uint256 tokenId;
     }
+    /* --------------------------------- BasePlate ------------------------------ */
+    struct BasePlate {
+        address contractAddress;
+        uint256 tokenId;
+    }
     /* --------------------------------- OBJECT --------------------------------- */
     struct Size {
         uint8 x;
@@ -90,6 +95,8 @@ contract PhiMap is AccessControlUpgradeable, IERC1155ReceiverUpgradeable, Reentr
     mapping(string => ObjectInfo[]) public userObject;
     /* --------------------------------- WallPaper ------------------------------ */
     mapping(string => WallPaper) public wallPaper;
+    /* --------------------------------- BasePlate ------------------------------ */
+    mapping(string => BasePlate) public basePlate;
     /* --------------------------------- DEPOSIT -------------------------------- */
     mapping(string => Deposit[]) public userObjectDeposit;
     mapping(string => mapping(address => mapping(uint256 => DepositInfo))) public depositInfo;
@@ -107,6 +114,8 @@ contract PhiMap is AccessControlUpgradeable, IERC1155ReceiverUpgradeable, Reentr
     event WhitelistRemoved(address indexed operator, address indexed target);
     /* --------------------------------- WALLPAPER ------------------------------ */
     event ChangeWallPaper(string name, address contractAddress, uint256 tokenId);
+    /* --------------------------------- BasePlate ------------------------------ */
+    event ChangeBasePlate(string name, address contractAddress, uint256 tokenId);
     /* --------------------------------- OBJECT --------------------------------- */
     event WriteObject(string name, address contractAddress, uint256 tokenId, uint256 xStart, uint256 yStart);
     event RemoveObject(string name, uint256 index);
@@ -138,9 +147,9 @@ contract PhiMap is AccessControlUpgradeable, IERC1155ReceiverUpgradeable, Reentr
     error NotDepositEnough(string name, address contractAddress, uint256 tokenId, uint256 used, uint256 amount);
     error OutofMapRange(uint256 a, string errorBoader);
     error ObjectCollision(ObjectInfo writeObjectInfo, ObjectInfo userObjectInfo, string errorBoader);
-    /* --------------------------------- WALLPAPER ------------------------------ */
-    error NotFitWallPaper(address sender, uint256 sizeX, uint256 sizeY, uint256 mapSizeX, uint256 mapSizeY);
-    error NotBalanceWallPaper(string name, address sender, address contractAddress, uint256 tokenId);
+    /* --------------------------------- WALLPAPER/BasePlate ------------------------------ */
+    error NotFit(address sender, uint256 sizeX, uint256 sizeY, uint256 mapSizeX, uint256 mapSizeY);
+    error NotBalance(string name, address sender, address contractAddress, uint256 tokenId);
     /* --------------------------------- OBJECT --------------------------------- */
     error NotReadyObject(address sender, uint256 objectIndex);
     /* --------------------------------- DEPOSIT -------------------------------- */
@@ -294,7 +303,8 @@ contract PhiMap is AccessControlUpgradeable, IERC1155ReceiverUpgradeable, Reentr
         emit WhitelistRemoved(msg.sender, oldObject);
     }
 
-    /* --------------------------------- WALLPAPER ------------------------------ */
+    /* --------------------------------- WALLPAPER/BasePlate ------------------------------ */
+
     /*
      * @title checkWallPaper
      * @notice Functions for check WallPaper status
@@ -307,18 +317,33 @@ contract PhiMap is AccessControlUpgradeable, IERC1155ReceiverUpgradeable, Reentr
     }
 
     /*
-     * @title withdrawWallPaper
-     * @notice withdrawWallPaper
+     * @title checkBasePlate
+     * @notice Functions for check BasePlate status
      * @param name : ens name
+     * @dev Check BasePlate information
+     * @return contractAddress,tokenId
      */
-    function withdrawWallPaper(string memory name) external onlyNotLocked onlyPhilandOwner(name) {
-        address lastWallPaperContractAddress = wallPaper[name].contractAddress;
-        uint256 lastWallPaperTokenId = wallPaper[name].tokenId;
-        wallPaper[name] = WallPaper(address(0), 0);
-        // Withdraw the deposited WALL OBJECT at the same time if it has already been set up
-        if (lastWallPaperContractAddress != address(0)) {
-            IObject _lastWallPaper = IObject(lastWallPaperContractAddress);
-            _lastWallPaper.safeTransferFrom(address(this), msg.sender, lastWallPaperTokenId, 1, "0x00");
+    function checkBasePlate(string memory name) external view returns (BasePlate memory) {
+        return basePlate[name];
+    }
+
+    function _checkConditon(
+        string memory name,
+        address contractAddress,
+        uint256 tokenId
+    ) internal view {
+        // Check that contractAddress is whitelisted.
+        if (!_whitelist[contractAddress]) revert InvalidWhitelist();
+        IObject _object = IObject(contractAddress);
+        IObject.Size memory size = _object.getSize(tokenId);
+        // Check that the size of the wall object matches the size of the current map contract
+        if ((size.x != mapSettings.maxX) || (size.y != mapSettings.maxY)) {
+            revert NotFit(msg.sender, size.x, size.y, mapSettings.maxX, mapSettings.maxY);
+        }
+        // Check if user has a wall object
+        uint256 userBalance = _object.balanceOf(msg.sender, tokenId);
+        if (userBalance < 1) {
+            revert NotBalance({ name: name, sender: msg.sender, contractAddress: contractAddress, tokenId: tokenId });
         }
     }
 
@@ -341,28 +366,41 @@ contract PhiMap is AccessControlUpgradeable, IERC1155ReceiverUpgradeable, Reentr
             IObject _lastWallPaper = IObject(lastWallPaperContractAddress);
             _lastWallPaper.safeTransferFrom(address(this), msg.sender, lastWallPaperTokenId, 1, "0x00");
         }
-        // Check that contractAddress is whitelisted.
-        if (!_whitelist[contractAddress]) revert InvalidWhitelist();
-        IObject _object = IObject(contractAddress);
-        IObject.Size memory size = _object.getSize(tokenId);
-        // Check that the size of the wall object matches the size of the current map contract
-        if ((size.x != mapSettings.maxX) || (size.y != mapSettings.maxY)) {
-            revert NotFitWallPaper(msg.sender, size.x, size.y, mapSettings.maxX, mapSettings.maxY);
-        }
-        // Check if user has a wall object
-        uint256 userBalance = _object.balanceOf(msg.sender, tokenId);
-        if (userBalance < 1) {
-            revert NotBalanceWallPaper({
-                name: name,
-                sender: msg.sender,
-                contractAddress: contractAddress,
-                tokenId: tokenId
-            });
-        }
+        // Check condition
+        _checkConditon(name, contractAddress, tokenId);
         wallPaper[name] = WallPaper(contractAddress, tokenId);
         // Deposit wall object to be set in map contract
+        IObject _object = IObject(contractAddress);
         _object.safeTransferFrom(msg.sender, address(this), tokenId, 1, "0x00");
         emit ChangeWallPaper(name, contractAddress, tokenId);
+    }
+
+    /*
+     * @title changeBasePlate
+     * @notice Receive changeBasePlate
+     * @param name : ens name
+     * @param contractAddress : Address of BasePlate
+     * @param tokenId : tokenId
+     */
+    function changeBasePlate(
+        string memory name,
+        address contractAddress,
+        uint256 tokenId
+    ) public onlyNotLocked nonReentrant onlyPhilandOwner(name) {
+        address lastBasePlateContractAddress = basePlate[name].contractAddress;
+        uint256 lastBasePlateTokenId = basePlate[name].tokenId;
+        // Withdraw the deposited BasePlate OBJECT at the same time if it has already been deposited
+        if (lastBasePlateContractAddress != address(0)) {
+            IObject _lastBasePlate = IObject(lastBasePlateContractAddress);
+            _lastBasePlate.safeTransferFrom(address(this), msg.sender, lastBasePlateTokenId, 1, "0x00");
+        }
+        // Check condition
+        _checkConditon(name, contractAddress, tokenId);
+        basePlate[name] = BasePlate(contractAddress, tokenId);
+        // Deposit BasePlate object to be set in map contract
+        IObject _object = IObject(contractAddress);
+        _object.safeTransferFrom(msg.sender, address(this), tokenId, 1, "0x00");
+        emit ChangeBasePlate(name, contractAddress, tokenId);
     }
 
     /* ----------------------------------- VIEW --------------------------------- */
@@ -553,13 +591,18 @@ contract PhiMap is AccessControlUpgradeable, IERC1155ReceiverUpgradeable, Reentr
         uint256[] memory removeIndexArray,
         Object[] memory objectDatas,
         Link[] memory links,
-        address contractAddress,
-        uint256 tokenId
+        address wcontractAddress,
+        uint256 wtokenId,
+        address bcontractAddress,
+        uint256 btokenId
     ) external onlyNotLocked onlyPhilandOwner(name) {
         _batchRemoveAndWrite(name, removeIndexArray, objectDatas, links);
         _removeUnUsedUserObject(name);
-        if (contractAddress != address(0) && tokenId != 0) {
-            changeWallPaper(name, contractAddress, tokenId);
+        if (wcontractAddress != address(0) && wtokenId != 0) {
+            changeWallPaper(name, wcontractAddress, wtokenId);
+        }
+        if (bcontractAddress != address(0) && btokenId != 0) {
+            changeBasePlate(name, bcontractAddress, btokenId);
         }
         emit Save(name, msg.sender);
     }
@@ -917,45 +960,5 @@ contract PhiMap is AccessControlUpgradeable, IERC1155ReceiverUpgradeable, Reentr
             links[i] = _userObjects[i].link;
         }
         return links;
-    }
-
-    /* ---------------------------------- WRITE --------------------------------- */
-    /*
-     * @title writeLinkToObject
-     * @notice Functions for writing link
-     * @param name : ens name
-     * @param objectIndex : object index
-     * @param link : Link struct(stirng title, string url)
-     */
-    function writeLinkToObject(
-        string memory name,
-        uint256 objectIndex,
-        Link memory link
-    ) external onlyNotLocked onlyPhilandOwner(name) onlyReadyObject(name, objectIndex) {
-        userObject[name][objectIndex].link = link;
-        emit WriteLink(
-            name,
-            userObject[name][objectIndex].contractAddress,
-            userObject[name][objectIndex].tokenId,
-            link.title,
-            link.url
-        );
-    }
-
-    /* ---------------------------------- REMOVE --------------------------------- */
-    /*
-     * @title removeLinkFromObject
-     * @notice Functions for remove link
-     * @param name : ens name
-     * @param objectIndex : object index
-     * @dev delete link information
-     */
-    function removeLinkFromObject(string memory name, uint256 objectIndex)
-        external
-        onlyNotLocked
-        onlyPhilandOwner(name)
-    {
-        userObject[name][objectIndex].link = Link("", "");
-        emit RemoveLink(name, objectIndex);
     }
 }
