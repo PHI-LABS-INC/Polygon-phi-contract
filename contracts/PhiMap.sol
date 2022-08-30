@@ -232,17 +232,6 @@ contract PhiMap is AccessControlUpgradeable, IERC1155ReceiverUpgradeable, Reentr
         _;
     }
 
-    /**
-     * @notice Require that Object is already placed.
-     */
-    modifier onlyReadyObject(string memory name, uint256 objectIndex) {
-        address owner = ownerOfPhiland(name);
-        if (userObject[name][objectIndex].contractAddress == address(0)) {
-            revert NotReadyObject({ sender: msg.sender, objectIndex: objectIndex });
-        }
-        _;
-    }
-
     /* --------------------------------- ****** --------------------------------- */
 
     /* -------------------------------------------------------------------------- */
