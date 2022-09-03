@@ -8,6 +8,7 @@ import type {
   TypedEvent,
   TypedListener,
   OnEvent,
+  PromiseOrValue,
 } from "../common";
 import type {
   FunctionFragment,
@@ -54,7 +55,12 @@ export interface PhiShopInterface extends utils.Interface {
   ): string;
   encodeFunctionData(
     functionFragment: "shopBuyObject",
-    values: [string, BigNumberish[], BigNumberish[], BigNumberish[]]
+    values: [
+      PromiseOrValue<string>,
+      PromiseOrValue<BigNumberish>[],
+      PromiseOrValue<BigNumberish>[],
+      PromiseOrValue<BigNumberish>[]
+    ]
   ): string;
   encodeFunctionData(
     functionFragment: "wallPaperAddress",
@@ -131,11 +137,11 @@ export interface PhiShop extends BaseContract {
     premiumObjectAddress(overrides?: CallOverrides): Promise<[string]>;
 
     shopBuyObject(
-      receiverAddress: string,
-      ftokenIds: BigNumberish[],
-      ptokenIds: BigNumberish[],
-      wtokenIds: BigNumberish[],
-      overrides?: PayableOverrides & { from?: string | Promise<string> }
+      receiverAddress: PromiseOrValue<string>,
+      ftokenIds: PromiseOrValue<BigNumberish>[],
+      ptokenIds: PromiseOrValue<BigNumberish>[],
+      wtokenIds: PromiseOrValue<BigNumberish>[],
+      overrides?: PayableOverrides & { from?: PromiseOrValue<string> }
     ): Promise<ContractTransaction>;
 
     wallPaperAddress(overrides?: CallOverrides): Promise<[string]>;
@@ -146,11 +152,11 @@ export interface PhiShop extends BaseContract {
   premiumObjectAddress(overrides?: CallOverrides): Promise<string>;
 
   shopBuyObject(
-    receiverAddress: string,
-    ftokenIds: BigNumberish[],
-    ptokenIds: BigNumberish[],
-    wtokenIds: BigNumberish[],
-    overrides?: PayableOverrides & { from?: string | Promise<string> }
+    receiverAddress: PromiseOrValue<string>,
+    ftokenIds: PromiseOrValue<BigNumberish>[],
+    ptokenIds: PromiseOrValue<BigNumberish>[],
+    wtokenIds: PromiseOrValue<BigNumberish>[],
+    overrides?: PayableOverrides & { from?: PromiseOrValue<string> }
   ): Promise<ContractTransaction>;
 
   wallPaperAddress(overrides?: CallOverrides): Promise<string>;
@@ -161,10 +167,10 @@ export interface PhiShop extends BaseContract {
     premiumObjectAddress(overrides?: CallOverrides): Promise<string>;
 
     shopBuyObject(
-      receiverAddress: string,
-      ftokenIds: BigNumberish[],
-      ptokenIds: BigNumberish[],
-      wtokenIds: BigNumberish[],
+      receiverAddress: PromiseOrValue<string>,
+      ftokenIds: PromiseOrValue<BigNumberish>[],
+      ptokenIds: PromiseOrValue<BigNumberish>[],
+      wtokenIds: PromiseOrValue<BigNumberish>[],
       overrides?: CallOverrides
     ): Promise<void>;
 
@@ -192,11 +198,11 @@ export interface PhiShop extends BaseContract {
     premiumObjectAddress(overrides?: CallOverrides): Promise<BigNumber>;
 
     shopBuyObject(
-      receiverAddress: string,
-      ftokenIds: BigNumberish[],
-      ptokenIds: BigNumberish[],
-      wtokenIds: BigNumberish[],
-      overrides?: PayableOverrides & { from?: string | Promise<string> }
+      receiverAddress: PromiseOrValue<string>,
+      ftokenIds: PromiseOrValue<BigNumberish>[],
+      ptokenIds: PromiseOrValue<BigNumberish>[],
+      wtokenIds: PromiseOrValue<BigNumberish>[],
+      overrides?: PayableOverrides & { from?: PromiseOrValue<string> }
     ): Promise<BigNumber>;
 
     wallPaperAddress(overrides?: CallOverrides): Promise<BigNumber>;
@@ -210,11 +216,11 @@ export interface PhiShop extends BaseContract {
     ): Promise<PopulatedTransaction>;
 
     shopBuyObject(
-      receiverAddress: string,
-      ftokenIds: BigNumberish[],
-      ptokenIds: BigNumberish[],
-      wtokenIds: BigNumberish[],
-      overrides?: PayableOverrides & { from?: string | Promise<string> }
+      receiverAddress: PromiseOrValue<string>,
+      ftokenIds: PromiseOrValue<BigNumberish>[],
+      ptokenIds: PromiseOrValue<BigNumberish>[],
+      wtokenIds: PromiseOrValue<BigNumberish>[],
+      overrides?: PayableOverrides & { from?: PromiseOrValue<string> }
     ): Promise<PopulatedTransaction>;
 
     wallPaperAddress(overrides?: CallOverrides): Promise<PopulatedTransaction>;
