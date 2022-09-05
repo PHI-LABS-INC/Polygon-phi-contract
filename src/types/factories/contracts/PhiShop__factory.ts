@@ -3,6 +3,7 @@
 /* tslint:disable */
 
 /* eslint-disable */
+import type { PromiseOrValue } from "../../common";
 import type { PhiShop, PhiShopInterface } from "../../contracts/PhiShop";
 import type { Provider, TransactionRequest } from "@ethersproject/providers";
 import { Signer, utils, Contract, ContractFactory, Overrides } from "ethers";
@@ -150,10 +151,10 @@ export class PhiShop__factory extends ContractFactory {
   }
 
   override deploy(
-    _freeObjectAddress: string,
-    _premiumObjectAddress: string,
-    _wallPaperAddress: string,
-    overrides?: Overrides & { from?: string | Promise<string> }
+    _freeObjectAddress: PromiseOrValue<string>,
+    _premiumObjectAddress: PromiseOrValue<string>,
+    _wallPaperAddress: PromiseOrValue<string>,
+    overrides?: Overrides & { from?: PromiseOrValue<string> }
   ): Promise<PhiShop> {
     return super.deploy(
       _freeObjectAddress,
@@ -163,10 +164,10 @@ export class PhiShop__factory extends ContractFactory {
     ) as Promise<PhiShop>;
   }
   override getDeployTransaction(
-    _freeObjectAddress: string,
-    _premiumObjectAddress: string,
-    _wallPaperAddress: string,
-    overrides?: Overrides & { from?: string | Promise<string> }
+    _freeObjectAddress: PromiseOrValue<string>,
+    _premiumObjectAddress: PromiseOrValue<string>,
+    _wallPaperAddress: PromiseOrValue<string>,
+    overrides?: Overrides & { from?: PromiseOrValue<string> }
   ): TransactionRequest {
     return super.getDeployTransaction(
       _freeObjectAddress,

@@ -8,6 +8,7 @@ import type {
   TypedEvent,
   TypedListener,
   OnEvent,
+  PromiseOrValue,
 } from "../../common";
 import type {
   FunctionFragment,
@@ -38,9 +39,18 @@ export interface MultiOwnerInterface extends utils.Interface {
     nameOrSignatureOrTopic: "ownerCheck" | "removeOwner" | "setOwner"
   ): FunctionFragment;
 
-  encodeFunctionData(functionFragment: "ownerCheck", values: [string]): string;
-  encodeFunctionData(functionFragment: "removeOwner", values: [string]): string;
-  encodeFunctionData(functionFragment: "setOwner", values: [string]): string;
+  encodeFunctionData(
+    functionFragment: "ownerCheck",
+    values: [PromiseOrValue<string>]
+  ): string;
+  encodeFunctionData(
+    functionFragment: "removeOwner",
+    values: [PromiseOrValue<string>]
+  ): string;
+  encodeFunctionData(
+    functionFragment: "setOwner",
+    values: [PromiseOrValue<string>]
+  ): string;
 
   decodeFunctionResult(functionFragment: "ownerCheck", data: BytesLike): Result;
   decodeFunctionResult(
@@ -110,98 +120,104 @@ export interface MultiOwner extends BaseContract {
 
   functions: {
     ownerCheck(
-      targetAddress: string,
+      targetAddress: PromiseOrValue<string>,
       overrides?: CallOverrides
     ): Promise<[boolean]>;
 
     removeOwner(
-      oldOwner: string,
-      overrides?: Overrides & { from?: string | Promise<string> }
+      oldOwner: PromiseOrValue<string>,
+      overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<ContractTransaction>;
 
     setOwner(
-      newOwner: string,
-      overrides?: Overrides & { from?: string | Promise<string> }
+      newOwner: PromiseOrValue<string>,
+      overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<ContractTransaction>;
   };
 
   ownerCheck(
-    targetAddress: string,
+    targetAddress: PromiseOrValue<string>,
     overrides?: CallOverrides
   ): Promise<boolean>;
 
   removeOwner(
-    oldOwner: string,
-    overrides?: Overrides & { from?: string | Promise<string> }
+    oldOwner: PromiseOrValue<string>,
+    overrides?: Overrides & { from?: PromiseOrValue<string> }
   ): Promise<ContractTransaction>;
 
   setOwner(
-    newOwner: string,
-    overrides?: Overrides & { from?: string | Promise<string> }
+    newOwner: PromiseOrValue<string>,
+    overrides?: Overrides & { from?: PromiseOrValue<string> }
   ): Promise<ContractTransaction>;
 
   callStatic: {
     ownerCheck(
-      targetAddress: string,
+      targetAddress: PromiseOrValue<string>,
       overrides?: CallOverrides
     ): Promise<boolean>;
 
-    removeOwner(oldOwner: string, overrides?: CallOverrides): Promise<void>;
+    removeOwner(
+      oldOwner: PromiseOrValue<string>,
+      overrides?: CallOverrides
+    ): Promise<void>;
 
-    setOwner(newOwner: string, overrides?: CallOverrides): Promise<void>;
+    setOwner(
+      newOwner: PromiseOrValue<string>,
+      overrides?: CallOverrides
+    ): Promise<void>;
   };
 
   filters: {
     "OwnershipGranted(address,address)"(
-      operator?: string | null,
-      target?: string | null
+      operator?: PromiseOrValue<string> | null,
+      target?: PromiseOrValue<string> | null
     ): OwnershipGrantedEventFilter;
     OwnershipGranted(
-      operator?: string | null,
-      target?: string | null
+      operator?: PromiseOrValue<string> | null,
+      target?: PromiseOrValue<string> | null
     ): OwnershipGrantedEventFilter;
 
     "OwnershipRemoved(address,address)"(
-      operator?: string | null,
-      target?: string | null
+      operator?: PromiseOrValue<string> | null,
+      target?: PromiseOrValue<string> | null
     ): OwnershipRemovedEventFilter;
     OwnershipRemoved(
-      operator?: string | null,
-      target?: string | null
+      operator?: PromiseOrValue<string> | null,
+      target?: PromiseOrValue<string> | null
     ): OwnershipRemovedEventFilter;
   };
 
   estimateGas: {
     ownerCheck(
-      targetAddress: string,
+      targetAddress: PromiseOrValue<string>,
       overrides?: CallOverrides
     ): Promise<BigNumber>;
 
     removeOwner(
-      oldOwner: string,
-      overrides?: Overrides & { from?: string | Promise<string> }
+      oldOwner: PromiseOrValue<string>,
+      overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<BigNumber>;
 
     setOwner(
-      newOwner: string,
-      overrides?: Overrides & { from?: string | Promise<string> }
+      newOwner: PromiseOrValue<string>,
+      overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<BigNumber>;
   };
 
   populateTransaction: {
     ownerCheck(
-      targetAddress: string,
+      targetAddress: PromiseOrValue<string>,
       overrides?: CallOverrides
     ): Promise<PopulatedTransaction>;
 
     removeOwner(
-      oldOwner: string,
-      overrides?: Overrides & { from?: string | Promise<string> }
+      oldOwner: PromiseOrValue<string>,
+      overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<PopulatedTransaction>;
 
     setOwner(
-      newOwner: string,
-      overrides?: Overrides & { from?: string | Promise<string> }
+      newOwner: PromiseOrValue<string>,
+      overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<PopulatedTransaction>;
   };
 }

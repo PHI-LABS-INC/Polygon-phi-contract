@@ -8,6 +8,7 @@ import type {
   TypedEvent,
   TypedListener,
   OnEvent,
+  PromiseOrValue,
 } from "../../../common";
 import type { EventFragment } from "@ethersproject/abi";
 import type { Listener, Provider } from "@ethersproject/providers";
