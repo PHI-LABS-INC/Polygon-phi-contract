@@ -20,6 +20,39 @@ const _abi = [
       },
       {
         internalType: "address",
+        name: "msgSender",
+        type: "address",
+      },
+      {
+        internalType: "address[]",
+        name: "contractAddresses",
+        type: "address[]",
+      },
+      {
+        internalType: "uint256[]",
+        name: "tokenIds",
+        type: "uint256[]",
+      },
+      {
+        internalType: "uint256[]",
+        name: "amounts",
+        type: "uint256[]",
+      },
+    ],
+    name: "batchDepositObjectFromShop",
+    outputs: [],
+    stateMutability: "nonpayable",
+    type: "function",
+  },
+  {
+    inputs: [
+      {
+        internalType: "string",
+        name: "name",
+        type: "string",
+      },
+      {
+        internalType: "address",
         name: "caller",
         type: "address",
       },
@@ -44,6 +77,25 @@ const _abi = [
     ],
     name: "create",
     outputs: [],
+    stateMutability: "nonpayable",
+    type: "function",
+  },
+  {
+    inputs: [
+      {
+        internalType: "string",
+        name: "name",
+        type: "string",
+      },
+    ],
+    name: "ownerOfPhiland",
+    outputs: [
+      {
+        internalType: "address",
+        name: "",
+        type: "address",
+      },
+    ],
     stateMutability: "nonpayable",
     type: "function",
   },

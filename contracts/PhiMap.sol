@@ -150,8 +150,6 @@ contract PhiMap is AccessControlUpgradeable, IERC1155ReceiverUpgradeable, Reentr
     /* --------------------------------- WALLPAPER/BasePlate ------------------------------ */
     error NotFit(address sender, uint256 sizeX, uint256 sizeY, uint256 mapSizeX, uint256 mapSizeY);
     error NotBalance(string name, address sender, address contractAddress, uint256 tokenId);
-    /* --------------------------------- OBJECT --------------------------------- */
-    error NotReadyObject(address sender, uint256 objectIndex);
     /* --------------------------------- DEPOSIT -------------------------------- */
     error NotDeposit(address sender, address owner, uint256 tokenId);
     error NotBalanceEnough(
@@ -343,11 +341,11 @@ contract PhiMap is AccessControlUpgradeable, IERC1155ReceiverUpgradeable, Reentr
      * @param contractAddress : Address of Wallpaper
      * @param tokenId : tokenId
      */
-    function changeWallPaper(
+    function _changeWallPaper(
         string memory name,
         address contractAddress,
         uint256 tokenId
-    ) public onlyNotLocked nonReentrant onlyPhilandOwner(name) {
+    ) internal {
         address lastWallPaperContractAddress = wallPaper[name].contractAddress;
         uint256 lastWallPaperTokenId = wallPaper[name].tokenId;
         // Withdraw the deposited WALL OBJECT at the same time if it has already been deposited
@@ -371,11 +369,11 @@ contract PhiMap is AccessControlUpgradeable, IERC1155ReceiverUpgradeable, Reentr
      * @param contractAddress : Address of BasePlate
      * @param tokenId : tokenId
      */
-    function changeBasePlate(
+    function _changeBasePlate(
         string memory name,
         address contractAddress,
         uint256 tokenId
-    ) public onlyNotLocked nonReentrant onlyPhilandOwner(name) {
+    ) public {
         address lastBasePlateContractAddress = basePlate[name].contractAddress;
         uint256 lastBasePlateTokenId = basePlate[name].tokenId;
         // Withdraw the deposited BasePlate OBJECT at the same time if it has already been deposited
@@ -497,13 +495,13 @@ contract PhiMap is AccessControlUpgradeable, IERC1155ReceiverUpgradeable, Reentr
 
     /* ----------------------------------- REMOVE -------------------------------- */
     /*
-     * @title removeObjectFromLand
+     * @title _removeObjectFromLand
      * @notice remove object from philand
      * @param name : ens name
      * @param index : Object index
      * @dev When deleting an object, link information is deleted at the same time.
      */
-    function removeObjectFromLand(string memory name, uint256 index) public onlyNotLocked onlyPhilandOwner(name) {
+    function _removeObjectFromLand(string memory name, uint256 index) internal {
         ObjectInfo memory depositItem = userObject[name][index];
         // Reduce the number of used.
         depositInfo[name][depositItem.contractAddress][depositItem.tokenId].used =
@@ -533,7 +531,7 @@ contract PhiMap is AccessControlUpgradeable, IERC1155ReceiverUpgradeable, Reentr
         uint256 removeIndexArrayLength = removeIndexArray.length;
         if (removeIndexArrayLength != 0) {
             for (uint256 i = 0; i < removeIndexArrayLength; ++i) {
-                removeObjectFromLand(name, removeIndexArray[i]);
+                _removeObjectFromLand(name, removeIndexArray[i]);
             }
         }
         uint256 objectDataLength = objectDatas.length;
@@ -556,7 +554,7 @@ contract PhiMap is AccessControlUpgradeable, IERC1155ReceiverUpgradeable, Reentr
         ObjectInfo[] memory _userObjects = userObject[name];
         for (uint256 i = 0; i < objectLength; ++i) {
             if (_userObjects[i].contractAddress != address(0)) {
-                removeObjectFromLand(name, i);
+                _removeObjectFromLand(name, i);
             }
         }
         delete userObject[name];
@@ -588,10 +586,10 @@ contract PhiMap is AccessControlUpgradeable, IERC1155ReceiverUpgradeable, Reentr
         _batchRemoveAndWrite(name, removeIndexArray, objectDatas, links);
         _removeUnUsedUserObject(name);
         if (wcontractAddress != address(0) && wtokenId != 0) {
-            changeWallPaper(name, wcontractAddress, wtokenId);
+            _changeWallPaper(name, wcontractAddress, wtokenId);
         }
         if (bcontractAddress != address(0) && btokenId != 0) {
-            changeBasePlate(name, bcontractAddress, btokenId);
+            _changeBasePlate(name, bcontractAddress, btokenId);
         }
         emit Save(name, msg.sender);
     }
@@ -695,7 +693,7 @@ contract PhiMap is AccessControlUpgradeable, IERC1155ReceiverUpgradeable, Reentr
         if (check) {
             for (uint256 i = 0; i < objectLength; ++i) {
                 if (_userObjects[i].contractAddress != address(0)) {
-                    removeObjectFromLand(name, i);
+                    _removeObjectFromLand(name, i);
                 }
             }
             delete userObject[name];
@@ -778,6 +776,7 @@ contract PhiMap is AccessControlUpgradeable, IERC1155ReceiverUpgradeable, Reentr
      */
     function _depositObject(
         string memory name,
+        address msgSender,
         address contractAddress,
         uint256 tokenId,
         uint256 amount
@@ -788,11 +787,11 @@ contract PhiMap is AccessControlUpgradeable, IERC1155ReceiverUpgradeable, Reentr
 
         if (!_whitelist[contractAddress]) revert InvalidWhitelist();
         IObject _object = IObject(contractAddress);
-        uint256 userBalance = _object.balanceOf(msg.sender, tokenId);
+        uint256 userBalance = _object.balanceOf(msgSender, tokenId);
         if (userBalance < updateDepositAmount - currentDepositAmount) {
             revert NotBalanceEnough({
                 name: name,
-                sender: msg.sender,
+                sender: msgSender,
                 contractAddress: contractAddress,
                 tokenId: tokenId,
                 currentDepositAmount: currentDepositAmount,
@@ -825,8 +824,8 @@ contract PhiMap is AccessControlUpgradeable, IERC1155ReceiverUpgradeable, Reentr
             userObjectDeposit[name].push(depositObjectInfo);
         }
 
-        _object.safeTransferFrom(msg.sender, address(this), tokenId, amount, "0x00");
-        emit DepositSuccess(msg.sender, name, contractAddress, tokenId, amount);
+        _object.safeTransferFrom(msgSender, address(this), tokenId, amount, "0x00");
+        emit DepositSuccess(msgSender, name, contractAddress, tokenId, amount);
     }
 
     /*
@@ -845,7 +844,29 @@ contract PhiMap is AccessControlUpgradeable, IERC1155ReceiverUpgradeable, Reentr
     ) external onlyNotLocked onlyPhilandOwner(name) {
         uint256 tokenIdsLength = tokenIds.length;
         for (uint256 i = 0; i < tokenIdsLength; ++i) {
-            _depositObject(name, contractAddresses[i], tokenIds[i], amounts[i]);
+            _depositObject(name, msg.sender, contractAddresses[i], tokenIds[i], amounts[i]);
+        }
+    }
+
+    /*
+     * @title batchDepositObject
+     * @notice Functions for batch deposit tokens to this(map) contract
+     * @param name : Ens name
+     * @param msgSender : msgSender
+     * @param contractAddresses : array of deposit contract addresses
+     * @param tokenIds :  array of deposit token ids
+     * @param amounts :  array of deposit amounts
+     */
+    function batchDepositObjectFromShop(
+        string memory name,
+        address msgSender,
+        address[] memory contractAddresses,
+        uint256[] memory tokenIds,
+        uint256[] memory amounts
+    ) external onlyNotLocked onlyOwner {
+        uint256 tokenIdsLength = tokenIds.length;
+        for (uint256 i = 0; i < tokenIdsLength; ++i) {
+            _depositObject(name, msgSender, contractAddresses[i], tokenIds[i], amounts[i]);
         }
     }
 
