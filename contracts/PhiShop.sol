@@ -13,7 +13,8 @@
 pragma solidity ^0.8.7;
 import { IFreeObject } from "./interfaces/IFreeObject.sol";
 import { IPremiumObject } from "./interfaces/IPremiumObject.sol";
-import { IWallpaper } from "./interfaces/IWallpaper.sol";
+import { IWallPaper } from "./interfaces/IWallPaper.sol";
+import { IBasePlate } from "./interfaces/IBasePlate.sol";
 
 /// @title PhiShop Contract
 contract PhiShop {
@@ -24,6 +25,7 @@ contract PhiShop {
     address public immutable freeObjectAddress;
     address public immutable premiumObjectAddress;
     address public immutable wallPaperAddress;
+    address public immutable basePlateAddress;
     /* --------------------------------- ****** --------------------------------- */
     /* -------------------------------------------------------------------------- */
     /*                                   EVENTS                                   */
@@ -37,11 +39,13 @@ contract PhiShop {
     constructor(
         address _freeObjectAddress,
         address _premiumObjectAddress,
-        address _wallPaperAddress
+        address _wallPaperAddress,
+        address _basePlateAddress
     ) {
         freeObjectAddress = _freeObjectAddress;
         premiumObjectAddress = _premiumObjectAddress;
         wallPaperAddress = _wallPaperAddress;
+        basePlateAddress = _basePlateAddress;
     }
 
     /* --------------------------------- ****** --------------------------------- */
@@ -59,7 +63,8 @@ contract PhiShop {
         address receiverAddress,
         uint256[] memory ftokenIds,
         uint256[] memory ptokenIds,
-        uint256[] memory wtokenIds
+        uint256[] memory wtokenIds,
+        uint256[] memory btokenIds
     ) external payable {
         // check if the function caller is not an zero account address
         require(msg.sender != address(0));
@@ -76,14 +81,19 @@ contract PhiShop {
             _pobject.batchBuyObjectFromShop{ value: pPrice }(receiverAddress, ptokenIds);
         }
         if (wtokenIds.length != 0) {
-            IWallpaper _wobject = IWallpaper(wallPaperAddress);
+            IWallPaper _wobject = IWallPaper(wallPaperAddress);
             uint256 wPrice = _wobject.getObjectsPrice(wtokenIds);
             _wobject.batchWallPaperFromShop{ value: wPrice }(receiverAddress, wtokenIds);
+        }
+        if (btokenIds.length != 0) {
+            IBasePlate _bobject = IBasePlate(basePlateAddress);
+            uint256 bPrice = _bobject.getObjectsPrice(btokenIds);
+            _bobject.batchBasePlateFromShop{ value: bPrice }(receiverAddress, btokenIds);
         }
         emit LogShopBuyObject(
             msg.sender,
             receiverAddress,
-            ftokenIds.length + ftokenIds.length + wtokenIds.length,
+            ftokenIds.length + ftokenIds.length + wtokenIds.length + btokenIds.length,
             msg.value
         );
     }

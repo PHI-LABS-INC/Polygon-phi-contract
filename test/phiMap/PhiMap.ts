@@ -2,7 +2,7 @@ import type { SignerWithAddress } from "@nomiclabs/hardhat-ethers/dist/src/signe
 import { artifacts, ethers, upgrades, waffle } from "hardhat";
 import type { Artifact } from "hardhat/types";
 
-import { PremiumObject } from "../../src/types";
+import { BasePlate, PremiumObject } from "../../src/types";
 import { PhiMap } from "../../src/types/contracts/PhiMap";
 import { Registry } from "../../src/types/contracts/Registry";
 import { FreeObject } from "../../src/types/contracts/object/FreeObject";
@@ -19,8 +19,6 @@ import {
   CantSetInvalidSizeMap,
   CantSetNotbalanceWallPaper,
   CantViewPhilandArray,
-  CantWriteLinkToAnotherUserObject,
-  CantWriteLinkToObject,
   CantWriteObjectToLand,
   CantWriteObjectToLandOverDeposit,
   CantflipLockMap,
@@ -31,6 +29,7 @@ import {
   shouldBehaveBatchRemoveAndWrite,
   shouldBehaveBatchWithdraw,
   shouldBehaveBatchWriteObjectToLand,
+  shouldBehaveChangeBasePlate,
   shouldBehaveChangeWallPaper,
   shouldBehaveCheckAllDepositStatus,
   shouldBehaveCheckAllDepositStatusAfterInit,
@@ -39,7 +38,6 @@ import {
   shouldBehaveDeposit,
   shouldBehaveInitialization,
   shouldBehaveOwnerOfPhiland,
-  shouldBehaveRemoveLinkfromObject,
   shouldBehaveRemoveObjectFromLand,
   shouldBehaveSave,
   shouldBehaveViewLinks,
@@ -47,8 +45,6 @@ import {
   shouldBehaveViewPhiland,
   shouldBehaveViewPhilandArray,
   shouldBehaveWithdraw,
-  shouldBehaveWithdrawWallPaper,
-  shouldBehaveWriteLinkToObject,
   shouldBehaveWriteObjectToLand,
   shouldBehavebatchRemoveAndWrite2,
   shouldBehaveviewPhiland,
@@ -100,6 +96,13 @@ describe("Unit tests PhiMap", function () {
       ])
     );
 
+    const basePlateArtifact: Artifact = await artifacts.readArtifact("BasePlate");
+    this.basePlate = <BasePlate>(
+      await waffle.deployContract(this.signers.admin, basePlateArtifact, [
+        this.signers.treasury.address,
+        this.phiMap.address,
+      ])
+    );
     const PhiRegistry = await ethers.getContractFactory("Registry");
     const phiRegistry = await upgrades.deployProxy(PhiRegistry, [
       this.signers.admin.address,
@@ -122,10 +125,12 @@ describe("Unit tests PhiMap", function () {
     await this.freeObject.connect(this.signers.admin).setOwner(this.phiMap.address);
     await this.questObject.connect(this.signers.admin).setOwner(this.phiMap.address);
     await this.wallPaper.connect(this.signers.admin).setOwner(this.phiMap.address);
+    await this.basePlate.connect(this.signers.admin).setOwner(this.phiMap.address);
 
     await this.phiMap.connect(this.signers.admin).setWhitelistObject(this.freeObject.address);
     await this.phiMap.connect(this.signers.admin).setWhitelistObject(this.questObject.address);
     await this.phiMap.connect(this.signers.admin).setWhitelistObject(this.wallPaper.address);
+    await this.phiMap.connect(this.signers.admin).setWhitelistObject(this.basePlate.address);
 
     await this.questObject
       .connect(this.signers.admin)
@@ -199,7 +204,27 @@ describe("Unit tests PhiMap", function () {
         200,
         0,
       );
-    await this.questObject.connect(this.signers.admin).getObject(this.signers.alice.address, 1);
+    await this.basePlate
+      .connect(this.signers.admin)
+      .createBasePlate(
+        1,
+        "FmdcpWkS4lfGJxgx1H0SifowHxwLkNAxogUhSNgH-Xw",
+        { x: 8, y: 8, z: 0 },
+        this.signers.bob.address,
+        200,
+        0,
+      );
+    await this.basePlate
+      .connect(this.signers.admin)
+      .createBasePlate(
+        2,
+        "FmdcpWkS4lfGJxgx1H0SifowHxwLkNAxogUhSNgH-Xw",
+        { x: 8, y: 8, z: 0 },
+        this.signers.bob.address,
+        200,
+        0,
+      );
+    await await this.questObject.connect(this.signers.admin).getObject(this.signers.alice.address, 1);
     await this.questObject.connect(this.signers.admin).getObject(this.signers.alice.address, 2);
     await this.questObject.connect(this.signers.admin).getObject(this.signers.alice.address, 3);
   });
@@ -223,18 +248,19 @@ describe("Unit tests PhiMap", function () {
     shouldBehaveBatchWriteObjectToLand();
     shouldBehaveBatchRemoveAndWrite();
     shouldBehaveViewPhilandArray();
-    shouldBehaveWriteLinkToObject();
-    CantWriteLinkToAnotherUserObject();
-    CantWriteLinkToObject();
+    // shouldBehaveWriteLinkToObject();
+    // CantWriteLinkToAnotherUserObject();
+    // CantWriteLinkToObject();
     shouldBehaveViewLinks();
-    shouldBehaveRemoveLinkfromObject();
+    // shouldBehaveRemoveLinkfromObject();
     shouldBehavebatchRemoveAndWrite2();
     shouldBehaveInitialization();
     shouldBehaveCheckAllDepositStatusAfterInit();
     CantWriteObjectToLand();
     shouldBehaveChangeWallPaper();
+    shouldBehaveChangeBasePlate();
     shouldflipLockMap();
-    shouldBehaveWithdrawWallPaper();
+    // shouldBehaveWithdrawWallPaper();
     shouldBehaveSave();
     shouldBehave0NotOwnerOfPhiland();
     CantNotBalanceDeposit();

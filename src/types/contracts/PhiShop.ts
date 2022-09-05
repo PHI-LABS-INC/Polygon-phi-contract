@@ -31,20 +31,26 @@ import type {
 
 export interface PhiShopInterface extends utils.Interface {
   functions: {
+    "basePlateAddress()": FunctionFragment;
     "freeObjectAddress()": FunctionFragment;
     "premiumObjectAddress()": FunctionFragment;
-    "shopBuyObject(address,uint256[],uint256[],uint256[])": FunctionFragment;
+    "shopBuyObject(address,uint256[],uint256[],uint256[],uint256[])": FunctionFragment;
     "wallPaperAddress()": FunctionFragment;
   };
 
   getFunction(
     nameOrSignatureOrTopic:
+      | "basePlateAddress"
       | "freeObjectAddress"
       | "premiumObjectAddress"
       | "shopBuyObject"
       | "wallPaperAddress"
   ): FunctionFragment;
 
+  encodeFunctionData(
+    functionFragment: "basePlateAddress",
+    values?: undefined
+  ): string;
   encodeFunctionData(
     functionFragment: "freeObjectAddress",
     values?: undefined
@@ -59,6 +65,7 @@ export interface PhiShopInterface extends utils.Interface {
       PromiseOrValue<string>,
       PromiseOrValue<BigNumberish>[],
       PromiseOrValue<BigNumberish>[],
+      PromiseOrValue<BigNumberish>[],
       PromiseOrValue<BigNumberish>[]
     ]
   ): string;
@@ -67,6 +74,10 @@ export interface PhiShopInterface extends utils.Interface {
     values?: undefined
   ): string;
 
+  decodeFunctionResult(
+    functionFragment: "basePlateAddress",
+    data: BytesLike
+  ): Result;
   decodeFunctionResult(
     functionFragment: "freeObjectAddress",
     data: BytesLike
@@ -132,6 +143,8 @@ export interface PhiShop extends BaseContract {
   removeListener: OnEvent<this>;
 
   functions: {
+    basePlateAddress(overrides?: CallOverrides): Promise<[string]>;
+
     freeObjectAddress(overrides?: CallOverrides): Promise<[string]>;
 
     premiumObjectAddress(overrides?: CallOverrides): Promise<[string]>;
@@ -141,11 +154,14 @@ export interface PhiShop extends BaseContract {
       ftokenIds: PromiseOrValue<BigNumberish>[],
       ptokenIds: PromiseOrValue<BigNumberish>[],
       wtokenIds: PromiseOrValue<BigNumberish>[],
+      btokenIds: PromiseOrValue<BigNumberish>[],
       overrides?: PayableOverrides & { from?: PromiseOrValue<string> }
     ): Promise<ContractTransaction>;
 
     wallPaperAddress(overrides?: CallOverrides): Promise<[string]>;
   };
+
+  basePlateAddress(overrides?: CallOverrides): Promise<string>;
 
   freeObjectAddress(overrides?: CallOverrides): Promise<string>;
 
@@ -156,12 +172,15 @@ export interface PhiShop extends BaseContract {
     ftokenIds: PromiseOrValue<BigNumberish>[],
     ptokenIds: PromiseOrValue<BigNumberish>[],
     wtokenIds: PromiseOrValue<BigNumberish>[],
+    btokenIds: PromiseOrValue<BigNumberish>[],
     overrides?: PayableOverrides & { from?: PromiseOrValue<string> }
   ): Promise<ContractTransaction>;
 
   wallPaperAddress(overrides?: CallOverrides): Promise<string>;
 
   callStatic: {
+    basePlateAddress(overrides?: CallOverrides): Promise<string>;
+
     freeObjectAddress(overrides?: CallOverrides): Promise<string>;
 
     premiumObjectAddress(overrides?: CallOverrides): Promise<string>;
@@ -171,6 +190,7 @@ export interface PhiShop extends BaseContract {
       ftokenIds: PromiseOrValue<BigNumberish>[],
       ptokenIds: PromiseOrValue<BigNumberish>[],
       wtokenIds: PromiseOrValue<BigNumberish>[],
+      btokenIds: PromiseOrValue<BigNumberish>[],
       overrides?: CallOverrides
     ): Promise<void>;
 
@@ -193,6 +213,8 @@ export interface PhiShop extends BaseContract {
   };
 
   estimateGas: {
+    basePlateAddress(overrides?: CallOverrides): Promise<BigNumber>;
+
     freeObjectAddress(overrides?: CallOverrides): Promise<BigNumber>;
 
     premiumObjectAddress(overrides?: CallOverrides): Promise<BigNumber>;
@@ -202,6 +224,7 @@ export interface PhiShop extends BaseContract {
       ftokenIds: PromiseOrValue<BigNumberish>[],
       ptokenIds: PromiseOrValue<BigNumberish>[],
       wtokenIds: PromiseOrValue<BigNumberish>[],
+      btokenIds: PromiseOrValue<BigNumberish>[],
       overrides?: PayableOverrides & { from?: PromiseOrValue<string> }
     ): Promise<BigNumber>;
 
@@ -209,6 +232,8 @@ export interface PhiShop extends BaseContract {
   };
 
   populateTransaction: {
+    basePlateAddress(overrides?: CallOverrides): Promise<PopulatedTransaction>;
+
     freeObjectAddress(overrides?: CallOverrides): Promise<PopulatedTransaction>;
 
     premiumObjectAddress(
@@ -220,6 +245,7 @@ export interface PhiShop extends BaseContract {
       ftokenIds: PromiseOrValue<BigNumberish>[],
       ptokenIds: PromiseOrValue<BigNumberish>[],
       wtokenIds: PromiseOrValue<BigNumberish>[],
+      btokenIds: PromiseOrValue<BigNumberish>[],
       overrides?: PayableOverrides & { from?: PromiseOrValue<string> }
     ): Promise<PopulatedTransaction>;
 

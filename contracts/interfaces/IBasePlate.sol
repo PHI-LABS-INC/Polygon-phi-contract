@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: GPL-2.0-or-later
 pragma solidity ^0.8.7;
 
-interface IWallPaper {
+interface IBasePlate {
     struct Size {
         uint8 x;
         uint8 y;
@@ -16,7 +16,7 @@ interface IWallPaper {
 
     function getObjectsPrice(uint256[] memory tokenIds) external view returns (uint256);
 
-    function batchWallPaperFromShop(address to, uint256[] memory tokenIds) external payable;
+    function batchBasePlateFromShop(address to, uint256[] memory tokenIds) external payable;
 
     function safeTransferFrom(
         address from,

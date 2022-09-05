@@ -2,7 +2,7 @@ import type { SignerWithAddress } from "@nomiclabs/hardhat-ethers/dist/src/signe
 import { artifacts, ethers, upgrades, waffle } from "hardhat";
 import type { Artifact } from "hardhat/types";
 
-import { PhiShop, PremiumObject } from "../../src/types";
+import { BasePlate, PhiShop, PremiumObject } from "../../src/types";
 import { PhiMap } from "../../src/types/contracts/PhiMap";
 import { FreeObject } from "../../src/types/contracts/object/FreeObject";
 import { WallPaper } from "../../src/types/contracts/object/WallPaper";
@@ -45,12 +45,21 @@ describe("Unit tests PhiShop", function () {
       ])
     );
 
+    const basePlateArtifact: Artifact = await artifacts.readArtifact("BasePlate");
+    this.basePlate = <BasePlate>(
+      await waffle.deployContract(this.signers.admin, basePlateArtifact, [
+        this.signers.treasury.address,
+        this.phiMap.address,
+      ])
+    );
+
     const phiShopArtifact: Artifact = await artifacts.readArtifact("PhiShop");
     this.phiShop = <PhiShop>(
       await waffle.deployContract(this.signers.admin, phiShopArtifact, [
         this.freeObject.address,
         this.premiumObject.address,
         this.wallPaper.address,
+        this.basePlate.address,
       ])
     );
 
