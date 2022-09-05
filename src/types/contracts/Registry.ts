@@ -8,6 +8,7 @@ import type {
   TypedEvent,
   TypedListener,
   OnEvent,
+  PromiseOrValue,
 } from "../common";
 import type {
   FunctionFragment,
@@ -29,7 +30,11 @@ import type {
 } from "ethers";
 
 export declare namespace Registry {
-  export type CouponStruct = { r: BytesLike; s: BytesLike; v: BigNumberish };
+  export type CouponStruct = {
+    r: PromiseOrValue<BytesLike>;
+    s: PromiseOrValue<BytesLike>;
+    v: PromiseOrValue<BigNumberish>;
+  };
 
   export type CouponStructOutput = [string, string, number] & {
     r: string;
@@ -86,16 +91,16 @@ export interface RegistryInterface extends utils.Interface {
   ): string;
   encodeFunctionData(
     functionFragment: "changePhiMapAddress",
-    values: [string]
+    values: [PromiseOrValue<string>]
   ): string;
   encodeFunctionData(
     functionFragment: "changePhilandOwner",
-    values: [string, Registry.CouponStruct]
+    values: [PromiseOrValue<string>, Registry.CouponStruct]
   ): string;
   encodeFunctionData(functionFragment: "claimed", values?: undefined): string;
   encodeFunctionData(
     functionFragment: "createPhiland",
-    values: [string, Registry.CouponStruct]
+    values: [PromiseOrValue<string>, Registry.CouponStruct]
   ): string;
   encodeFunctionData(
     functionFragment: "getAdminSigner",
@@ -107,40 +112,44 @@ export interface RegistryInterface extends utils.Interface {
   ): string;
   encodeFunctionData(
     functionFragment: "getRoleAdmin",
-    values: [BytesLike]
+    values: [PromiseOrValue<BytesLike>]
   ): string;
   encodeFunctionData(
     functionFragment: "grantRole",
-    values: [BytesLike, string]
+    values: [PromiseOrValue<BytesLike>, PromiseOrValue<string>]
   ): string;
   encodeFunctionData(
     functionFragment: "hasRole",
-    values: [BytesLike, string]
+    values: [PromiseOrValue<BytesLike>, PromiseOrValue<string>]
   ): string;
   encodeFunctionData(
     functionFragment: "initialize",
-    values: [string, string, string]
+    values: [
+      PromiseOrValue<string>,
+      PromiseOrValue<string>,
+      PromiseOrValue<string>
+    ]
   ): string;
   encodeFunctionData(functionFragment: "map", values?: undefined): string;
   encodeFunctionData(
     functionFragment: "ownerLists",
-    values: [string, string]
+    values: [PromiseOrValue<string>, PromiseOrValue<string>]
   ): string;
   encodeFunctionData(
     functionFragment: "renounceRole",
-    values: [BytesLike, string]
+    values: [PromiseOrValue<BytesLike>, PromiseOrValue<string>]
   ): string;
   encodeFunctionData(
     functionFragment: "revokeRole",
-    values: [BytesLike, string]
+    values: [PromiseOrValue<BytesLike>, PromiseOrValue<string>]
   ): string;
   encodeFunctionData(
     functionFragment: "setAdminSigner",
-    values: [string]
+    values: [PromiseOrValue<string>]
   ): string;
   encodeFunctionData(
     functionFragment: "supportsInterface",
-    values: [BytesLike]
+    values: [PromiseOrValue<BytesLike>]
   ): string;
 
   decodeFunctionResult(
@@ -348,76 +357,79 @@ export interface Registry extends BaseContract {
     DEFAULT_ADMIN_ROLE(overrides?: CallOverrides): Promise<[string]>;
 
     changePhiMapAddress(
-      phiMapAddress: string,
-      overrides?: Overrides & { from?: string | Promise<string> }
+      phiMapAddress: PromiseOrValue<string>,
+      overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<ContractTransaction>;
 
     changePhilandOwner(
-      name: string,
+      name: PromiseOrValue<string>,
       coupon: Registry.CouponStruct,
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<ContractTransaction>;
 
     claimed(overrides?: CallOverrides): Promise<[BigNumber]>;
 
     createPhiland(
-      name: string,
+      name: PromiseOrValue<string>,
       coupon: Registry.CouponStruct,
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<ContractTransaction>;
 
     getAdminSigner(overrides?: CallOverrides): Promise<[string]>;
 
     getPhiMapAddress(overrides?: CallOverrides): Promise<[string]>;
 
-    getRoleAdmin(role: BytesLike, overrides?: CallOverrides): Promise<[string]>;
+    getRoleAdmin(
+      role: PromiseOrValue<BytesLike>,
+      overrides?: CallOverrides
+    ): Promise<[string]>;
 
     grantRole(
-      role: BytesLike,
-      account: string,
-      overrides?: Overrides & { from?: string | Promise<string> }
+      role: PromiseOrValue<BytesLike>,
+      account: PromiseOrValue<string>,
+      overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<ContractTransaction>;
 
     hasRole(
-      role: BytesLike,
-      account: string,
+      role: PromiseOrValue<BytesLike>,
+      account: PromiseOrValue<string>,
       overrides?: CallOverrides
     ): Promise<[boolean]>;
 
     initialize(
-      admin: string,
-      initMap: string,
-      initAdminSigner: string,
-      overrides?: Overrides & { from?: string | Promise<string> }
+      admin: PromiseOrValue<string>,
+      initMap: PromiseOrValue<string>,
+      initAdminSigner: PromiseOrValue<string>,
+      overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<ContractTransaction>;
 
     map(overrides?: CallOverrides): Promise<[string]>;
 
     ownerLists(
-      arg0: string,
-      arg1: string,
+      arg0: PromiseOrValue<string>,
+      arg1: PromiseOrValue<string>,
       overrides?: CallOverrides
     ): Promise<[string]>;
 
     renounceRole(
-      role: BytesLike,
-      account: string,
-      overrides?: Overrides & { from?: string | Promise<string> }
+      role: PromiseOrValue<BytesLike>,
+      account: PromiseOrValue<string>,
+      overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<ContractTransaction>;
 
     revokeRole(
-      role: BytesLike,
-      account: string,
-      overrides?: Overrides & { from?: string | Promise<string> }
+      role: PromiseOrValue<BytesLike>,
+      account: PromiseOrValue<string>,
+      overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<ContractTransaction>;
 
     setAdminSigner(
-      verifierAdderss: string,
-      overrides?: Overrides & { from?: string | Promise<string> }
+      verifierAdderss: PromiseOrValue<string>,
+      overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<ContractTransaction>;
 
     supportsInterface(
-      interfaceId: BytesLike,
+      interfaceId: PromiseOrValue<BytesLike>,
       overrides?: CallOverrides
     ): Promise<[boolean]>;
   };
@@ -425,76 +437,79 @@ export interface Registry extends BaseContract {
   DEFAULT_ADMIN_ROLE(overrides?: CallOverrides): Promise<string>;
 
   changePhiMapAddress(
-    phiMapAddress: string,
-    overrides?: Overrides & { from?: string | Promise<string> }
+    phiMapAddress: PromiseOrValue<string>,
+    overrides?: Overrides & { from?: PromiseOrValue<string> }
   ): Promise<ContractTransaction>;
 
   changePhilandOwner(
-    name: string,
+    name: PromiseOrValue<string>,
     coupon: Registry.CouponStruct,
-    overrides?: Overrides & { from?: string | Promise<string> }
+    overrides?: Overrides & { from?: PromiseOrValue<string> }
   ): Promise<ContractTransaction>;
 
   claimed(overrides?: CallOverrides): Promise<BigNumber>;
 
   createPhiland(
-    name: string,
+    name: PromiseOrValue<string>,
     coupon: Registry.CouponStruct,
-    overrides?: Overrides & { from?: string | Promise<string> }
+    overrides?: Overrides & { from?: PromiseOrValue<string> }
   ): Promise<ContractTransaction>;
 
   getAdminSigner(overrides?: CallOverrides): Promise<string>;
 
   getPhiMapAddress(overrides?: CallOverrides): Promise<string>;
 
-  getRoleAdmin(role: BytesLike, overrides?: CallOverrides): Promise<string>;
+  getRoleAdmin(
+    role: PromiseOrValue<BytesLike>,
+    overrides?: CallOverrides
+  ): Promise<string>;
 
   grantRole(
-    role: BytesLike,
-    account: string,
-    overrides?: Overrides & { from?: string | Promise<string> }
+    role: PromiseOrValue<BytesLike>,
+    account: PromiseOrValue<string>,
+    overrides?: Overrides & { from?: PromiseOrValue<string> }
   ): Promise<ContractTransaction>;
 
   hasRole(
-    role: BytesLike,
-    account: string,
+    role: PromiseOrValue<BytesLike>,
+    account: PromiseOrValue<string>,
     overrides?: CallOverrides
   ): Promise<boolean>;
 
   initialize(
-    admin: string,
-    initMap: string,
-    initAdminSigner: string,
-    overrides?: Overrides & { from?: string | Promise<string> }
+    admin: PromiseOrValue<string>,
+    initMap: PromiseOrValue<string>,
+    initAdminSigner: PromiseOrValue<string>,
+    overrides?: Overrides & { from?: PromiseOrValue<string> }
   ): Promise<ContractTransaction>;
 
   map(overrides?: CallOverrides): Promise<string>;
 
   ownerLists(
-    arg0: string,
-    arg1: string,
+    arg0: PromiseOrValue<string>,
+    arg1: PromiseOrValue<string>,
     overrides?: CallOverrides
   ): Promise<string>;
 
   renounceRole(
-    role: BytesLike,
-    account: string,
-    overrides?: Overrides & { from?: string | Promise<string> }
+    role: PromiseOrValue<BytesLike>,
+    account: PromiseOrValue<string>,
+    overrides?: Overrides & { from?: PromiseOrValue<string> }
   ): Promise<ContractTransaction>;
 
   revokeRole(
-    role: BytesLike,
-    account: string,
-    overrides?: Overrides & { from?: string | Promise<string> }
+    role: PromiseOrValue<BytesLike>,
+    account: PromiseOrValue<string>,
+    overrides?: Overrides & { from?: PromiseOrValue<string> }
   ): Promise<ContractTransaction>;
 
   setAdminSigner(
-    verifierAdderss: string,
-    overrides?: Overrides & { from?: string | Promise<string> }
+    verifierAdderss: PromiseOrValue<string>,
+    overrides?: Overrides & { from?: PromiseOrValue<string> }
   ): Promise<ContractTransaction>;
 
   supportsInterface(
-    interfaceId: BytesLike,
+    interfaceId: PromiseOrValue<BytesLike>,
     overrides?: CallOverrides
   ): Promise<boolean>;
 
@@ -502,12 +517,12 @@ export interface Registry extends BaseContract {
     DEFAULT_ADMIN_ROLE(overrides?: CallOverrides): Promise<string>;
 
     changePhiMapAddress(
-      phiMapAddress: string,
+      phiMapAddress: PromiseOrValue<string>,
       overrides?: CallOverrides
     ): Promise<void>;
 
     changePhilandOwner(
-      name: string,
+      name: PromiseOrValue<string>,
       coupon: Registry.CouponStruct,
       overrides?: CallOverrides
     ): Promise<void>;
@@ -515,7 +530,7 @@ export interface Registry extends BaseContract {
     claimed(overrides?: CallOverrides): Promise<BigNumber>;
 
     createPhiland(
-      name: string,
+      name: PromiseOrValue<string>,
       coupon: Registry.CouponStruct,
       overrides?: CallOverrides
     ): Promise<void>;
@@ -524,54 +539,57 @@ export interface Registry extends BaseContract {
 
     getPhiMapAddress(overrides?: CallOverrides): Promise<string>;
 
-    getRoleAdmin(role: BytesLike, overrides?: CallOverrides): Promise<string>;
+    getRoleAdmin(
+      role: PromiseOrValue<BytesLike>,
+      overrides?: CallOverrides
+    ): Promise<string>;
 
     grantRole(
-      role: BytesLike,
-      account: string,
+      role: PromiseOrValue<BytesLike>,
+      account: PromiseOrValue<string>,
       overrides?: CallOverrides
     ): Promise<void>;
 
     hasRole(
-      role: BytesLike,
-      account: string,
+      role: PromiseOrValue<BytesLike>,
+      account: PromiseOrValue<string>,
       overrides?: CallOverrides
     ): Promise<boolean>;
 
     initialize(
-      admin: string,
-      initMap: string,
-      initAdminSigner: string,
+      admin: PromiseOrValue<string>,
+      initMap: PromiseOrValue<string>,
+      initAdminSigner: PromiseOrValue<string>,
       overrides?: CallOverrides
     ): Promise<void>;
 
     map(overrides?: CallOverrides): Promise<string>;
 
     ownerLists(
-      arg0: string,
-      arg1: string,
+      arg0: PromiseOrValue<string>,
+      arg1: PromiseOrValue<string>,
       overrides?: CallOverrides
     ): Promise<string>;
 
     renounceRole(
-      role: BytesLike,
-      account: string,
+      role: PromiseOrValue<BytesLike>,
+      account: PromiseOrValue<string>,
       overrides?: CallOverrides
     ): Promise<void>;
 
     revokeRole(
-      role: BytesLike,
-      account: string,
+      role: PromiseOrValue<BytesLike>,
+      account: PromiseOrValue<string>,
       overrides?: CallOverrides
     ): Promise<void>;
 
     setAdminSigner(
-      verifierAdderss: string,
+      verifierAdderss: PromiseOrValue<string>,
       overrides?: CallOverrides
     ): Promise<void>;
 
     supportsInterface(
-      interfaceId: BytesLike,
+      interfaceId: PromiseOrValue<BytesLike>,
       overrides?: CallOverrides
     ): Promise<boolean>;
   };
@@ -584,69 +602,71 @@ export interface Registry extends BaseContract {
     Initialized(version?: null): InitializedEventFilter;
 
     "LogChangePhilandAddress(address,address)"(
-      sender?: string | null,
+      sender?: PromiseOrValue<string> | null,
       phiMapAddress?: null
     ): LogChangePhilandAddressEventFilter;
     LogChangePhilandAddress(
-      sender?: string | null,
+      sender?: PromiseOrValue<string> | null,
       phiMapAddress?: null
     ): LogChangePhilandAddressEventFilter;
 
     "LogChangePhilandOwner(address,string)"(
-      sender?: string | null,
+      sender?: PromiseOrValue<string> | null,
       name?: null
     ): LogChangePhilandOwnerEventFilter;
     LogChangePhilandOwner(
-      sender?: string | null,
+      sender?: PromiseOrValue<string> | null,
       name?: null
     ): LogChangePhilandOwnerEventFilter;
 
     "LogCreatePhiland(address,string)"(
-      sender?: string | null,
+      sender?: PromiseOrValue<string> | null,
       name?: null
     ): LogCreatePhilandEventFilter;
     LogCreatePhiland(
-      sender?: string | null,
+      sender?: PromiseOrValue<string> | null,
       name?: null
     ): LogCreatePhilandEventFilter;
 
     "RoleAdminChanged(bytes32,bytes32,bytes32)"(
-      role?: BytesLike | null,
-      previousAdminRole?: BytesLike | null,
-      newAdminRole?: BytesLike | null
+      role?: PromiseOrValue<BytesLike> | null,
+      previousAdminRole?: PromiseOrValue<BytesLike> | null,
+      newAdminRole?: PromiseOrValue<BytesLike> | null
     ): RoleAdminChangedEventFilter;
     RoleAdminChanged(
-      role?: BytesLike | null,
-      previousAdminRole?: BytesLike | null,
-      newAdminRole?: BytesLike | null
+      role?: PromiseOrValue<BytesLike> | null,
+      previousAdminRole?: PromiseOrValue<BytesLike> | null,
+      newAdminRole?: PromiseOrValue<BytesLike> | null
     ): RoleAdminChangedEventFilter;
 
     "RoleGranted(bytes32,address,address)"(
-      role?: BytesLike | null,
-      account?: string | null,
-      sender?: string | null
+      role?: PromiseOrValue<BytesLike> | null,
+      account?: PromiseOrValue<string> | null,
+      sender?: PromiseOrValue<string> | null
     ): RoleGrantedEventFilter;
     RoleGranted(
-      role?: BytesLike | null,
-      account?: string | null,
-      sender?: string | null
+      role?: PromiseOrValue<BytesLike> | null,
+      account?: PromiseOrValue<string> | null,
+      sender?: PromiseOrValue<string> | null
     ): RoleGrantedEventFilter;
 
     "RoleRevoked(bytes32,address,address)"(
-      role?: BytesLike | null,
-      account?: string | null,
-      sender?: string | null
+      role?: PromiseOrValue<BytesLike> | null,
+      account?: PromiseOrValue<string> | null,
+      sender?: PromiseOrValue<string> | null
     ): RoleRevokedEventFilter;
     RoleRevoked(
-      role?: BytesLike | null,
-      account?: string | null,
-      sender?: string | null
+      role?: PromiseOrValue<BytesLike> | null,
+      account?: PromiseOrValue<string> | null,
+      sender?: PromiseOrValue<string> | null
     ): RoleRevokedEventFilter;
 
     "SetAdminSigner(address)"(
-      verifierAddress?: string | null
+      verifierAddress?: PromiseOrValue<string> | null
     ): SetAdminSignerEventFilter;
-    SetAdminSigner(verifierAddress?: string | null): SetAdminSignerEventFilter;
+    SetAdminSigner(
+      verifierAddress?: PromiseOrValue<string> | null
+    ): SetAdminSignerEventFilter;
 
     "SetBaseNode(bytes32)"(basenode?: null): SetBaseNodeEventFilter;
     SetBaseNode(basenode?: null): SetBaseNodeEventFilter;
@@ -656,22 +676,22 @@ export interface Registry extends BaseContract {
     DEFAULT_ADMIN_ROLE(overrides?: CallOverrides): Promise<BigNumber>;
 
     changePhiMapAddress(
-      phiMapAddress: string,
-      overrides?: Overrides & { from?: string | Promise<string> }
+      phiMapAddress: PromiseOrValue<string>,
+      overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<BigNumber>;
 
     changePhilandOwner(
-      name: string,
+      name: PromiseOrValue<string>,
       coupon: Registry.CouponStruct,
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<BigNumber>;
 
     claimed(overrides?: CallOverrides): Promise<BigNumber>;
 
     createPhiland(
-      name: string,
+      name: PromiseOrValue<string>,
       coupon: Registry.CouponStruct,
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<BigNumber>;
 
     getAdminSigner(overrides?: CallOverrides): Promise<BigNumber>;
@@ -679,56 +699,56 @@ export interface Registry extends BaseContract {
     getPhiMapAddress(overrides?: CallOverrides): Promise<BigNumber>;
 
     getRoleAdmin(
-      role: BytesLike,
+      role: PromiseOrValue<BytesLike>,
       overrides?: CallOverrides
     ): Promise<BigNumber>;
 
     grantRole(
-      role: BytesLike,
-      account: string,
-      overrides?: Overrides & { from?: string | Promise<string> }
+      role: PromiseOrValue<BytesLike>,
+      account: PromiseOrValue<string>,
+      overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<BigNumber>;
 
     hasRole(
-      role: BytesLike,
-      account: string,
+      role: PromiseOrValue<BytesLike>,
+      account: PromiseOrValue<string>,
       overrides?: CallOverrides
     ): Promise<BigNumber>;
 
     initialize(
-      admin: string,
-      initMap: string,
-      initAdminSigner: string,
-      overrides?: Overrides & { from?: string | Promise<string> }
+      admin: PromiseOrValue<string>,
+      initMap: PromiseOrValue<string>,
+      initAdminSigner: PromiseOrValue<string>,
+      overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<BigNumber>;
 
     map(overrides?: CallOverrides): Promise<BigNumber>;
 
     ownerLists(
-      arg0: string,
-      arg1: string,
+      arg0: PromiseOrValue<string>,
+      arg1: PromiseOrValue<string>,
       overrides?: CallOverrides
     ): Promise<BigNumber>;
 
     renounceRole(
-      role: BytesLike,
-      account: string,
-      overrides?: Overrides & { from?: string | Promise<string> }
+      role: PromiseOrValue<BytesLike>,
+      account: PromiseOrValue<string>,
+      overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<BigNumber>;
 
     revokeRole(
-      role: BytesLike,
-      account: string,
-      overrides?: Overrides & { from?: string | Promise<string> }
+      role: PromiseOrValue<BytesLike>,
+      account: PromiseOrValue<string>,
+      overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<BigNumber>;
 
     setAdminSigner(
-      verifierAdderss: string,
-      overrides?: Overrides & { from?: string | Promise<string> }
+      verifierAdderss: PromiseOrValue<string>,
+      overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<BigNumber>;
 
     supportsInterface(
-      interfaceId: BytesLike,
+      interfaceId: PromiseOrValue<BytesLike>,
       overrides?: CallOverrides
     ): Promise<BigNumber>;
   };
@@ -739,22 +759,22 @@ export interface Registry extends BaseContract {
     ): Promise<PopulatedTransaction>;
 
     changePhiMapAddress(
-      phiMapAddress: string,
-      overrides?: Overrides & { from?: string | Promise<string> }
+      phiMapAddress: PromiseOrValue<string>,
+      overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<PopulatedTransaction>;
 
     changePhilandOwner(
-      name: string,
+      name: PromiseOrValue<string>,
       coupon: Registry.CouponStruct,
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<PopulatedTransaction>;
 
     claimed(overrides?: CallOverrides): Promise<PopulatedTransaction>;
 
     createPhiland(
-      name: string,
+      name: PromiseOrValue<string>,
       coupon: Registry.CouponStruct,
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<PopulatedTransaction>;
 
     getAdminSigner(overrides?: CallOverrides): Promise<PopulatedTransaction>;
@@ -762,56 +782,56 @@ export interface Registry extends BaseContract {
     getPhiMapAddress(overrides?: CallOverrides): Promise<PopulatedTransaction>;
 
     getRoleAdmin(
-      role: BytesLike,
+      role: PromiseOrValue<BytesLike>,
       overrides?: CallOverrides
     ): Promise<PopulatedTransaction>;
 
     grantRole(
-      role: BytesLike,
-      account: string,
-      overrides?: Overrides & { from?: string | Promise<string> }
+      role: PromiseOrValue<BytesLike>,
+      account: PromiseOrValue<string>,
+      overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<PopulatedTransaction>;
 
     hasRole(
-      role: BytesLike,
-      account: string,
+      role: PromiseOrValue<BytesLike>,
+      account: PromiseOrValue<string>,
       overrides?: CallOverrides
     ): Promise<PopulatedTransaction>;
 
     initialize(
-      admin: string,
-      initMap: string,
-      initAdminSigner: string,
-      overrides?: Overrides & { from?: string | Promise<string> }
+      admin: PromiseOrValue<string>,
+      initMap: PromiseOrValue<string>,
+      initAdminSigner: PromiseOrValue<string>,
+      overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<PopulatedTransaction>;
 
     map(overrides?: CallOverrides): Promise<PopulatedTransaction>;
 
     ownerLists(
-      arg0: string,
-      arg1: string,
+      arg0: PromiseOrValue<string>,
+      arg1: PromiseOrValue<string>,
       overrides?: CallOverrides
     ): Promise<PopulatedTransaction>;
 
     renounceRole(
-      role: BytesLike,
-      account: string,
-      overrides?: Overrides & { from?: string | Promise<string> }
+      role: PromiseOrValue<BytesLike>,
+      account: PromiseOrValue<string>,
+      overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<PopulatedTransaction>;
 
     revokeRole(
-      role: BytesLike,
-      account: string,
-      overrides?: Overrides & { from?: string | Promise<string> }
+      role: PromiseOrValue<BytesLike>,
+      account: PromiseOrValue<string>,
+      overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<PopulatedTransaction>;
 
     setAdminSigner(
-      verifierAdderss: string,
-      overrides?: Overrides & { from?: string | Promise<string> }
+      verifierAdderss: PromiseOrValue<string>,
+      overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<PopulatedTransaction>;
 
     supportsInterface(
-      interfaceId: BytesLike,
+      interfaceId: PromiseOrValue<BytesLike>,
       overrides?: CallOverrides
     ): Promise<PopulatedTransaction>;
   };
