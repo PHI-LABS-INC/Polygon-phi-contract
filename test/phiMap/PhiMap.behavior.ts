@@ -158,14 +158,20 @@ export function shouldBehaveViewPhiland(): void {
 
 export function shouldBehaveRemoveObjectFromLand(): void {
   it("should remove object from land", async function () {
-    await this.phiMap.connect(this.signers.alice).removeObjectFromLand("test", 0);
+    await this.phiMap
+      .connect(this.signers.alice)
+      .save(
+        "test",
+        [0],
+        [],
+        [],
+        "0x0000000000000000000000000000000000000000",
+        0,
+        "0x0000000000000000000000000000000000000000",
+        0,
+      );
     const land = await this.phiMap.connect(this.signers.admin).viewPhiland("test");
-    expect(land[0].contractAddress).to.equal("0x0000000000000000000000000000000000000000");
-    expect(land[0].tokenId).to.equal(0);
-    expect(land[0].xStart).to.equal(0);
-    expect(land[0].yStart).to.equal(0);
-    expect(land[0].xEnd).to.equal(0);
-    expect(land[0].yEnd).to.equal(0);
+    expect(land).to.deep.equal([]);
   });
 }
 
@@ -365,11 +371,15 @@ export function shouldBehaveChangeWallPaper(): void {
     const lastWallPaper = await this.phiMap.connect(this.signers.alice).checkWallPaper("test");
     expect(lastWallPaper.contractAddress).to.equal("0x0000000000000000000000000000000000000000");
 
-    await this.phiMap.connect(this.signers.alice).changeWallPaper("test", this.wallPaper.address, 1);
+    await this.phiMap
+      .connect(this.signers.alice)
+      .save("test", [], [], [], this.wallPaper.address, 1, "0x0000000000000000000000000000000000000000", 0);
     const currentWallPaper = await this.phiMap.connect(this.signers.alice).checkWallPaper("test");
     expect(currentWallPaper.contractAddress).to.equal(this.wallPaper.address);
     await this.wallPaper.connect(this.signers.alice).batchWallPaper([2]);
-    await this.phiMap.connect(this.signers.alice).changeWallPaper("test", this.wallPaper.address, 2);
+    await this.phiMap
+      .connect(this.signers.alice)
+      .save("test", [], [], [], this.wallPaper.address, 2, "0x0000000000000000000000000000000000000000", 0);
     const secondWallPaper = await this.phiMap.connect(this.signers.alice).checkWallPaper("test");
     expect(secondWallPaper.tokenId).to.equal(2);
   });
@@ -380,11 +390,15 @@ export function shouldBehaveChangeBasePlate(): void {
     await this.basePlate.connect(this.signers.alice).batchBasePlate([1]);
     const lastBasePlate = await this.phiMap.connect(this.signers.alice).checkBasePlate("test");
     expect(lastBasePlate.contractAddress).to.equal("0x0000000000000000000000000000000000000000");
-    await this.phiMap.connect(this.signers.alice).changeBasePlate("test", this.basePlate.address, 1);
+    await this.phiMap
+      .connect(this.signers.alice)
+      .save("test", [], [], [], "0x0000000000000000000000000000000000000000", 0, this.basePlate.address, 1);
     const currentBasePlate = await this.phiMap.connect(this.signers.alice).checkBasePlate("test");
     expect(currentBasePlate.contractAddress).to.equal(this.basePlate.address);
     await this.basePlate.connect(this.signers.alice).batchBasePlate([2]);
-    await this.phiMap.connect(this.signers.alice).changeBasePlate("test", this.basePlate.address, 2);
+    await this.phiMap
+      .connect(this.signers.alice)
+      .save("test", [], [], [], "0x0000000000000000000000000000000000000000", 0, this.basePlate.address, 2);
     const secondBasePlate = await this.phiMap.connect(this.signers.alice).checkBasePlate("test");
     expect(secondBasePlate.tokenId).to.equal(2);
   });
@@ -393,10 +407,15 @@ export function shouldBehaveChangeBasePlate(): void {
 export function shouldflipLockMap(): void {
   it("should flipLockMap", async function () {
     await this.phiMap.connect(this.signers.admin).flipLockMap();
-    await expect(this.phiMap.connect(this.signers.alice).changeWallPaper("test", this.wallPaper.address, 1)).to.be
-      .reverted;
+    await expect(
+      this.phiMap
+        .connect(this.signers.alice)
+        .save("test", [], [], [], this.wallPaper.address, 1, "0x0000000000000000000000000000000000000000", 0),
+    ).to.be.reverted;
     await this.phiMap.connect(this.signers.admin).flipLockMap();
-    await this.phiMap.connect(this.signers.alice).changeWallPaper("test", this.wallPaper.address, 1);
+    await this.phiMap
+      .connect(this.signers.alice)
+      .save("test", [], [], [], this.wallPaper.address, 1, "0x0000000000000000000000000000000000000000", 0);
     const currentWallPaper = await this.phiMap.connect(this.signers.alice).checkWallPaper("test");
     expect(currentWallPaper.contractAddress).to.equal(this.wallPaper.address);
   });
@@ -695,8 +714,11 @@ export function CantSetInvalidSizeMap(): void {
 export function CantSetNotbalanceWallPaper(): void {
   it("CantSetNotbalanceWallPaper", async function () {
     await this.wallPaper.connect(this.signers.alice).batchWallPaper([1]);
-    await expect(this.phiMap.connect(this.signers.bob).changeWallPaper("phi.zak3939", this.wallPaper.address, 1)).to.be
-      .reverted;
+    await expect(
+      this.phiMap
+        .connect(this.signers.bob)
+        .save("phi.zak3939", [], [], [], this.wallPaper.address, 1, "0x0000000000000000000000000000000000000000", 0),
+    ).to.be.reverted;
   });
 }
 
@@ -721,18 +743,28 @@ export function CantWriteObjectToLandOverDeposit(): void {
     await this.phiMap.connect(this.signers.bob).batchDepositObject("phi.zak3939", [this.freeObject.address], [4], [1]);
     await this.phiMap
       .connect(this.signers.bob)
-      .writeObjectToLand(
+      .save(
         "phi.zak3939",
-        { contractAddress: this.freeObject.address, tokenId: 4, xStart: 0, yStart: 0 },
-        ["", ""],
+        [],
+        [{ contractAddress: this.freeObject.address, tokenId: 4, xStart: 0, yStart: 0 }],
+        [{ title: "test333", url: "" }],
+        "0x0000000000000000000000000000000000000000",
+        0,
+        "0x0000000000000000000000000000000000000000",
+        0,
       );
     await expect(
       this.phiMap
         .connect(this.signers.bob)
-        .writeObjectToLand(
+        .save(
           "phi.zak3939",
-          { contractAddress: this.freeObject.address, tokenId: 4, xStart: 4, yStart: 4 },
-          ["", ""],
+          [],
+          [{ contractAddress: this.freeObject.address, tokenId: 4, xStart: 4, yStart: 4 }],
+          [{ title: "test333", url: "" }],
+          "0x0000000000000000000000000000000000000000",
+          0,
+          "0x0000000000000000000000000000000000000000",
+          0,
         ),
     ).to.be.reverted;
   });

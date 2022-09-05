@@ -125,12 +125,12 @@ export declare namespace PhiMap {
 export interface PhiMapInterface extends utils.Interface {
   functions: {
     "DEFAULT_ADMIN_ROLE()": FunctionFragment;
+    "_changeBasePlate(string,address,uint256)": FunctionFragment;
     "basePlate(string)": FunctionFragment;
     "batchDepositObject(string,address[],uint256[],uint256[])": FunctionFragment;
+    "batchDepositObjectFromShop(string,address,address[],uint256[],uint256[])": FunctionFragment;
     "batchWithdrawObject(string,address[],uint256[],uint256[])": FunctionFragment;
-    "changeBasePlate(string,address,uint256)": FunctionFragment;
     "changePhilandOwner(string,address)": FunctionFragment;
-    "changeWallPaper(string,address,uint256)": FunctionFragment;
     "checkAllDepositStatus(string)": FunctionFragment;
     "checkBasePlate(string)": FunctionFragment;
     "checkDepositStatus(string,address,uint256)": FunctionFragment;
@@ -150,7 +150,6 @@ export interface PhiMapInterface extends utils.Interface {
     "onERC1155Received(address,address,uint256,uint256,bytes)": FunctionFragment;
     "ownerLists(string)": FunctionFragment;
     "ownerOfPhiland(string)": FunctionFragment;
-    "removeObjectFromLand(string,uint256)": FunctionFragment;
     "removehitelistObject(address)": FunctionFragment;
     "renounceRole(bytes32,address)": FunctionFragment;
     "revokeRole(bytes32,address)": FunctionFragment;
@@ -171,12 +170,12 @@ export interface PhiMapInterface extends utils.Interface {
   getFunction(
     nameOrSignatureOrTopic:
       | "DEFAULT_ADMIN_ROLE"
+      | "_changeBasePlate"
       | "basePlate"
       | "batchDepositObject"
+      | "batchDepositObjectFromShop"
       | "batchWithdrawObject"
-      | "changeBasePlate"
       | "changePhilandOwner"
-      | "changeWallPaper"
       | "checkAllDepositStatus"
       | "checkBasePlate"
       | "checkDepositStatus"
@@ -196,7 +195,6 @@ export interface PhiMapInterface extends utils.Interface {
       | "onERC1155Received"
       | "ownerLists"
       | "ownerOfPhiland"
-      | "removeObjectFromLand"
       | "removehitelistObject"
       | "renounceRole"
       | "revokeRole"
@@ -219,12 +217,30 @@ export interface PhiMapInterface extends utils.Interface {
     values?: undefined
   ): string;
   encodeFunctionData(
+    functionFragment: "_changeBasePlate",
+    values: [
+      PromiseOrValue<string>,
+      PromiseOrValue<string>,
+      PromiseOrValue<BigNumberish>
+    ]
+  ): string;
+  encodeFunctionData(
     functionFragment: "basePlate",
     values: [PromiseOrValue<string>]
   ): string;
   encodeFunctionData(
     functionFragment: "batchDepositObject",
     values: [
+      PromiseOrValue<string>,
+      PromiseOrValue<string>[],
+      PromiseOrValue<BigNumberish>[],
+      PromiseOrValue<BigNumberish>[]
+    ]
+  ): string;
+  encodeFunctionData(
+    functionFragment: "batchDepositObjectFromShop",
+    values: [
+      PromiseOrValue<string>,
       PromiseOrValue<string>,
       PromiseOrValue<string>[],
       PromiseOrValue<BigNumberish>[],
@@ -241,24 +257,8 @@ export interface PhiMapInterface extends utils.Interface {
     ]
   ): string;
   encodeFunctionData(
-    functionFragment: "changeBasePlate",
-    values: [
-      PromiseOrValue<string>,
-      PromiseOrValue<string>,
-      PromiseOrValue<BigNumberish>
-    ]
-  ): string;
-  encodeFunctionData(
     functionFragment: "changePhilandOwner",
     values: [PromiseOrValue<string>, PromiseOrValue<string>]
-  ): string;
-  encodeFunctionData(
-    functionFragment: "changeWallPaper",
-    values: [
-      PromiseOrValue<string>,
-      PromiseOrValue<string>,
-      PromiseOrValue<BigNumberish>
-    ]
   ): string;
   encodeFunctionData(
     functionFragment: "checkAllDepositStatus",
@@ -357,10 +357,6 @@ export interface PhiMapInterface extends utils.Interface {
     values: [PromiseOrValue<string>]
   ): string;
   encodeFunctionData(
-    functionFragment: "removeObjectFromLand",
-    values: [PromiseOrValue<string>, PromiseOrValue<BigNumberish>]
-  ): string;
-  encodeFunctionData(
     functionFragment: "removehitelistObject",
     values: [PromiseOrValue<string>]
   ): string;
@@ -434,9 +430,17 @@ export interface PhiMapInterface extends utils.Interface {
     functionFragment: "DEFAULT_ADMIN_ROLE",
     data: BytesLike
   ): Result;
+  decodeFunctionResult(
+    functionFragment: "_changeBasePlate",
+    data: BytesLike
+  ): Result;
   decodeFunctionResult(functionFragment: "basePlate", data: BytesLike): Result;
   decodeFunctionResult(
     functionFragment: "batchDepositObject",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
+    functionFragment: "batchDepositObjectFromShop",
     data: BytesLike
   ): Result;
   decodeFunctionResult(
@@ -444,15 +448,7 @@ export interface PhiMapInterface extends utils.Interface {
     data: BytesLike
   ): Result;
   decodeFunctionResult(
-    functionFragment: "changeBasePlate",
-    data: BytesLike
-  ): Result;
-  decodeFunctionResult(
     functionFragment: "changePhilandOwner",
-    data: BytesLike
-  ): Result;
-  decodeFunctionResult(
-    functionFragment: "changeWallPaper",
     data: BytesLike
   ): Result;
   decodeFunctionResult(
@@ -514,10 +510,6 @@ export interface PhiMapInterface extends utils.Interface {
   decodeFunctionResult(functionFragment: "ownerLists", data: BytesLike): Result;
   decodeFunctionResult(
     functionFragment: "ownerOfPhiland",
-    data: BytesLike
-  ): Result;
-  decodeFunctionResult(
-    functionFragment: "removeObjectFromLand",
     data: BytesLike
   ): Result;
   decodeFunctionResult(
@@ -861,6 +853,13 @@ export interface PhiMap extends BaseContract {
   functions: {
     DEFAULT_ADMIN_ROLE(overrides?: CallOverrides): Promise<[string]>;
 
+    _changeBasePlate(
+      name: PromiseOrValue<string>,
+      contractAddress: PromiseOrValue<string>,
+      tokenId: PromiseOrValue<BigNumberish>,
+      overrides?: Overrides & { from?: PromiseOrValue<string> }
+    ): Promise<ContractTransaction>;
+
     basePlate(
       arg0: PromiseOrValue<string>,
       overrides?: CallOverrides
@@ -876,6 +875,15 @@ export interface PhiMap extends BaseContract {
       overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<ContractTransaction>;
 
+    batchDepositObjectFromShop(
+      name: PromiseOrValue<string>,
+      msgSender: PromiseOrValue<string>,
+      contractAddresses: PromiseOrValue<string>[],
+      tokenIds: PromiseOrValue<BigNumberish>[],
+      amounts: PromiseOrValue<BigNumberish>[],
+      overrides?: Overrides & { from?: PromiseOrValue<string> }
+    ): Promise<ContractTransaction>;
+
     batchWithdrawObject(
       name: PromiseOrValue<string>,
       contractAddresses: PromiseOrValue<string>[],
@@ -884,23 +892,9 @@ export interface PhiMap extends BaseContract {
       overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<ContractTransaction>;
 
-    changeBasePlate(
-      name: PromiseOrValue<string>,
-      contractAddress: PromiseOrValue<string>,
-      tokenId: PromiseOrValue<BigNumberish>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
-    ): Promise<ContractTransaction>;
-
     changePhilandOwner(
       name: PromiseOrValue<string>,
       caller: PromiseOrValue<string>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
-    ): Promise<ContractTransaction>;
-
-    changeWallPaper(
-      name: PromiseOrValue<string>,
-      contractAddress: PromiseOrValue<string>,
-      tokenId: PromiseOrValue<BigNumberish>,
       overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<ContractTransaction>;
 
@@ -1020,12 +1014,6 @@ export interface PhiMap extends BaseContract {
       overrides?: CallOverrides
     ): Promise<[string]>;
 
-    removeObjectFromLand(
-      name: PromiseOrValue<string>,
-      index: PromiseOrValue<BigNumberish>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
-    ): Promise<ContractTransaction>;
-
     removehitelistObject(
       oldObject: PromiseOrValue<string>,
       overrides?: Overrides & { from?: PromiseOrValue<string> }
@@ -1137,6 +1125,13 @@ export interface PhiMap extends BaseContract {
 
   DEFAULT_ADMIN_ROLE(overrides?: CallOverrides): Promise<string>;
 
+  _changeBasePlate(
+    name: PromiseOrValue<string>,
+    contractAddress: PromiseOrValue<string>,
+    tokenId: PromiseOrValue<BigNumberish>,
+    overrides?: Overrides & { from?: PromiseOrValue<string> }
+  ): Promise<ContractTransaction>;
+
   basePlate(
     arg0: PromiseOrValue<string>,
     overrides?: CallOverrides
@@ -1152,6 +1147,15 @@ export interface PhiMap extends BaseContract {
     overrides?: Overrides & { from?: PromiseOrValue<string> }
   ): Promise<ContractTransaction>;
 
+  batchDepositObjectFromShop(
+    name: PromiseOrValue<string>,
+    msgSender: PromiseOrValue<string>,
+    contractAddresses: PromiseOrValue<string>[],
+    tokenIds: PromiseOrValue<BigNumberish>[],
+    amounts: PromiseOrValue<BigNumberish>[],
+    overrides?: Overrides & { from?: PromiseOrValue<string> }
+  ): Promise<ContractTransaction>;
+
   batchWithdrawObject(
     name: PromiseOrValue<string>,
     contractAddresses: PromiseOrValue<string>[],
@@ -1160,23 +1164,9 @@ export interface PhiMap extends BaseContract {
     overrides?: Overrides & { from?: PromiseOrValue<string> }
   ): Promise<ContractTransaction>;
 
-  changeBasePlate(
-    name: PromiseOrValue<string>,
-    contractAddress: PromiseOrValue<string>,
-    tokenId: PromiseOrValue<BigNumberish>,
-    overrides?: Overrides & { from?: PromiseOrValue<string> }
-  ): Promise<ContractTransaction>;
-
   changePhilandOwner(
     name: PromiseOrValue<string>,
     caller: PromiseOrValue<string>,
-    overrides?: Overrides & { from?: PromiseOrValue<string> }
-  ): Promise<ContractTransaction>;
-
-  changeWallPaper(
-    name: PromiseOrValue<string>,
-    contractAddress: PromiseOrValue<string>,
-    tokenId: PromiseOrValue<BigNumberish>,
     overrides?: Overrides & { from?: PromiseOrValue<string> }
   ): Promise<ContractTransaction>;
 
@@ -1296,12 +1286,6 @@ export interface PhiMap extends BaseContract {
     overrides?: CallOverrides
   ): Promise<string>;
 
-  removeObjectFromLand(
-    name: PromiseOrValue<string>,
-    index: PromiseOrValue<BigNumberish>,
-    overrides?: Overrides & { from?: PromiseOrValue<string> }
-  ): Promise<ContractTransaction>;
-
   removehitelistObject(
     oldObject: PromiseOrValue<string>,
     overrides?: Overrides & { from?: PromiseOrValue<string> }
@@ -1413,6 +1397,13 @@ export interface PhiMap extends BaseContract {
   callStatic: {
     DEFAULT_ADMIN_ROLE(overrides?: CallOverrides): Promise<string>;
 
+    _changeBasePlate(
+      name: PromiseOrValue<string>,
+      contractAddress: PromiseOrValue<string>,
+      tokenId: PromiseOrValue<BigNumberish>,
+      overrides?: CallOverrides
+    ): Promise<void>;
+
     basePlate(
       arg0: PromiseOrValue<string>,
       overrides?: CallOverrides
@@ -1428,6 +1419,15 @@ export interface PhiMap extends BaseContract {
       overrides?: CallOverrides
     ): Promise<void>;
 
+    batchDepositObjectFromShop(
+      name: PromiseOrValue<string>,
+      msgSender: PromiseOrValue<string>,
+      contractAddresses: PromiseOrValue<string>[],
+      tokenIds: PromiseOrValue<BigNumberish>[],
+      amounts: PromiseOrValue<BigNumberish>[],
+      overrides?: CallOverrides
+    ): Promise<void>;
+
     batchWithdrawObject(
       name: PromiseOrValue<string>,
       contractAddresses: PromiseOrValue<string>[],
@@ -1436,23 +1436,9 @@ export interface PhiMap extends BaseContract {
       overrides?: CallOverrides
     ): Promise<void>;
 
-    changeBasePlate(
-      name: PromiseOrValue<string>,
-      contractAddress: PromiseOrValue<string>,
-      tokenId: PromiseOrValue<BigNumberish>,
-      overrides?: CallOverrides
-    ): Promise<void>;
-
     changePhilandOwner(
       name: PromiseOrValue<string>,
       caller: PromiseOrValue<string>,
-      overrides?: CallOverrides
-    ): Promise<void>;
-
-    changeWallPaper(
-      name: PromiseOrValue<string>,
-      contractAddress: PromiseOrValue<string>,
-      tokenId: PromiseOrValue<BigNumberish>,
       overrides?: CallOverrides
     ): Promise<void>;
 
@@ -1569,12 +1555,6 @@ export interface PhiMap extends BaseContract {
       name: PromiseOrValue<string>,
       overrides?: CallOverrides
     ): Promise<string>;
-
-    removeObjectFromLand(
-      name: PromiseOrValue<string>,
-      index: PromiseOrValue<BigNumberish>,
-      overrides?: CallOverrides
-    ): Promise<void>;
 
     removehitelistObject(
       oldObject: PromiseOrValue<string>,
@@ -1876,6 +1856,13 @@ export interface PhiMap extends BaseContract {
   estimateGas: {
     DEFAULT_ADMIN_ROLE(overrides?: CallOverrides): Promise<BigNumber>;
 
+    _changeBasePlate(
+      name: PromiseOrValue<string>,
+      contractAddress: PromiseOrValue<string>,
+      tokenId: PromiseOrValue<BigNumberish>,
+      overrides?: Overrides & { from?: PromiseOrValue<string> }
+    ): Promise<BigNumber>;
+
     basePlate(
       arg0: PromiseOrValue<string>,
       overrides?: CallOverrides
@@ -1883,6 +1870,15 @@ export interface PhiMap extends BaseContract {
 
     batchDepositObject(
       name: PromiseOrValue<string>,
+      contractAddresses: PromiseOrValue<string>[],
+      tokenIds: PromiseOrValue<BigNumberish>[],
+      amounts: PromiseOrValue<BigNumberish>[],
+      overrides?: Overrides & { from?: PromiseOrValue<string> }
+    ): Promise<BigNumber>;
+
+    batchDepositObjectFromShop(
+      name: PromiseOrValue<string>,
+      msgSender: PromiseOrValue<string>,
       contractAddresses: PromiseOrValue<string>[],
       tokenIds: PromiseOrValue<BigNumberish>[],
       amounts: PromiseOrValue<BigNumberish>[],
@@ -1897,23 +1893,9 @@ export interface PhiMap extends BaseContract {
       overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<BigNumber>;
 
-    changeBasePlate(
-      name: PromiseOrValue<string>,
-      contractAddress: PromiseOrValue<string>,
-      tokenId: PromiseOrValue<BigNumberish>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
-    ): Promise<BigNumber>;
-
     changePhilandOwner(
       name: PromiseOrValue<string>,
       caller: PromiseOrValue<string>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
-    ): Promise<BigNumber>;
-
-    changeWallPaper(
-      name: PromiseOrValue<string>,
-      contractAddress: PromiseOrValue<string>,
-      tokenId: PromiseOrValue<BigNumberish>,
       overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<BigNumber>;
 
@@ -2017,12 +1999,6 @@ export interface PhiMap extends BaseContract {
       overrides?: CallOverrides
     ): Promise<BigNumber>;
 
-    removeObjectFromLand(
-      name: PromiseOrValue<string>,
-      index: PromiseOrValue<BigNumberish>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
-    ): Promise<BigNumber>;
-
     removehitelistObject(
       oldObject: PromiseOrValue<string>,
       overrides?: Overrides & { from?: PromiseOrValue<string> }
@@ -2115,6 +2091,13 @@ export interface PhiMap extends BaseContract {
       overrides?: CallOverrides
     ): Promise<PopulatedTransaction>;
 
+    _changeBasePlate(
+      name: PromiseOrValue<string>,
+      contractAddress: PromiseOrValue<string>,
+      tokenId: PromiseOrValue<BigNumberish>,
+      overrides?: Overrides & { from?: PromiseOrValue<string> }
+    ): Promise<PopulatedTransaction>;
+
     basePlate(
       arg0: PromiseOrValue<string>,
       overrides?: CallOverrides
@@ -2122,6 +2105,15 @@ export interface PhiMap extends BaseContract {
 
     batchDepositObject(
       name: PromiseOrValue<string>,
+      contractAddresses: PromiseOrValue<string>[],
+      tokenIds: PromiseOrValue<BigNumberish>[],
+      amounts: PromiseOrValue<BigNumberish>[],
+      overrides?: Overrides & { from?: PromiseOrValue<string> }
+    ): Promise<PopulatedTransaction>;
+
+    batchDepositObjectFromShop(
+      name: PromiseOrValue<string>,
+      msgSender: PromiseOrValue<string>,
       contractAddresses: PromiseOrValue<string>[],
       tokenIds: PromiseOrValue<BigNumberish>[],
       amounts: PromiseOrValue<BigNumberish>[],
@@ -2136,23 +2128,9 @@ export interface PhiMap extends BaseContract {
       overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<PopulatedTransaction>;
 
-    changeBasePlate(
-      name: PromiseOrValue<string>,
-      contractAddress: PromiseOrValue<string>,
-      tokenId: PromiseOrValue<BigNumberish>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
-    ): Promise<PopulatedTransaction>;
-
     changePhilandOwner(
       name: PromiseOrValue<string>,
       caller: PromiseOrValue<string>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
-    ): Promise<PopulatedTransaction>;
-
-    changeWallPaper(
-      name: PromiseOrValue<string>,
-      contractAddress: PromiseOrValue<string>,
-      tokenId: PromiseOrValue<BigNumberish>,
       overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<PopulatedTransaction>;
 
@@ -2254,12 +2232,6 @@ export interface PhiMap extends BaseContract {
     ownerOfPhiland(
       name: PromiseOrValue<string>,
       overrides?: CallOverrides
-    ): Promise<PopulatedTransaction>;
-
-    removeObjectFromLand(
-      name: PromiseOrValue<string>,
-      index: PromiseOrValue<BigNumberish>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<PopulatedTransaction>;
 
     removehitelistObject(
