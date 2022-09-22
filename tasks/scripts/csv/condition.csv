@@ -52,3 +52,6 @@ LinkToFriends,10,96
 ChangePhilandOwner,1,97
 SmoothieVoter,1,98
 CreateTestnetPhiland,1,99
+Top30ActiveScore,1,100
+Top30SocialScore,1,101
+Top30AttentionScore,1,102
