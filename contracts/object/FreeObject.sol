@@ -114,7 +114,7 @@ contract FreeObject is BaseObject, ERC1155Supply {
      */
     function _getFreeObject(uint256 tokenId) internal {
         // check token is open for sale
-        require(allObjects[tokenId].forSale);
+        require(allObjects[tokenId].forSale, "not open for sale");
         // check the token id exists
         isValid(tokenId);
         // mint the token
@@ -124,7 +124,7 @@ contract FreeObject is BaseObject, ERC1155Supply {
 
     function batchGetFreeObject(uint256[] memory tokenIds) external {
         // check if the function caller is not an zero account address
-        require(msg.sender != address(0));
+        require(msg.sender != address(0), "caller is invalid");
         // to prevent bots minting from a contract
         require(msg.sender == tx.origin, "msg sender invalid");
         uint256 tokenIdsLength = tokenIds.length;
@@ -139,7 +139,7 @@ contract FreeObject is BaseObject, ERC1155Supply {
     /* -------------------------------------------------------------------------- */
     function _getFreeObject(address to, uint256 tokenId) internal {
         // check token is open for sale
-        require(allObjects[tokenId].forSale);
+        require(allObjects[tokenId].forSale, "not open for sale");
         // check the token id exists
         isValid(tokenId);
         // mint the token
