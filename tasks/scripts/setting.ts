@@ -17,6 +17,7 @@ interface CreatorAddress {
 export const CreatorAddressEnum: CreatorAddress = {
   eBoy: "0xb7caa0ed757bbfaa208342752c9b1c541e36a4b9",
   ta2nb: "0x143aA7d940482F00872AcC1C31b54127c7E75171",
+  Fuzuki: "0x5A6Ecf67547CD9e97e29124386881Eec436980f9",
 };
 
 export async function settingPhi(): Promise<void> {
