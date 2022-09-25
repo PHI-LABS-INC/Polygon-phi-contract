@@ -185,7 +185,12 @@ abstract contract BaseObject is MultiOwner, IERC2981, ReentrancyGuard {
     /* -------------------------------------------------------------------------- */
     /* --------------------------------- PUBLIC --------------------------------- */
     /// @notice EIP2981 royalty standard
-    function royaltyInfo(uint256, uint256 salePrice) external view returns (address receiver, uint256 royaltyAmount) {
+    function royaltyInfo(uint256, uint256 salePrice)
+        external
+        view
+        override
+        returns (address receiver, uint256 royaltyAmount)
+    {
         return (address(this), (salePrice * secondaryRoyalty) / 10000);
     }
 
