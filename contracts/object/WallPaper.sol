@@ -132,19 +132,19 @@ contract WallPaper is BaseObject, ERC1155Supply {
         // check the token id exists
         isValid(tokenId);
         // check token is open for sale
-        require(allObjects[tokenId].forSale);
+        require(allObjects[tokenId].forSale, "not open forSale");
         // check token's MaxClaimed
-        require(super.totalSupply(tokenId) <= allObjects[tokenId].maxClaimed);
+        require(super.totalSupply(tokenId) <= allObjects[tokenId].maxClaimed, "reach maxClaimed");
 
         // Pay royality to artist, and remaining to sales address
         (bool calcSuccess1, uint256 res) = SafeMath.tryMul(allObjects[tokenId].price, royalityFee);
-        require(calcSuccess1);
+        require(calcSuccess1, "calc error");
         (bool calcSuccess2, uint256 royality) = SafeMath.tryDiv(res, 10000);
-        require(calcSuccess2);
+        require(calcSuccess2, "calc error");
         (bool success1, ) = payable(allObjects[tokenId].creator).call{ value: royality }("");
-        require(success1);
+        require(success1, "cant pay royality");
         (bool success2, ) = payable(treasuryAddress).call{ value: (allObjects[tokenId].price - royality) }("");
-        require(success2);
+        require(success2, "cant transfer sales");
 
         // mint the token
         super._mint(msg.sender, tokenId, 1, "0x");
@@ -154,7 +154,7 @@ contract WallPaper is BaseObject, ERC1155Supply {
     function batchWallPaper(uint256[] memory tokenIds) external payable nonReentrant {
         uint256 allprice;
         // check if the function caller is not an zero account address
-        require(msg.sender != address(0));
+        require(msg.sender != address(0), "msg sender(0) is invalid");
         // to prevent bots minting from a contract
         require(msg.sender == tx.origin, "msg sender invalid");
 
@@ -163,7 +163,7 @@ contract WallPaper is BaseObject, ERC1155Supply {
             allprice = allprice + allObjects[tokenIds[i]].price;
         }
         // price sent in to buy should be equal to or more than the token's price
-        require(msg.value >= allprice);
+        require(msg.value >= allprice, "should be equal to or more than the token's price");
 
         for (uint256 i = 0; i < objectLength; ++i) {
             _buyWallPaper(tokenIds[i]);
@@ -187,17 +187,17 @@ contract WallPaper is BaseObject, ERC1155Supply {
         // check token is open for sale
         require(allObjects[tokenId].forSale, "not open for sale");
         // check token's MaxClaimed
-        require(super.totalSupply(tokenId) <= allObjects[tokenId].maxClaimed);
+        require(super.totalSupply(tokenId) <= allObjects[tokenId].maxClaimed, "reach maxClaimed");
 
         // Pay royality to artist, and remaining to sales address
         (bool calcSuccess1, uint256 res) = SafeMath.tryMul(allObjects[tokenId].price, royalityFee);
-        require(calcSuccess1);
+        require(calcSuccess1, "calc error");
         (bool calcSuccess2, uint256 royality) = SafeMath.tryDiv(res, 10000);
-        require(calcSuccess2);
+        require(calcSuccess2, "calc error");
         (bool success1, ) = payable(allObjects[tokenId].creator).call{ value: royality }("");
-        require(success1);
+        require(success1, "cant pay royality");
         (bool success2, ) = payable(treasuryAddress).call{ value: (allObjects[tokenId].price - royality) }("");
-        require(success2);
+        require(success2, "cant transfer sales");
 
         // mint the token
         super._mint(to, tokenId, 1, "0x");

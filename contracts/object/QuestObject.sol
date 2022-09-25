@@ -131,13 +131,13 @@ contract QuestObject is BaseObject, ERC1155Supply {
      */
     function getObject(address to, uint256 tokenId) external onlyOwner {
         // check if the function caller is not an zero account address
-        require(to != address(0));
+        require(to != address(0), "to(0) is invalid");
         // check token is open for sale
-        require(allObjects[tokenId].forSale);
+        require(allObjects[tokenId].forSale, "not open forSale");
         // check the token id exists
         isValid(tokenId);
         // check token's MaxClaimed
-        require(super.totalSupply(tokenId) <= allObjects[tokenId].maxClaimed);
+        require(super.totalSupply(tokenId) <= allObjects[tokenId].maxClaimed, "reach maxClaimed");
         // mint the token
         super._mint(to, tokenId, 1, "0x00");
         emit LogGetQuestObject(msg.sender, tokenId);
