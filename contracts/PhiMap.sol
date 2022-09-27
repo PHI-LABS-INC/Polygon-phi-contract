@@ -82,6 +82,7 @@ contract PhiMap is AccessControlUpgradeable, IERC1155ReceiverUpgradeable, Reentr
     struct Link {
         string title;
         string url;
+        uint256 data;
     }
     /* --------------------------------- ****** --------------------------------- */
 
@@ -131,7 +132,7 @@ contract PhiMap is AccessControlUpgradeable, IERC1155ReceiverUpgradeable, Reentr
         uint256 amount
     );
     /* ---------------------------------- LINK ---------------------------------- */
-    event WriteLink(string name, address contractAddress, uint256 tokenId, string title, string url);
+    event WriteLink(string name, address contractAddress, uint256 tokenId, string title, string url, uint256 data);
     event RemoveLink(string name, uint256 index);
     /* --------------------------------- ****** --------------------------------- */
 
@@ -490,7 +491,7 @@ contract PhiMap is AccessControlUpgradeable, IERC1155ReceiverUpgradeable, Reentr
 
         userObject[name].push(writeObjectInfo);
         emit WriteObject(name, objectData.contractAddress, objectData.tokenId, objectData.xStart, objectData.yStart);
-        emit WriteLink(name, objectData.contractAddress, objectData.tokenId, link.title, link.url);
+        emit WriteLink(name, objectData.contractAddress, objectData.tokenId, link.title, link.url, link.data);
     }
 
     /* ----------------------------------- REMOVE -------------------------------- */
