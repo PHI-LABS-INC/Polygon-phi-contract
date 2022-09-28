@@ -927,7 +927,7 @@ contract PhiMap is AccessControlUpgradeable, IERC1155ReceiverUpgradeable, Reentr
         uint256 id,
         uint256 value,
         bytes calldata data
-    ) external pure returns (bytes4) {
+    ) external pure override returns (bytes4) {
         return bytes4(keccak256("onERC1155Received(address,address,uint256,uint256,bytes)"));
     }
 
@@ -937,7 +937,7 @@ contract PhiMap is AccessControlUpgradeable, IERC1155ReceiverUpgradeable, Reentr
         uint256[] memory ids,
         uint256[] memory values,
         bytes calldata data
-    ) external pure returns (bytes4) {
+    ) external pure override returns (bytes4) {
         return bytes4(keccak256("onERC1155BatchReceived(address,address,uint256[],uint256[],bytes)"));
     }
 
