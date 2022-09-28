@@ -4,7 +4,7 @@ import { ethers } from "hardhat";
 export function shouldBehaveSetbaseMetadataURI(): void {
   it("should Set baseMetadataURI", async function () {
     await this.basePlate.connect(this.signers.admin).setbaseMetadataURI("https://www.arweave.net/");
-    expect(await this.basePlate.connect(this.signers.alice).getBaseMetadataURI()).to.equal("https://www.arweave.net/");
+    expect(await this.basePlate.connect(this.signers.alice).baseMetadataURI()).to.equal("https://www.arweave.net/");
   });
 }
 
@@ -88,7 +88,7 @@ export function shouldBehaveInitbasePlate(): void {
 export function shouldBehaveBuybasePlate(): void {
   it("should buy basePlate with eth", async function () {
     await this.basePlate.connect(this.signers.admin).setRoyalityFee(3000);
-    expect(await this.basePlate.connect(this.signers.alice).getRoyalityFee()).to.equal(3000);
+    expect(await this.basePlate.connect(this.signers.alice).royalityFee()).to.equal(3000);
     expect(await this.basePlate.connect(this.signers.alice).getCreatorAddress(3)).to.equal(this.signers.carol.address);
     const beforeTreasurybalance = await this.signers.treasury.getBalance();
     expect(beforeTreasurybalance).to.equal(ethers.utils.parseEther("10000"));

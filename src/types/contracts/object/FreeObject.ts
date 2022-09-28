@@ -83,17 +83,14 @@ export interface FreeObjectInterface extends utils.Interface {
     "createObject(uint256,string,(uint8,uint8,uint8),address)": FunctionFragment;
     "created(uint256)": FunctionFragment;
     "exists(uint256)": FunctionFragment;
-    "getBaseMetadataURI()": FunctionFragment;
     "getCreatorAddress(uint256)": FunctionFragment;
     "getExp(uint256)": FunctionFragment;
     "getMaxClaimed(uint256)": FunctionFragment;
     "getObjectInfo(uint256)": FunctionFragment;
     "getOpenForSale(uint256)": FunctionFragment;
-    "getRoyalityFee()": FunctionFragment;
     "getSize(uint256)": FunctionFragment;
     "getTokenPrice(uint256)": FunctionFragment;
     "getTokenURI(uint256)": FunctionFragment;
-    "getTreasuryAddress()": FunctionFragment;
     "isApprovedForAll(address,address)": FunctionFragment;
     "name()": FunctionFragment;
     "ownerCheck(address)": FunctionFragment;
@@ -139,17 +136,14 @@ export interface FreeObjectInterface extends utils.Interface {
       | "createObject"
       | "created"
       | "exists"
-      | "getBaseMetadataURI"
       | "getCreatorAddress"
       | "getExp"
       | "getMaxClaimed"
       | "getObjectInfo"
       | "getOpenForSale"
-      | "getRoyalityFee"
       | "getSize"
       | "getTokenPrice"
       | "getTokenURI"
-      | "getTreasuryAddress"
       | "isApprovedForAll"
       | "name"
       | "ownerCheck"
@@ -229,10 +223,6 @@ export interface FreeObjectInterface extends utils.Interface {
     values: [PromiseOrValue<BigNumberish>]
   ): string;
   encodeFunctionData(
-    functionFragment: "getBaseMetadataURI",
-    values?: undefined
-  ): string;
-  encodeFunctionData(
     functionFragment: "getCreatorAddress",
     values: [PromiseOrValue<BigNumberish>]
   ): string;
@@ -253,10 +243,6 @@ export interface FreeObjectInterface extends utils.Interface {
     values: [PromiseOrValue<BigNumberish>]
   ): string;
   encodeFunctionData(
-    functionFragment: "getRoyalityFee",
-    values?: undefined
-  ): string;
-  encodeFunctionData(
     functionFragment: "getSize",
     values: [PromiseOrValue<BigNumberish>]
   ): string;
@@ -267,10 +253,6 @@ export interface FreeObjectInterface extends utils.Interface {
   encodeFunctionData(
     functionFragment: "getTokenURI",
     values: [PromiseOrValue<BigNumberish>]
-  ): string;
-  encodeFunctionData(
-    functionFragment: "getTreasuryAddress",
-    values?: undefined
   ): string;
   encodeFunctionData(
     functionFragment: "isApprovedForAll",
@@ -432,10 +414,6 @@ export interface FreeObjectInterface extends utils.Interface {
   decodeFunctionResult(functionFragment: "created", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "exists", data: BytesLike): Result;
   decodeFunctionResult(
-    functionFragment: "getBaseMetadataURI",
-    data: BytesLike
-  ): Result;
-  decodeFunctionResult(
     functionFragment: "getCreatorAddress",
     data: BytesLike
   ): Result;
@@ -452,10 +430,6 @@ export interface FreeObjectInterface extends utils.Interface {
     functionFragment: "getOpenForSale",
     data: BytesLike
   ): Result;
-  decodeFunctionResult(
-    functionFragment: "getRoyalityFee",
-    data: BytesLike
-  ): Result;
   decodeFunctionResult(functionFragment: "getSize", data: BytesLike): Result;
   decodeFunctionResult(
     functionFragment: "getTokenPrice",
@@ -463,10 +437,6 @@ export interface FreeObjectInterface extends utils.Interface {
   ): Result;
   decodeFunctionResult(
     functionFragment: "getTokenURI",
-    data: BytesLike
-  ): Result;
-  decodeFunctionResult(
-    functionFragment: "getTreasuryAddress",
     data: BytesLike
   ): Result;
   decodeFunctionResult(
@@ -971,8 +941,6 @@ export interface FreeObject extends BaseContract {
       overrides?: CallOverrides
     ): Promise<[boolean]>;
 
-    getBaseMetadataURI(overrides?: CallOverrides): Promise<[string]>;
-
     getCreatorAddress(
       tokenId: PromiseOrValue<BigNumberish>,
       overrides?: CallOverrides
@@ -998,8 +966,6 @@ export interface FreeObject extends BaseContract {
       overrides?: CallOverrides
     ): Promise<[boolean]>;
 
-    getRoyalityFee(overrides?: CallOverrides): Promise<[BigNumber]>;
-
     getSize(
       tokenId: PromiseOrValue<BigNumberish>,
       overrides?: CallOverrides
@@ -1014,8 +980,6 @@ export interface FreeObject extends BaseContract {
       tokenId: PromiseOrValue<BigNumberish>,
       overrides?: CallOverrides
     ): Promise<[string]>;
-
-    getTreasuryAddress(overrides?: CallOverrides): Promise<[string]>;
 
     isApprovedForAll(
       account: PromiseOrValue<string>,
@@ -1240,8 +1204,6 @@ export interface FreeObject extends BaseContract {
     overrides?: CallOverrides
   ): Promise<boolean>;
 
-  getBaseMetadataURI(overrides?: CallOverrides): Promise<string>;
-
   getCreatorAddress(
     tokenId: PromiseOrValue<BigNumberish>,
     overrides?: CallOverrides
@@ -1267,8 +1229,6 @@ export interface FreeObject extends BaseContract {
     overrides?: CallOverrides
   ): Promise<boolean>;
 
-  getRoyalityFee(overrides?: CallOverrides): Promise<BigNumber>;
-
   getSize(
     tokenId: PromiseOrValue<BigNumberish>,
     overrides?: CallOverrides
@@ -1283,8 +1243,6 @@ export interface FreeObject extends BaseContract {
     tokenId: PromiseOrValue<BigNumberish>,
     overrides?: CallOverrides
   ): Promise<string>;
-
-  getTreasuryAddress(overrides?: CallOverrides): Promise<string>;
 
   isApprovedForAll(
     account: PromiseOrValue<string>,
@@ -1509,8 +1467,6 @@ export interface FreeObject extends BaseContract {
       overrides?: CallOverrides
     ): Promise<boolean>;
 
-    getBaseMetadataURI(overrides?: CallOverrides): Promise<string>;
-
     getCreatorAddress(
       tokenId: PromiseOrValue<BigNumberish>,
       overrides?: CallOverrides
@@ -1536,8 +1492,6 @@ export interface FreeObject extends BaseContract {
       overrides?: CallOverrides
     ): Promise<boolean>;
 
-    getRoyalityFee(overrides?: CallOverrides): Promise<BigNumber>;
-
     getSize(
       tokenId: PromiseOrValue<BigNumberish>,
       overrides?: CallOverrides
@@ -1552,8 +1506,6 @@ export interface FreeObject extends BaseContract {
       tokenId: PromiseOrValue<BigNumberish>,
       overrides?: CallOverrides
     ): Promise<string>;
-
-    getTreasuryAddress(overrides?: CallOverrides): Promise<string>;
 
     isApprovedForAll(
       account: PromiseOrValue<string>,
@@ -1930,8 +1882,6 @@ export interface FreeObject extends BaseContract {
       overrides?: CallOverrides
     ): Promise<BigNumber>;
 
-    getBaseMetadataURI(overrides?: CallOverrides): Promise<BigNumber>;
-
     getCreatorAddress(
       tokenId: PromiseOrValue<BigNumberish>,
       overrides?: CallOverrides
@@ -1957,8 +1907,6 @@ export interface FreeObject extends BaseContract {
       overrides?: CallOverrides
     ): Promise<BigNumber>;
 
-    getRoyalityFee(overrides?: CallOverrides): Promise<BigNumber>;
-
     getSize(
       tokenId: PromiseOrValue<BigNumberish>,
       overrides?: CallOverrides
@@ -1973,8 +1921,6 @@ export interface FreeObject extends BaseContract {
       tokenId: PromiseOrValue<BigNumberish>,
       overrides?: CallOverrides
     ): Promise<BigNumber>;
-
-    getTreasuryAddress(overrides?: CallOverrides): Promise<BigNumber>;
 
     isApprovedForAll(
       account: PromiseOrValue<string>,
@@ -2180,10 +2126,6 @@ export interface FreeObject extends BaseContract {
       overrides?: CallOverrides
     ): Promise<PopulatedTransaction>;
 
-    getBaseMetadataURI(
-      overrides?: CallOverrides
-    ): Promise<PopulatedTransaction>;
-
     getCreatorAddress(
       tokenId: PromiseOrValue<BigNumberish>,
       overrides?: CallOverrides
@@ -2209,8 +2151,6 @@ export interface FreeObject extends BaseContract {
       overrides?: CallOverrides
     ): Promise<PopulatedTransaction>;
 
-    getRoyalityFee(overrides?: CallOverrides): Promise<PopulatedTransaction>;
-
     getSize(
       tokenId: PromiseOrValue<BigNumberish>,
       overrides?: CallOverrides
@@ -2223,10 +2163,6 @@ export interface FreeObject extends BaseContract {
 
     getTokenURI(
       tokenId: PromiseOrValue<BigNumberish>,
-      overrides?: CallOverrides
-    ): Promise<PopulatedTransaction>;
-
-    getTreasuryAddress(
       overrides?: CallOverrides
     ): Promise<PopulatedTransaction>;
 
