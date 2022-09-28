@@ -2,7 +2,7 @@
   "manifestVersion": "3.2",
   "admin": {
     "address": "0x9b8AaB49C5A9c4c7d6665d37333Abb34b425Aee5",
-    "txHash": "0x0930c33aefdb1c1bfa1764de26c1ed451d1bf3ebac88cfa2c137e9372a31f673"
+    "txHash": "0xed8300a318be8fe14182f34d4eecc116fd939b99e994f8459dcaa5c6083ac770"
   },
   "proxies": [
     {
@@ -532,67 +532,67 @@
     },
     {
       "address": "0xC3Ae6426CfC651427E8dEfaF1c5AD6897f747eca",
-      "txHash": "0xa9d40c7cdebdf26a814de5f10ed12ea2dfa54879342b6d6a89278e814a524742",
+      "txHash": "0xe8fc7140a3411fddf4c14f92f5940b8342d05dffe4e656c1949e3dc69034f497",
       "kind": "transparent"
     },
     {
       "address": "0x09C0e0F2129fE42C71730e5e26E6723196e65837",
-      "txHash": "0x022b0505e6a9f9f2060e7e958e38bac7269957e3b0596d38db017d4c2b50043f",
+      "txHash": "0xa2d46c7f10ac6bf333164838a1288fb220ce5f5ed00829a868c64b92523e2354",
       "kind": "transparent"
     },
     {
       "address": "0xEe0E51bC7611502Cdbf0584afbDaE84B227f7294",
-      "txHash": "0x9a13853362c46cade16c71667ecc8d645be0a6ac5219d72f8c8899dcb8143aba",
+      "txHash": "0xaf342f64dffaec27f2db16eff2cfb9506e2670bc5cc6e2803e03f921ebf2ab28",
       "kind": "transparent"
     },
     {
       "address": "0x926b93EE35b3fB756197806c4b3418dffA171e07",
-      "txHash": "0x4ca108198bb20df0819717c925953fa9803c33af5930f15fc0af6ca730466abc",
+      "txHash": "0x4614464a09a3e9c512902e7e6290a0b6940421c52ee783cf4ef3fc9eedd0d6db",
       "kind": "transparent"
     },
     {
       "address": "0x587BDa96d7832B8f46aA4BF36Ec99aEb57efaA11",
-      "txHash": "0xdb4f40d57dd550e48a0f9b785234ff6f9287a4c1e1ad4e60a623d9abf7164363",
+      "txHash": "0xf573068b2049eaa48c632377c74532533f55b39d71adfbe5e2afe99b00093983",
       "kind": "transparent"
     },
     {
       "address": "0x0A43a4daE692Bf9a64368Ec37910c478b348f4C7",
-      "txHash": "0xa208edcb41bd03932ae3ff6302c12b5ceea81bf704c091960029a7a27ece6967",
+      "txHash": "0xd4d3fa43085971ba3fc881a39b069ced4f9f027f86fcab0681595acf23904053",
       "kind": "transparent"
     },
     {
       "address": "0xd24aD4FAb14A2FEdA3739C787402a23270F464A4",
-      "txHash": "0xadf0fa5e349c160961e26f74f56ef0e761de2c00433ca02a8caa222abb10f5cf",
+      "txHash": "0xd066295a35190c30420f93687e1194a4ef68def138e917c5c998ac9e5c9e4b24",
       "kind": "transparent"
     },
     {
       "address": "0x66b8196C251A86D4deDeb7234064a645Dc1389C0",
-      "txHash": "0x210ce92705d79d63cd8f6efdbaf70551b95d3c5b69e43b59f4167ee4dbb536b8",
+      "txHash": "0x84ca37084108a2a01954938fd5c65f572960ee208f6bf8317a28bc4e72bea487",
       "kind": "transparent"
     },
     {
       "address": "0x5Db9cFEA0a7395Cc1aB553c1Df6132DC42E856b7",
-      "txHash": "0x3a087199608a4ba3a730c4656eb12766eb83624252b26d52587424c6be2b6937",
+      "txHash": "0xea29ba630becc73e7f71a8af324ad6d25c96aa357d0ea969677c9c0bf6d72012",
       "kind": "transparent"
     },
     {
       "address": "0x4D0B92f3602A5B966c602D39a9425c53b9AA6058",
-      "txHash": "0x423753eb60d87ff90e9867f285c489a6ac91301da1d3ed8dd4df7a8f3a79e64e",
+      "txHash": "0x45a57b2312e6e4bb31b0db29aaeb9c80bd3ff7592e28cb7b1635afc5c945b380",
       "kind": "transparent"
     },
     {
       "address": "0x3b3a95705d36663d6cB032D9c8580f4a012d98B0",
-      "txHash": "0xea0adb6c502619c58e63d059318368e168bf1ba3ba8a83b7c766c2d085967262",
+      "txHash": "0x6ac0886b02655317e4e1f89be53150162a9505fffe47a4a93874ca266b6150a3",
       "kind": "transparent"
     },
     {
       "address": "0xA57cCA0aA862E60e1c91e02A981A13541b3d37e8",
-      "txHash": "0x7a966e43a289279821ac318608a783900d1c747511a477e203ab200224f70c48",
+      "txHash": "0x6dea42621a5c2b56efdc3353ed43bc36d02c036fd84bef4162ff30367dcfa6d2",
       "kind": "transparent"
     },
     {
       "address": "0x59aC0a247692A772368a6AC633332782757e6555",
-      "txHash": "0x5084619efcee6b800ac6a744bbaa17ebe634bb03defca7e3dba4b842919e22a1",
+      "txHash": "0x8243d1886c0bac3d4f3a1f56db6e444da2da98dcc22b3bf3e670ce46a5a7e2e5",
       "kind": "transparent"
     }
   ],
@@ -1664,446 +1664,9 @@
         }
       }
     },
-    "7da57ec9cb21ea1f46563f70e3bfe80639daace96d08250a689fe10a49446be5": {
-      "address": "0x3221679C531bCF7eB4f728BbAD3f4301D2E2d640",
-      "txHash": "0x7ccc15cda862a44d872268692f88c9dd5ffbbf2e21d60a3c17ca1b7dcafb927a",
-      "layout": {
-        "storage": [
-          {
-            "label": "_initialized",
-            "offset": 0,
-            "slot": "0",
-            "type": "t_uint8",
-            "contract": "Initializable",
-            "src": "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol:62",
-            "retypedFrom": "bool"
-          },
-          {
-            "label": "_initializing",
-            "offset": 1,
-            "slot": "0",
-            "type": "t_bool",
-            "contract": "Initializable",
-            "src": "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol:67"
-          },
-          {
-            "label": "__gap",
-            "offset": 0,
-            "slot": "1",
-            "type": "t_array(t_uint256)50_storage",
-            "contract": "ContextUpgradeable",
-            "src": "@openzeppelin/contracts-upgradeable/utils/ContextUpgradeable.sol:36"
-          },
-          {
-            "label": "__gap",
-            "offset": 0,
-            "slot": "51",
-            "type": "t_array(t_uint256)50_storage",
-            "contract": "ERC165Upgradeable",
-            "src": "@openzeppelin/contracts-upgradeable/utils/introspection/ERC165Upgradeable.sol:41"
-          },
-          {
-            "label": "_roles",
-            "offset": 0,
-            "slot": "101",
-            "type": "t_mapping(t_bytes32,t_struct(RoleData)34_storage)",
-            "contract": "AccessControlUpgradeable",
-            "src": "@openzeppelin/contracts-upgradeable/access/AccessControlUpgradeable.sol:61"
-          },
-          {
-            "label": "__gap",
-            "offset": 0,
-            "slot": "102",
-            "type": "t_array(t_uint256)49_storage",
-            "contract": "AccessControlUpgradeable",
-            "src": "@openzeppelin/contracts-upgradeable/access/AccessControlUpgradeable.sol:259"
-          },
-          {
-            "label": "_status",
-            "offset": 0,
-            "slot": "151",
-            "type": "t_uint256",
-            "contract": "ReentrancyGuardUpgradeable",
-            "src": "@openzeppelin/contracts-upgradeable/security/ReentrancyGuardUpgradeable.sol:38"
-          },
-          {
-            "label": "__gap",
-            "offset": 0,
-            "slot": "152",
-            "type": "t_array(t_uint256)49_storage",
-            "contract": "ReentrancyGuardUpgradeable",
-            "src": "@openzeppelin/contracts-upgradeable/security/ReentrancyGuardUpgradeable.sol:74"
-          },
-          {
-            "label": "isMapLocked",
-            "offset": 0,
-            "slot": "201",
-            "type": "t_bool",
-            "contract": "PhiMap",
-            "src": "contracts/PhiMap.sol:32"
-          },
-          {
-            "label": "mapSettings",
-            "offset": 0,
-            "slot": "202",
-            "type": "t_struct(MapSettings)4280_storage",
-            "contract": "PhiMap",
-            "src": "contracts/PhiMap.sol:34"
-          },
-          {
-            "label": "_whitelist",
-            "offset": 0,
-            "slot": "203",
-            "type": "t_mapping(t_address,t_bool)",
-            "contract": "PhiMap",
-            "src": "contracts/PhiMap.sol:42"
-          },
-          {
-            "label": "numberOfLand",
-            "offset": 0,
-            "slot": "204",
-            "type": "t_uint256",
-            "contract": "PhiMap",
-            "src": "contracts/PhiMap.sol:96"
-          },
-          {
-            "label": "ownerLists",
-            "offset": 0,
-            "slot": "205",
-            "type": "t_mapping(t_string_memory_ptr,t_address)",
-            "contract": "PhiMap",
-            "src": "contracts/PhiMap.sol:97"
-          },
-          {
-            "label": "userObject",
-            "offset": 0,
-            "slot": "206",
-            "type": "t_mapping(t_string_memory_ptr,t_array(t_struct(ObjectInfo)4326_storage)dyn_storage)",
-            "contract": "PhiMap",
-            "src": "contracts/PhiMap.sol:99"
-          },
-          {
-            "label": "wallPaper",
-            "offset": 0,
-            "slot": "207",
-            "type": "t_mapping(t_string_memory_ptr,t_struct(WallPaper)4289_storage)",
-            "contract": "PhiMap",
-            "src": "contracts/PhiMap.sol:101"
-          },
-          {
-            "label": "basePlate",
-            "offset": 0,
-            "slot": "208",
-            "type": "t_mapping(t_string_memory_ptr,t_struct(BasePlate)4294_storage)",
-            "contract": "PhiMap",
-            "src": "contracts/PhiMap.sol:103"
-          },
-          {
-            "label": "userObjectDeposit",
-            "offset": 0,
-            "slot": "209",
-            "type": "t_mapping(t_string_memory_ptr,t_array(t_struct(Deposit)4331_storage)dyn_storage)",
-            "contract": "PhiMap",
-            "src": "contracts/PhiMap.sol:105"
-          },
-          {
-            "label": "depositInfo",
-            "offset": 0,
-            "slot": "210",
-            "type": "t_mapping(t_string_memory_ptr,t_mapping(t_address,t_mapping(t_uint256,t_struct(DepositInfo)4340_storage)))",
-            "contract": "PhiMap",
-            "src": "contracts/PhiMap.sol:106"
-          }
-        ],
-        "types": {
-          "t_address": {
-            "label": "address",
-            "numberOfBytes": "20"
-          },
-          "t_array(t_struct(Deposit)4331_storage)dyn_storage": {
-            "label": "struct PhiMap.Deposit[]",
-            "numberOfBytes": "32"
-          },
-          "t_array(t_struct(ObjectInfo)4326_storage)dyn_storage": {
-            "label": "struct PhiMap.ObjectInfo[]",
-            "numberOfBytes": "32"
-          },
-          "t_array(t_uint256)49_storage": {
-            "label": "uint256[49]",
-            "numberOfBytes": "1568"
-          },
-          "t_array(t_uint256)50_storage": {
-            "label": "uint256[50]",
-            "numberOfBytes": "1600"
-          },
-          "t_bool": {
-            "label": "bool",
-            "numberOfBytes": "1"
-          },
-          "t_bytes32": {
-            "label": "bytes32",
-            "numberOfBytes": "32"
-          },
-          "t_mapping(t_address,t_bool)": {
-            "label": "mapping(address => bool)",
-            "numberOfBytes": "32"
-          },
-          "t_mapping(t_address,t_mapping(t_uint256,t_struct(DepositInfo)4340_storage))": {
-            "label": "mapping(address => mapping(uint256 => struct PhiMap.DepositInfo))",
-            "numberOfBytes": "32"
-          },
-          "t_mapping(t_bytes32,t_struct(RoleData)34_storage)": {
-            "label": "mapping(bytes32 => struct AccessControlUpgradeable.RoleData)",
-            "numberOfBytes": "32"
-          },
-          "t_mapping(t_string_memory_ptr,t_address)": {
-            "label": "mapping(string => address)",
-            "numberOfBytes": "32"
-          },
-          "t_mapping(t_string_memory_ptr,t_array(t_struct(Deposit)4331_storage)dyn_storage)": {
-            "label": "mapping(string => struct PhiMap.Deposit[])",
-            "numberOfBytes": "32"
-          },
-          "t_mapping(t_string_memory_ptr,t_array(t_struct(ObjectInfo)4326_storage)dyn_storage)": {
-            "label": "mapping(string => struct PhiMap.ObjectInfo[])",
-            "numberOfBytes": "32"
-          },
-          "t_mapping(t_string_memory_ptr,t_mapping(t_address,t_mapping(t_uint256,t_struct(DepositInfo)4340_storage)))": {
-            "label": "mapping(string => mapping(address => mapping(uint256 => struct PhiMap.DepositInfo)))",
-            "numberOfBytes": "32"
-          },
-          "t_mapping(t_string_memory_ptr,t_struct(BasePlate)4294_storage)": {
-            "label": "mapping(string => struct PhiMap.BasePlate)",
-            "numberOfBytes": "32"
-          },
-          "t_mapping(t_string_memory_ptr,t_struct(WallPaper)4289_storage)": {
-            "label": "mapping(string => struct PhiMap.WallPaper)",
-            "numberOfBytes": "32"
-          },
-          "t_mapping(t_uint256,t_struct(DepositInfo)4340_storage)": {
-            "label": "mapping(uint256 => struct PhiMap.DepositInfo)",
-            "numberOfBytes": "32"
-          },
-          "t_string_memory_ptr": {
-            "label": "string",
-            "numberOfBytes": "32"
-          },
-          "t_string_storage": {
-            "label": "string",
-            "numberOfBytes": "32"
-          },
-          "t_struct(BasePlate)4294_storage": {
-            "label": "struct PhiMap.BasePlate",
-            "members": [
-              {
-                "label": "contractAddress",
-                "type": "t_address",
-                "offset": 0,
-                "slot": "0"
-              },
-              {
-                "label": "tokenId",
-                "type": "t_uint256",
-                "offset": 0,
-                "slot": "1"
-              }
-            ],
-            "numberOfBytes": "64"
-          },
-          "t_struct(Deposit)4331_storage": {
-            "label": "struct PhiMap.Deposit",
-            "members": [
-              {
-                "label": "contractAddress",
-                "type": "t_address",
-                "offset": 0,
-                "slot": "0"
-              },
-              {
-                "label": "tokenId",
-                "type": "t_uint256",
-                "offset": 0,
-                "slot": "1"
-              }
-            ],
-            "numberOfBytes": "64"
-          },
-          "t_struct(DepositInfo)4340_storage": {
-            "label": "struct PhiMap.DepositInfo",
-            "members": [
-              {
-                "label": "contractAddress",
-                "type": "t_address",
-                "offset": 0,
-                "slot": "0"
-              },
-              {
-                "label": "tokenId",
-                "type": "t_uint256",
-                "offset": 0,
-                "slot": "1"
-              },
-              {
-                "label": "amount",
-                "type": "t_uint256",
-                "offset": 0,
-                "slot": "2"
-              },
-              {
-                "label": "used",
-                "type": "t_uint256",
-                "offset": 0,
-                "slot": "3"
-              }
-            ],
-            "numberOfBytes": "128"
-          },
-          "t_struct(Link)4345_storage": {
-            "label": "struct PhiMap.Link",
-            "members": [
-              {
-                "label": "title",
-                "type": "t_string_storage",
-                "offset": 0,
-                "slot": "0"
-              },
-              {
-                "label": "url",
-                "type": "t_string_storage",
-                "offset": 0,
-                "slot": "1"
-              }
-            ],
-            "numberOfBytes": "64"
-          },
-          "t_struct(MapSettings)4280_storage": {
-            "label": "struct PhiMap.MapSettings",
-            "members": [
-              {
-                "label": "minX",
-                "type": "t_uint8",
-                "offset": 0,
-                "slot": "0"
-              },
-              {
-                "label": "maxX",
-                "type": "t_uint8",
-                "offset": 1,
-                "slot": "0"
-              },
-              {
-                "label": "minY",
-                "type": "t_uint8",
-                "offset": 2,
-                "slot": "0"
-              },
-              {
-                "label": "maxY",
-                "type": "t_uint8",
-                "offset": 3,
-                "slot": "0"
-              }
-            ],
-            "numberOfBytes": "32"
-          },
-          "t_struct(ObjectInfo)4326_storage": {
-            "label": "struct PhiMap.ObjectInfo",
-            "members": [
-              {
-                "label": "contractAddress",
-                "type": "t_address",
-                "offset": 0,
-                "slot": "0"
-              },
-              {
-                "label": "tokenId",
-                "type": "t_uint256",
-                "offset": 0,
-                "slot": "1"
-              },
-              {
-                "label": "xStart",
-                "type": "t_uint8",
-                "offset": 0,
-                "slot": "2"
-              },
-              {
-                "label": "yStart",
-                "type": "t_uint8",
-                "offset": 1,
-                "slot": "2"
-              },
-              {
-                "label": "xEnd",
-                "type": "t_uint8",
-                "offset": 2,
-                "slot": "2"
-              },
-              {
-                "label": "yEnd",
-                "type": "t_uint8",
-                "offset": 3,
-                "slot": "2"
-              },
-              {
-                "label": "link",
-                "type": "t_struct(Link)4345_storage",
-                "offset": 0,
-                "slot": "3"
-              }
-            ],
-            "numberOfBytes": "160"
-          },
-          "t_struct(RoleData)34_storage": {
-            "label": "struct AccessControlUpgradeable.RoleData",
-            "members": [
-              {
-                "label": "members",
-                "type": "t_mapping(t_address,t_bool)",
-                "offset": 0,
-                "slot": "0"
-              },
-              {
-                "label": "adminRole",
-                "type": "t_bytes32",
-                "offset": 0,
-                "slot": "1"
-              }
-            ],
-            "numberOfBytes": "64"
-          },
-          "t_struct(WallPaper)4289_storage": {
-            "label": "struct PhiMap.WallPaper",
-            "members": [
-              {
-                "label": "contractAddress",
-                "type": "t_address",
-                "offset": 0,
-                "slot": "0"
-              },
-              {
-                "label": "tokenId",
-                "type": "t_uint256",
-                "offset": 0,
-                "slot": "1"
-              }
-            ],
-            "numberOfBytes": "64"
-          },
-          "t_uint256": {
-            "label": "uint256",
-            "numberOfBytes": "32"
-          },
-          "t_uint8": {
-            "label": "uint8",
-            "numberOfBytes": "1"
-          }
-        }
-      }
-    },
-    "243d0e228ee4f0e471788a91a45c9ff48b55ca0841093ac00f35f21cdd95833d": {
+    "d8de515d0a2ad9113dfde5e9fb92fcb70e6dcd60bb1a68660250a3186c9e6a89": {
       "address": "0x7b5d2738Cf4FF49C88EE346ce665ea9f03F2260C",
-      "txHash": "0x0731df9596349a90d159add8e4755dbfad439317a836111adaa5b14e55efcdfb",
+      "txHash": "0xc5eccfbcb4d3833191dff86d1e754ef03a0f64ebc7a6209b3cc6713db43c13bc",
       "layout": {
         "storage": [
           {
@@ -2161,7 +1724,7 @@
             "slot": "151",
             "type": "t_address",
             "contract": "PhiClaim",
-            "src": "contracts/PhiClaim.sol:28"
+            "src": "contracts/PhiClaim.sol:24"
           },
           {
             "label": "_status",
@@ -2169,7 +1732,7 @@
             "slot": "152",
             "type": "t_uint256",
             "contract": "PhiClaim",
-            "src": "contracts/PhiClaim.sol:43"
+            "src": "contracts/PhiClaim.sol:39"
           },
           {
             "label": "phiClaimedLists",
@@ -2177,7 +1740,7 @@
             "slot": "153",
             "type": "t_mapping(t_address,t_mapping(t_address,t_mapping(t_uint256,t_uint256)))",
             "contract": "PhiClaim",
-            "src": "contracts/PhiClaim.sol:45"
+            "src": "contracts/PhiClaim.sol:41"
           },
           {
             "label": "couponType",
@@ -2185,7 +1748,7 @@
             "slot": "154",
             "type": "t_mapping(t_string_memory_ptr,t_uint256)",
             "contract": "PhiClaim",
-            "src": "contracts/PhiClaim.sol:46"
+            "src": "contracts/PhiClaim.sol:42"
           }
         ],
         "types": {
@@ -2269,9 +1832,9 @@
         }
       }
     },
-    "01cfb5c670e8d118fafd57fbe8711201ad57dadf373552886ffcc296c5c20133": {
+    "847f8abe30ee3a4a7de9d6fd356f27055d6243fba66f77d42aa503995e56f757": {
       "address": "0xf77025E46A2a08616d2fcC1B5E19Fa289E0106D1",
-      "txHash": "0x3751e7563683407a496d3d272577785a0b32521ae63e8ad00ca017e614277fd3",
+      "txHash": "0xc9de70615cf42e539d618b96082c86dfda9df0af5386b0026ccf4bfc3b11272f",
       "layout": {
         "storage": [
           {
@@ -2329,7 +1892,7 @@
             "slot": "151",
             "type": "t_address",
             "contract": "Registry",
-            "src": "contracts/Registry.sol:28"
+            "src": "contracts/Registry.sol:24"
           },
           {
             "label": "_adminSigner",
@@ -2337,7 +1900,7 @@
             "slot": "152",
             "type": "t_address",
             "contract": "Registry",
-            "src": "contracts/Registry.sol:29"
+            "src": "contracts/Registry.sol:25"
           },
           {
             "label": "claimed",
@@ -2345,7 +1908,7 @@
             "slot": "153",
             "type": "t_uint256",
             "contract": "Registry",
-            "src": "contracts/Registry.sol:31"
+            "src": "contracts/Registry.sol:27"
           },
           {
             "label": "ownerLists",
@@ -2353,7 +1916,7 @@
             "slot": "154",
             "type": "t_mapping(t_address,t_mapping(t_string_memory_ptr,t_address))",
             "contract": "Registry",
-            "src": "contracts/Registry.sol:43"
+            "src": "contracts/Registry.sol:39"
           }
         ],
         "types": {
@@ -2425,6 +1988,443 @@
           },
           "t_string_storage": {
             "label": "string"
+          }
+        }
+      }
+    },
+    "b2cc34b38b2c913d984cb505bf12d8667819196a216f3815c58196219b7e1754": {
+      "address": "0x3221679C531bCF7eB4f728BbAD3f4301D2E2d640",
+      "txHash": "0x7c6b98e5b962cfea7e93279d4c8e79610a7c2a9520000e4d4ef10d15f3110a58",
+      "layout": {
+        "storage": [
+          {
+            "label": "_initialized",
+            "offset": 0,
+            "slot": "0",
+            "type": "t_uint8",
+            "contract": "Initializable",
+            "src": "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol:62",
+            "retypedFrom": "bool"
+          },
+          {
+            "label": "_initializing",
+            "offset": 1,
+            "slot": "0",
+            "type": "t_bool",
+            "contract": "Initializable",
+            "src": "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol:67"
+          },
+          {
+            "label": "__gap",
+            "offset": 0,
+            "slot": "1",
+            "type": "t_array(t_uint256)50_storage",
+            "contract": "ContextUpgradeable",
+            "src": "@openzeppelin/contracts-upgradeable/utils/ContextUpgradeable.sol:36"
+          },
+          {
+            "label": "__gap",
+            "offset": 0,
+            "slot": "51",
+            "type": "t_array(t_uint256)50_storage",
+            "contract": "ERC165Upgradeable",
+            "src": "@openzeppelin/contracts-upgradeable/utils/introspection/ERC165Upgradeable.sol:41"
+          },
+          {
+            "label": "_roles",
+            "offset": 0,
+            "slot": "101",
+            "type": "t_mapping(t_bytes32,t_struct(RoleData)34_storage)",
+            "contract": "AccessControlUpgradeable",
+            "src": "@openzeppelin/contracts-upgradeable/access/AccessControlUpgradeable.sol:61"
+          },
+          {
+            "label": "__gap",
+            "offset": 0,
+            "slot": "102",
+            "type": "t_array(t_uint256)49_storage",
+            "contract": "AccessControlUpgradeable",
+            "src": "@openzeppelin/contracts-upgradeable/access/AccessControlUpgradeable.sol:259"
+          },
+          {
+            "label": "_status",
+            "offset": 0,
+            "slot": "151",
+            "type": "t_uint256",
+            "contract": "ReentrancyGuardUpgradeable",
+            "src": "@openzeppelin/contracts-upgradeable/security/ReentrancyGuardUpgradeable.sol:38"
+          },
+          {
+            "label": "__gap",
+            "offset": 0,
+            "slot": "152",
+            "type": "t_array(t_uint256)49_storage",
+            "contract": "ReentrancyGuardUpgradeable",
+            "src": "@openzeppelin/contracts-upgradeable/security/ReentrancyGuardUpgradeable.sol:74"
+          },
+          {
+            "label": "isMapLocked",
+            "offset": 0,
+            "slot": "201",
+            "type": "t_bool",
+            "contract": "PhiMap",
+            "src": "contracts/PhiMap.sol:28"
+          },
+          {
+            "label": "mapSettings",
+            "offset": 0,
+            "slot": "202",
+            "type": "t_struct(MapSettings)1643_storage",
+            "contract": "PhiMap",
+            "src": "contracts/PhiMap.sol:30"
+          },
+          {
+            "label": "_whitelist",
+            "offset": 0,
+            "slot": "203",
+            "type": "t_mapping(t_address,t_bool)",
+            "contract": "PhiMap",
+            "src": "contracts/PhiMap.sol:38"
+          },
+          {
+            "label": "numberOfLand",
+            "offset": 0,
+            "slot": "204",
+            "type": "t_uint256",
+            "contract": "PhiMap",
+            "src": "contracts/PhiMap.sol:92"
+          },
+          {
+            "label": "ownerLists",
+            "offset": 0,
+            "slot": "205",
+            "type": "t_mapping(t_string_memory_ptr,t_address)",
+            "contract": "PhiMap",
+            "src": "contracts/PhiMap.sol:93"
+          },
+          {
+            "label": "userObject",
+            "offset": 0,
+            "slot": "206",
+            "type": "t_mapping(t_string_memory_ptr,t_array(t_struct(ObjectInfo)1689_storage)dyn_storage)",
+            "contract": "PhiMap",
+            "src": "contracts/PhiMap.sol:95"
+          },
+          {
+            "label": "wallPaper",
+            "offset": 0,
+            "slot": "207",
+            "type": "t_mapping(t_string_memory_ptr,t_struct(WallPaper)1652_storage)",
+            "contract": "PhiMap",
+            "src": "contracts/PhiMap.sol:97"
+          },
+          {
+            "label": "basePlate",
+            "offset": 0,
+            "slot": "208",
+            "type": "t_mapping(t_string_memory_ptr,t_struct(BasePlate)1657_storage)",
+            "contract": "PhiMap",
+            "src": "contracts/PhiMap.sol:99"
+          },
+          {
+            "label": "userObjectDeposit",
+            "offset": 0,
+            "slot": "209",
+            "type": "t_mapping(t_string_memory_ptr,t_array(t_struct(Deposit)1694_storage)dyn_storage)",
+            "contract": "PhiMap",
+            "src": "contracts/PhiMap.sol:101"
+          },
+          {
+            "label": "depositInfo",
+            "offset": 0,
+            "slot": "210",
+            "type": "t_mapping(t_string_memory_ptr,t_mapping(t_address,t_mapping(t_uint256,t_struct(DepositInfo)1703_storage)))",
+            "contract": "PhiMap",
+            "src": "contracts/PhiMap.sol:102"
+          }
+        ],
+        "types": {
+          "t_address": {
+            "label": "address",
+            "numberOfBytes": "20"
+          },
+          "t_array(t_struct(Deposit)1694_storage)dyn_storage": {
+            "label": "struct PhiMap.Deposit[]",
+            "numberOfBytes": "32"
+          },
+          "t_array(t_struct(ObjectInfo)1689_storage)dyn_storage": {
+            "label": "struct PhiMap.ObjectInfo[]",
+            "numberOfBytes": "32"
+          },
+          "t_array(t_uint256)49_storage": {
+            "label": "uint256[49]",
+            "numberOfBytes": "1568"
+          },
+          "t_array(t_uint256)50_storage": {
+            "label": "uint256[50]",
+            "numberOfBytes": "1600"
+          },
+          "t_bool": {
+            "label": "bool",
+            "numberOfBytes": "1"
+          },
+          "t_bytes32": {
+            "label": "bytes32",
+            "numberOfBytes": "32"
+          },
+          "t_mapping(t_address,t_bool)": {
+            "label": "mapping(address => bool)",
+            "numberOfBytes": "32"
+          },
+          "t_mapping(t_address,t_mapping(t_uint256,t_struct(DepositInfo)1703_storage))": {
+            "label": "mapping(address => mapping(uint256 => struct PhiMap.DepositInfo))",
+            "numberOfBytes": "32"
+          },
+          "t_mapping(t_bytes32,t_struct(RoleData)34_storage)": {
+            "label": "mapping(bytes32 => struct AccessControlUpgradeable.RoleData)",
+            "numberOfBytes": "32"
+          },
+          "t_mapping(t_string_memory_ptr,t_address)": {
+            "label": "mapping(string => address)",
+            "numberOfBytes": "32"
+          },
+          "t_mapping(t_string_memory_ptr,t_array(t_struct(Deposit)1694_storage)dyn_storage)": {
+            "label": "mapping(string => struct PhiMap.Deposit[])",
+            "numberOfBytes": "32"
+          },
+          "t_mapping(t_string_memory_ptr,t_array(t_struct(ObjectInfo)1689_storage)dyn_storage)": {
+            "label": "mapping(string => struct PhiMap.ObjectInfo[])",
+            "numberOfBytes": "32"
+          },
+          "t_mapping(t_string_memory_ptr,t_mapping(t_address,t_mapping(t_uint256,t_struct(DepositInfo)1703_storage)))": {
+            "label": "mapping(string => mapping(address => mapping(uint256 => struct PhiMap.DepositInfo)))",
+            "numberOfBytes": "32"
+          },
+          "t_mapping(t_string_memory_ptr,t_struct(BasePlate)1657_storage)": {
+            "label": "mapping(string => struct PhiMap.BasePlate)",
+            "numberOfBytes": "32"
+          },
+          "t_mapping(t_string_memory_ptr,t_struct(WallPaper)1652_storage)": {
+            "label": "mapping(string => struct PhiMap.WallPaper)",
+            "numberOfBytes": "32"
+          },
+          "t_mapping(t_uint256,t_struct(DepositInfo)1703_storage)": {
+            "label": "mapping(uint256 => struct PhiMap.DepositInfo)",
+            "numberOfBytes": "32"
+          },
+          "t_string_memory_ptr": {
+            "label": "string",
+            "numberOfBytes": "32"
+          },
+          "t_string_storage": {
+            "label": "string",
+            "numberOfBytes": "32"
+          },
+          "t_struct(BasePlate)1657_storage": {
+            "label": "struct PhiMap.BasePlate",
+            "members": [
+              {
+                "label": "contractAddress",
+                "type": "t_address",
+                "offset": 0,
+                "slot": "0"
+              },
+              {
+                "label": "tokenId",
+                "type": "t_uint256",
+                "offset": 0,
+                "slot": "1"
+              }
+            ],
+            "numberOfBytes": "64"
+          },
+          "t_struct(Deposit)1694_storage": {
+            "label": "struct PhiMap.Deposit",
+            "members": [
+              {
+                "label": "contractAddress",
+                "type": "t_address",
+                "offset": 0,
+                "slot": "0"
+              },
+              {
+                "label": "tokenId",
+                "type": "t_uint256",
+                "offset": 0,
+                "slot": "1"
+              }
+            ],
+            "numberOfBytes": "64"
+          },
+          "t_struct(DepositInfo)1703_storage": {
+            "label": "struct PhiMap.DepositInfo",
+            "members": [
+              {
+                "label": "contractAddress",
+                "type": "t_address",
+                "offset": 0,
+                "slot": "0"
+              },
+              {
+                "label": "tokenId",
+                "type": "t_uint256",
+                "offset": 0,
+                "slot": "1"
+              },
+              {
+                "label": "amount",
+                "type": "t_uint256",
+                "offset": 0,
+                "slot": "2"
+              },
+              {
+                "label": "used",
+                "type": "t_uint256",
+                "offset": 0,
+                "slot": "3"
+              }
+            ],
+            "numberOfBytes": "128"
+          },
+          "t_struct(Link)1708_storage": {
+            "label": "struct PhiMap.Link",
+            "members": [
+              {
+                "label": "title",
+                "type": "t_string_storage",
+                "offset": 0,
+                "slot": "0"
+              },
+              {
+                "label": "url",
+                "type": "t_string_storage",
+                "offset": 0,
+                "slot": "1"
+              }
+            ],
+            "numberOfBytes": "64"
+          },
+          "t_struct(MapSettings)1643_storage": {
+            "label": "struct PhiMap.MapSettings",
+            "members": [
+              {
+                "label": "minX",
+                "type": "t_uint8",
+                "offset": 0,
+                "slot": "0"
+              },
+              {
+                "label": "maxX",
+                "type": "t_uint8",
+                "offset": 1,
+                "slot": "0"
+              },
+              {
+                "label": "minY",
+                "type": "t_uint8",
+                "offset": 2,
+                "slot": "0"
+              },
+              {
+                "label": "maxY",
+                "type": "t_uint8",
+                "offset": 3,
+                "slot": "0"
+              }
+            ],
+            "numberOfBytes": "32"
+          },
+          "t_struct(ObjectInfo)1689_storage": {
+            "label": "struct PhiMap.ObjectInfo",
+            "members": [
+              {
+                "label": "contractAddress",
+                "type": "t_address",
+                "offset": 0,
+                "slot": "0"
+              },
+              {
+                "label": "tokenId",
+                "type": "t_uint256",
+                "offset": 0,
+                "slot": "1"
+              },
+              {
+                "label": "xStart",
+                "type": "t_uint8",
+                "offset": 0,
+                "slot": "2"
+              },
+              {
+                "label": "yStart",
+                "type": "t_uint8",
+                "offset": 1,
+                "slot": "2"
+              },
+              {
+                "label": "xEnd",
+                "type": "t_uint8",
+                "offset": 2,
+                "slot": "2"
+              },
+              {
+                "label": "yEnd",
+                "type": "t_uint8",
+                "offset": 3,
+                "slot": "2"
+              },
+              {
+                "label": "link",
+                "type": "t_struct(Link)1708_storage",
+                "offset": 0,
+                "slot": "3"
+              }
+            ],
+            "numberOfBytes": "160"
+          },
+          "t_struct(RoleData)34_storage": {
+            "label": "struct AccessControlUpgradeable.RoleData",
+            "members": [
+              {
+                "label": "members",
+                "type": "t_mapping(t_address,t_bool)",
+                "offset": 0,
+                "slot": "0"
+              },
+              {
+                "label": "adminRole",
+                "type": "t_bytes32",
+                "offset": 0,
+                "slot": "1"
+              }
+            ],
+            "numberOfBytes": "64"
+          },
+          "t_struct(WallPaper)1652_storage": {
+            "label": "struct PhiMap.WallPaper",
+            "members": [
+              {
+                "label": "contractAddress",
+                "type": "t_address",
+                "offset": 0,
+                "slot": "0"
+              },
+              {
+                "label": "tokenId",
+                "type": "t_uint256",
+                "offset": 0,
+                "slot": "1"
+              }
+            ],
+            "numberOfBytes": "64"
+          },
+          "t_uint256": {
+            "label": "uint256",
+            "numberOfBytes": "32"
+          },
+          "t_uint8": {
+            "label": "uint8",
+            "numberOfBytes": "1"
           }
         }
       }

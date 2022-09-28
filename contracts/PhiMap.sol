@@ -582,7 +582,7 @@ contract PhiMap is AccessControlUpgradeable, IERC1155ReceiverUpgradeable, Reentr
         uint256 wtokenId,
         address bcontractAddress,
         uint256 btokenId
-    ) external onlyNotLocked onlyPhilandOwner(name) {
+    ) external nonReentrant onlyNotLocked onlyPhilandOwner(name) {
         _batchRemoveAndWrite(name, removeIndexArray, objectDatas, links);
         _removeUnUsedUserObject(name);
         if (wcontractAddress != address(0) && wtokenId != 0) {
