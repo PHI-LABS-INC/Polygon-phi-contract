@@ -373,7 +373,7 @@ contract PhiMap is AccessControlUpgradeable, IERC1155ReceiverUpgradeable, Reentr
         string memory name,
         address contractAddress,
         uint256 tokenId
-    ) public {
+    ) internal {
         address lastBasePlateContractAddress = basePlate[name].contractAddress;
         uint256 lastBasePlateTokenId = basePlate[name].tokenId;
         // Withdraw the deposited BasePlate OBJECT at the same time if it has already been deposited
