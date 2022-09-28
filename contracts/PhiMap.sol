@@ -89,6 +89,7 @@ contract PhiMap is AccessControlUpgradeable, IERC1155ReceiverUpgradeable, Reentr
     /*                                   STORAGE                                  */
     /* -------------------------------------------------------------------------- */
     /* ---------------------------------- Map ----------------------------------- */
+    //  * @notice Return number of philand
     uint256 public numberOfLand;
     mapping(string => address) public ownerLists;
     /* --------------------------------- OBJECT --------------------------------- */
@@ -409,14 +410,6 @@ contract PhiMap is AccessControlUpgradeable, IERC1155ReceiverUpgradeable, Reentr
      */
     function viewPhiland(string memory name) external view returns (ObjectInfo[] memory) {
         return userObject[name];
-    }
-
-    /*
-     * @title viewNumberOfPhiland
-     * @notice Return number of philand
-     */
-    function viewNumberOfPhiland() external view returns (uint256) {
-        return numberOfLand;
     }
 
     /*

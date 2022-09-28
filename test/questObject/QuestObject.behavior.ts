@@ -10,9 +10,7 @@ export function shouldBehaveSetMaxClaimed(): void {
 export function shouldBehaveSetbaseMetadataURI(): void {
   it("should Set baseMetadataURI", async function () {
     await this.questObject.connect(this.signers.admin).setbaseMetadataURI("https://www.arweave.net/");
-    expect(await this.questObject.connect(this.signers.alice).getBaseMetadataURI()).to.equal(
-      "https://www.arweave.net/",
-    );
+    expect(await this.questObject.connect(this.signers.alice).baseMetadataURI()).to.equal("https://www.arweave.net/");
   });
 }
 
@@ -66,7 +64,7 @@ export function shouldInitToken(): void {
 export function shouldGetTreasuryAddress(): void {
   it("should GetTreasuryAddress", async function () {
     await this.questObject.connect(this.signers.admin).setTreasuryAddress("0xe35E5f8B912C25cDb6B00B347cb856467e4112A3");
-    const treasuryAddress = await this.questObject.connect(this.signers.admin).getTreasuryAddress();
+    const treasuryAddress = await this.questObject.connect(this.signers.admin).treasuryAddress();
     expect(treasuryAddress).to.equal("0xe35E5f8B912C25cDb6B00B347cb856467e4112A3");
   });
 }
