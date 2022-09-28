@@ -2,7 +2,7 @@
   "manifestVersion": "3.2",
   "admin": {
     "address": "0x9b8AaB49C5A9c4c7d6665d37333Abb34b425Aee5",
-    "txHash": "0x0930c33aefdb1c1bfa1764de26c1ed451d1bf3ebac88cfa2c137e9372a31f673"
+    "txHash": "0x569772c2330b6084c469808517f19847ff558a117d7803303806eb6bd47cc355"
   },
   "proxies": [
     {
@@ -532,67 +532,67 @@
     },
     {
       "address": "0xC3Ae6426CfC651427E8dEfaF1c5AD6897f747eca",
-      "txHash": "0xa9d40c7cdebdf26a814de5f10ed12ea2dfa54879342b6d6a89278e814a524742",
+      "txHash": "0x23746257f62cec281ebd1aface21c7b110c12407804dfe50a58bfb932337a742",
       "kind": "transparent"
     },
     {
       "address": "0x09C0e0F2129fE42C71730e5e26E6723196e65837",
-      "txHash": "0x022b0505e6a9f9f2060e7e958e38bac7269957e3b0596d38db017d4c2b50043f",
+      "txHash": "0x8e49f422dd347b2e0beeec5fc0406cb3a7679e82f0cc96cf46a46cd1cadac7ea",
       "kind": "transparent"
     },
     {
       "address": "0xEe0E51bC7611502Cdbf0584afbDaE84B227f7294",
-      "txHash": "0x9a13853362c46cade16c71667ecc8d645be0a6ac5219d72f8c8899dcb8143aba",
+      "txHash": "0xbf8aa7ad0197a2b966893c30cce58012fe52b091941896e36ba3ca97fb51b4b8",
       "kind": "transparent"
     },
     {
       "address": "0x926b93EE35b3fB756197806c4b3418dffA171e07",
-      "txHash": "0x4ca108198bb20df0819717c925953fa9803c33af5930f15fc0af6ca730466abc",
+      "txHash": "0x68c4063526be3a0d41bf9ce38c0f793141f426a7163485ded6986106355a228d",
       "kind": "transparent"
     },
     {
       "address": "0x587BDa96d7832B8f46aA4BF36Ec99aEb57efaA11",
-      "txHash": "0xdb4f40d57dd550e48a0f9b785234ff6f9287a4c1e1ad4e60a623d9abf7164363",
+      "txHash": "0x1c700ea3d035f8a9084f1da9d547412ecd483a68dd56ce4cf8bbb854ec0a89f2",
       "kind": "transparent"
     },
     {
       "address": "0x0A43a4daE692Bf9a64368Ec37910c478b348f4C7",
-      "txHash": "0xa208edcb41bd03932ae3ff6302c12b5ceea81bf704c091960029a7a27ece6967",
+      "txHash": "0x522a4ecdd402c64d4d378068a30c2cccace5b60d2d266915ade9bef5ba8100e8",
       "kind": "transparent"
     },
     {
       "address": "0xd24aD4FAb14A2FEdA3739C787402a23270F464A4",
-      "txHash": "0xadf0fa5e349c160961e26f74f56ef0e761de2c00433ca02a8caa222abb10f5cf",
+      "txHash": "0xd066295a35190c30420f93687e1194a4ef68def138e917c5c998ac9e5c9e4b24",
       "kind": "transparent"
     },
     {
       "address": "0x66b8196C251A86D4deDeb7234064a645Dc1389C0",
-      "txHash": "0x210ce92705d79d63cd8f6efdbaf70551b95d3c5b69e43b59f4167ee4dbb536b8",
+      "txHash": "0x84ca37084108a2a01954938fd5c65f572960ee208f6bf8317a28bc4e72bea487",
       "kind": "transparent"
     },
     {
       "address": "0x5Db9cFEA0a7395Cc1aB553c1Df6132DC42E856b7",
-      "txHash": "0x3a087199608a4ba3a730c4656eb12766eb83624252b26d52587424c6be2b6937",
+      "txHash": "0xea29ba630becc73e7f71a8af324ad6d25c96aa357d0ea969677c9c0bf6d72012",
       "kind": "transparent"
     },
     {
       "address": "0x4D0B92f3602A5B966c602D39a9425c53b9AA6058",
-      "txHash": "0x423753eb60d87ff90e9867f285c489a6ac91301da1d3ed8dd4df7a8f3a79e64e",
+      "txHash": "0x45a57b2312e6e4bb31b0db29aaeb9c80bd3ff7592e28cb7b1635afc5c945b380",
       "kind": "transparent"
     },
     {
       "address": "0x3b3a95705d36663d6cB032D9c8580f4a012d98B0",
-      "txHash": "0xea0adb6c502619c58e63d059318368e168bf1ba3ba8a83b7c766c2d085967262",
+      "txHash": "0x6ac0886b02655317e4e1f89be53150162a9505fffe47a4a93874ca266b6150a3",
       "kind": "transparent"
     },
     {
       "address": "0xA57cCA0aA862E60e1c91e02A981A13541b3d37e8",
-      "txHash": "0x7a966e43a289279821ac318608a783900d1c747511a477e203ab200224f70c48",
+      "txHash": "0x6dea42621a5c2b56efdc3353ed43bc36d02c036fd84bef4162ff30367dcfa6d2",
       "kind": "transparent"
     },
     {
       "address": "0x59aC0a247692A772368a6AC633332782757e6555",
-      "txHash": "0x5084619efcee6b800ac6a744bbaa17ebe634bb03defca7e3dba4b842919e22a1",
+      "txHash": "0x8243d1886c0bac3d4f3a1f56db6e444da2da98dcc22b3bf3e670ce46a5a7e2e5",
       "kind": "transparent"
     }
   ],
@@ -1664,9 +1664,9 @@
         }
       }
     },
-    "7da57ec9cb21ea1f46563f70e3bfe80639daace96d08250a689fe10a49446be5": {
+    "04a14ed9b1b136450b7b6b13364637b78b2d30751112069021013404b4a3e591": {
       "address": "0x3221679C531bCF7eB4f728BbAD3f4301D2E2d640",
-      "txHash": "0x7ccc15cda862a44d872268692f88c9dd5ffbbf2e21d60a3c17ca1b7dcafb927a",
+      "txHash": "0xadeb2ca30734c4b4d4c763ca5f898e4ef3538181653d56b4056c26641bad8651",
       "layout": {
         "storage": [
           {
@@ -1740,15 +1740,15 @@
             "slot": "201",
             "type": "t_bool",
             "contract": "PhiMap",
-            "src": "contracts/PhiMap.sol:32"
+            "src": "contracts/PhiMap.sol:28"
           },
           {
             "label": "mapSettings",
             "offset": 0,
             "slot": "202",
-            "type": "t_struct(MapSettings)4280_storage",
+            "type": "t_struct(MapSettings)1643_storage",
             "contract": "PhiMap",
-            "src": "contracts/PhiMap.sol:34"
+            "src": "contracts/PhiMap.sol:30"
           },
           {
             "label": "_whitelist",
@@ -1756,7 +1756,7 @@
             "slot": "203",
             "type": "t_mapping(t_address,t_bool)",
             "contract": "PhiMap",
-            "src": "contracts/PhiMap.sol:42"
+            "src": "contracts/PhiMap.sol:38"
           },
           {
             "label": "numberOfLand",
@@ -1764,7 +1764,7 @@
             "slot": "204",
             "type": "t_uint256",
             "contract": "PhiMap",
-            "src": "contracts/PhiMap.sol:96"
+            "src": "contracts/PhiMap.sol:92"
           },
           {
             "label": "ownerLists",
@@ -1772,47 +1772,47 @@
             "slot": "205",
             "type": "t_mapping(t_string_memory_ptr,t_address)",
             "contract": "PhiMap",
-            "src": "contracts/PhiMap.sol:97"
+            "src": "contracts/PhiMap.sol:93"
           },
           {
             "label": "userObject",
             "offset": 0,
             "slot": "206",
-            "type": "t_mapping(t_string_memory_ptr,t_array(t_struct(ObjectInfo)4326_storage)dyn_storage)",
+            "type": "t_mapping(t_string_memory_ptr,t_array(t_struct(ObjectInfo)1689_storage)dyn_storage)",
             "contract": "PhiMap",
-            "src": "contracts/PhiMap.sol:99"
+            "src": "contracts/PhiMap.sol:95"
           },
           {
             "label": "wallPaper",
             "offset": 0,
             "slot": "207",
-            "type": "t_mapping(t_string_memory_ptr,t_struct(WallPaper)4289_storage)",
+            "type": "t_mapping(t_string_memory_ptr,t_struct(WallPaper)1652_storage)",
             "contract": "PhiMap",
-            "src": "contracts/PhiMap.sol:101"
+            "src": "contracts/PhiMap.sol:97"
           },
           {
             "label": "basePlate",
             "offset": 0,
             "slot": "208",
-            "type": "t_mapping(t_string_memory_ptr,t_struct(BasePlate)4294_storage)",
+            "type": "t_mapping(t_string_memory_ptr,t_struct(BasePlate)1657_storage)",
             "contract": "PhiMap",
-            "src": "contracts/PhiMap.sol:103"
+            "src": "contracts/PhiMap.sol:99"
           },
           {
             "label": "userObjectDeposit",
             "offset": 0,
             "slot": "209",
-            "type": "t_mapping(t_string_memory_ptr,t_array(t_struct(Deposit)4331_storage)dyn_storage)",
+            "type": "t_mapping(t_string_memory_ptr,t_array(t_struct(Deposit)1694_storage)dyn_storage)",
             "contract": "PhiMap",
-            "src": "contracts/PhiMap.sol:105"
+            "src": "contracts/PhiMap.sol:101"
           },
           {
             "label": "depositInfo",
             "offset": 0,
             "slot": "210",
-            "type": "t_mapping(t_string_memory_ptr,t_mapping(t_address,t_mapping(t_uint256,t_struct(DepositInfo)4340_storage)))",
+            "type": "t_mapping(t_string_memory_ptr,t_mapping(t_address,t_mapping(t_uint256,t_struct(DepositInfo)1703_storage)))",
             "contract": "PhiMap",
-            "src": "contracts/PhiMap.sol:106"
+            "src": "contracts/PhiMap.sol:102"
           }
         ],
         "types": {
@@ -1820,11 +1820,11 @@
             "label": "address",
             "numberOfBytes": "20"
           },
-          "t_array(t_struct(Deposit)4331_storage)dyn_storage": {
+          "t_array(t_struct(Deposit)1694_storage)dyn_storage": {
             "label": "struct PhiMap.Deposit[]",
             "numberOfBytes": "32"
           },
-          "t_array(t_struct(ObjectInfo)4326_storage)dyn_storage": {
+          "t_array(t_struct(ObjectInfo)1689_storage)dyn_storage": {
             "label": "struct PhiMap.ObjectInfo[]",
             "numberOfBytes": "32"
           },
@@ -1848,7 +1848,7 @@
             "label": "mapping(address => bool)",
             "numberOfBytes": "32"
           },
-          "t_mapping(t_address,t_mapping(t_uint256,t_struct(DepositInfo)4340_storage))": {
+          "t_mapping(t_address,t_mapping(t_uint256,t_struct(DepositInfo)1703_storage))": {
             "label": "mapping(address => mapping(uint256 => struct PhiMap.DepositInfo))",
             "numberOfBytes": "32"
           },
@@ -1860,27 +1860,27 @@
             "label": "mapping(string => address)",
             "numberOfBytes": "32"
           },
-          "t_mapping(t_string_memory_ptr,t_array(t_struct(Deposit)4331_storage)dyn_storage)": {
+          "t_mapping(t_string_memory_ptr,t_array(t_struct(Deposit)1694_storage)dyn_storage)": {
             "label": "mapping(string => struct PhiMap.Deposit[])",
             "numberOfBytes": "32"
           },
-          "t_mapping(t_string_memory_ptr,t_array(t_struct(ObjectInfo)4326_storage)dyn_storage)": {
+          "t_mapping(t_string_memory_ptr,t_array(t_struct(ObjectInfo)1689_storage)dyn_storage)": {
             "label": "mapping(string => struct PhiMap.ObjectInfo[])",
             "numberOfBytes": "32"
           },
-          "t_mapping(t_string_memory_ptr,t_mapping(t_address,t_mapping(t_uint256,t_struct(DepositInfo)4340_storage)))": {
+          "t_mapping(t_string_memory_ptr,t_mapping(t_address,t_mapping(t_uint256,t_struct(DepositInfo)1703_storage)))": {
             "label": "mapping(string => mapping(address => mapping(uint256 => struct PhiMap.DepositInfo)))",
             "numberOfBytes": "32"
           },
-          "t_mapping(t_string_memory_ptr,t_struct(BasePlate)4294_storage)": {
+          "t_mapping(t_string_memory_ptr,t_struct(BasePlate)1657_storage)": {
             "label": "mapping(string => struct PhiMap.BasePlate)",
             "numberOfBytes": "32"
           },
-          "t_mapping(t_string_memory_ptr,t_struct(WallPaper)4289_storage)": {
+          "t_mapping(t_string_memory_ptr,t_struct(WallPaper)1652_storage)": {
             "label": "mapping(string => struct PhiMap.WallPaper)",
             "numberOfBytes": "32"
           },
-          "t_mapping(t_uint256,t_struct(DepositInfo)4340_storage)": {
+          "t_mapping(t_uint256,t_struct(DepositInfo)1703_storage)": {
             "label": "mapping(uint256 => struct PhiMap.DepositInfo)",
             "numberOfBytes": "32"
           },
@@ -1892,7 +1892,7 @@
             "label": "string",
             "numberOfBytes": "32"
           },
-          "t_struct(BasePlate)4294_storage": {
+          "t_struct(BasePlate)1657_storage": {
             "label": "struct PhiMap.BasePlate",
             "members": [
               {
@@ -1910,7 +1910,7 @@
             ],
             "numberOfBytes": "64"
           },
-          "t_struct(Deposit)4331_storage": {
+          "t_struct(Deposit)1694_storage": {
             "label": "struct PhiMap.Deposit",
             "members": [
               {
@@ -1928,7 +1928,7 @@
             ],
             "numberOfBytes": "64"
           },
-          "t_struct(DepositInfo)4340_storage": {
+          "t_struct(DepositInfo)1703_storage": {
             "label": "struct PhiMap.DepositInfo",
             "members": [
               {
@@ -1958,7 +1958,7 @@
             ],
             "numberOfBytes": "128"
           },
-          "t_struct(Link)4345_storage": {
+          "t_struct(Link)1708_storage": {
             "label": "struct PhiMap.Link",
             "members": [
               {
@@ -1976,7 +1976,7 @@
             ],
             "numberOfBytes": "64"
           },
-          "t_struct(MapSettings)4280_storage": {
+          "t_struct(MapSettings)1643_storage": {
             "label": "struct PhiMap.MapSettings",
             "members": [
               {
@@ -2006,7 +2006,7 @@
             ],
             "numberOfBytes": "32"
           },
-          "t_struct(ObjectInfo)4326_storage": {
+          "t_struct(ObjectInfo)1689_storage": {
             "label": "struct PhiMap.ObjectInfo",
             "members": [
               {
@@ -2047,7 +2047,7 @@
               },
               {
                 "label": "link",
-                "type": "t_struct(Link)4345_storage",
+                "type": "t_struct(Link)1708_storage",
                 "offset": 0,
                 "slot": "3"
               }
@@ -2072,7 +2072,7 @@
             ],
             "numberOfBytes": "64"
           },
-          "t_struct(WallPaper)4289_storage": {
+          "t_struct(WallPaper)1652_storage": {
             "label": "struct PhiMap.WallPaper",
             "members": [
               {
@@ -2101,9 +2101,9 @@
         }
       }
     },
-    "243d0e228ee4f0e471788a91a45c9ff48b55ca0841093ac00f35f21cdd95833d": {
+    "d8de515d0a2ad9113dfde5e9fb92fcb70e6dcd60bb1a68660250a3186c9e6a89": {
       "address": "0x7b5d2738Cf4FF49C88EE346ce665ea9f03F2260C",
-      "txHash": "0x0731df9596349a90d159add8e4755dbfad439317a836111adaa5b14e55efcdfb",
+      "txHash": "0x7a7e9edeab5a8414aae3ea7974ea308e6d96f33192efd56091911ad75156e556",
       "layout": {
         "storage": [
           {
@@ -2161,7 +2161,7 @@
             "slot": "151",
             "type": "t_address",
             "contract": "PhiClaim",
-            "src": "contracts/PhiClaim.sol:28"
+            "src": "contracts/PhiClaim.sol:24"
           },
           {
             "label": "_status",
@@ -2169,7 +2169,7 @@
             "slot": "152",
             "type": "t_uint256",
             "contract": "PhiClaim",
-            "src": "contracts/PhiClaim.sol:43"
+            "src": "contracts/PhiClaim.sol:39"
           },
           {
             "label": "phiClaimedLists",
@@ -2177,7 +2177,7 @@
             "slot": "153",
             "type": "t_mapping(t_address,t_mapping(t_address,t_mapping(t_uint256,t_uint256)))",
             "contract": "PhiClaim",
-            "src": "contracts/PhiClaim.sol:45"
+            "src": "contracts/PhiClaim.sol:41"
           },
           {
             "label": "couponType",
@@ -2185,7 +2185,7 @@
             "slot": "154",
             "type": "t_mapping(t_string_memory_ptr,t_uint256)",
             "contract": "PhiClaim",
-            "src": "contracts/PhiClaim.sol:46"
+            "src": "contracts/PhiClaim.sol:42"
           }
         ],
         "types": {
@@ -2269,9 +2269,9 @@
         }
       }
     },
-    "01cfb5c670e8d118fafd57fbe8711201ad57dadf373552886ffcc296c5c20133": {
+    "847f8abe30ee3a4a7de9d6fd356f27055d6243fba66f77d42aa503995e56f757": {
       "address": "0xf77025E46A2a08616d2fcC1B5E19Fa289E0106D1",
-      "txHash": "0x3751e7563683407a496d3d272577785a0b32521ae63e8ad00ca017e614277fd3",
+      "txHash": "0x45db6538242a1b5e1c7ec7fbf9837a80e9efb3bc0a53d67e192b582b5067c7ef",
       "layout": {
         "storage": [
           {
@@ -2329,7 +2329,7 @@
             "slot": "151",
             "type": "t_address",
             "contract": "Registry",
-            "src": "contracts/Registry.sol:28"
+            "src": "contracts/Registry.sol:24"
           },
           {
             "label": "_adminSigner",
@@ -2337,7 +2337,7 @@
             "slot": "152",
             "type": "t_address",
             "contract": "Registry",
-            "src": "contracts/Registry.sol:29"
+            "src": "contracts/Registry.sol:25"
           },
           {
             "label": "claimed",
@@ -2345,7 +2345,7 @@
             "slot": "153",
             "type": "t_uint256",
             "contract": "Registry",
-            "src": "contracts/Registry.sol:31"
+            "src": "contracts/Registry.sol:27"
           },
           {
             "label": "ownerLists",
@@ -2353,7 +2353,7 @@
             "slot": "154",
             "type": "t_mapping(t_address,t_mapping(t_string_memory_ptr,t_address))",
             "contract": "Registry",
-            "src": "contracts/Registry.sol:43"
+            "src": "contracts/Registry.sol:39"
           }
         ],
         "types": {
