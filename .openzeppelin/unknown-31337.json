@@ -2,7 +2,7 @@
   "manifestVersion": "3.2",
   "admin": {
     "address": "0x9b8AaB49C5A9c4c7d6665d37333Abb34b425Aee5",
-    "txHash": "0xa72aa80b1b936d017e3b4abcf8612d40d8e90ec25346509e4fa96369dc76a225"
+    "txHash": "0xb8ef5f967d71eb2f4236700b676c779cc1952189c1b9fc24525149ba581d43c9"
   },
   "proxies": [
     {
@@ -532,47 +532,47 @@
     },
     {
       "address": "0xC3Ae6426CfC651427E8dEfaF1c5AD6897f747eca",
-      "txHash": "0x0286560c592612df20a70b1dae82d125ac7e4b77cd5cea3d6198e458ea108186",
+      "txHash": "0x61718216b5262336695344947f92d0f884715b961ffdc1a8ba4226164345776b",
       "kind": "transparent"
     },
     {
       "address": "0x09C0e0F2129fE42C71730e5e26E6723196e65837",
-      "txHash": "0xafdd4a489ecf539bbffda500ee9ec8553c9a0e49fe22ec7a18f21f114579a7b5",
+      "txHash": "0x6f561f5b216795086f8c4ebad0aa4f91374549b55257592bd69ed39b9658b21d",
       "kind": "transparent"
     },
     {
       "address": "0xEe0E51bC7611502Cdbf0584afbDaE84B227f7294",
-      "txHash": "0x4ba450c967f14f4250e79b246bdba67dd8a41d995f32d068381ebd46a59d0eb8",
+      "txHash": "0xc3677f658b352e9c965a7870846a66e751070a1b7a155f827ae92132f984e1fb",
       "kind": "transparent"
     },
     {
       "address": "0x926b93EE35b3fB756197806c4b3418dffA171e07",
-      "txHash": "0xfcf4905238279bd939edeebb217ad2f8e6d11409268c4ada5f7f2242f86e8333",
+      "txHash": "0xdda9d6941774d637e1554e5c281bac7ef94297f67e55671ddcbed95aa7332816",
       "kind": "transparent"
     },
     {
       "address": "0x587BDa96d7832B8f46aA4BF36Ec99aEb57efaA11",
-      "txHash": "0x390e4975a378108e80b248feaf6c9ed95fb9e96ab4afa4aacabf5974aa315629",
+      "txHash": "0x03bf62c9284ef03a7cf4d87ef09c941cc7ac3846f86f224738395502c812fb71",
       "kind": "transparent"
     },
     {
       "address": "0x0A43a4daE692Bf9a64368Ec37910c478b348f4C7",
-      "txHash": "0x991f969bb03e5719cee1424275e1385a754fc501252b58dd313ccb5d5b848395",
+      "txHash": "0xfad651350c0ce02fc433595f4eba33acebb7a726d457c93729e70ba3672a5afa",
       "kind": "transparent"
     },
     {
       "address": "0xd24aD4FAb14A2FEdA3739C787402a23270F464A4",
-      "txHash": "0xda6efaad0aa926e5d3ea7902aadc61aeb19f7bab535513dfc9d17d9b2d69de6f",
+      "txHash": "0x8e047e6e933588dacef569b875a0070ffb2b892cd9df8d38a090e2eceb5829d7",
       "kind": "transparent"
     },
     {
       "address": "0x66b8196C251A86D4deDeb7234064a645Dc1389C0",
-      "txHash": "0x84ca37084108a2a01954938fd5c65f572960ee208f6bf8317a28bc4e72bea487",
+      "txHash": "0xbd83feb7ff14a19e21e01f0d8da74b7a3446dbb825429e7d5d24961412f7001a",
       "kind": "transparent"
     },
     {
       "address": "0x5Db9cFEA0a7395Cc1aB553c1Df6132DC42E856b7",
-      "txHash": "0xd1d0a879b9ab1b805996ce4b8a47bf1c6ba5fda0a93757138d35e5f993971435",
+      "txHash": "0xa14244e2fdefaa928016cbf5fa4344b053329aa1c3f014de9faa99170b593049",
       "kind": "transparent"
     },
     {
@@ -582,17 +582,17 @@
     },
     {
       "address": "0x3b3a95705d36663d6cB032D9c8580f4a012d98B0",
-      "txHash": "0xf75e4455cc9f44cae944b9c6c6084beeebb244ec245ba402eb8a3086f3ac7e61",
+      "txHash": "0x597feda76d8ab53a3d2cda94c43b55d23d380e605df019187ea1b6ae73f41c86",
       "kind": "transparent"
     },
     {
       "address": "0xA57cCA0aA862E60e1c91e02A981A13541b3d37e8",
-      "txHash": "0x3b53e01c3bb7238b62dd7c8ca10dbb03f6b04f068966f850cf897566568e54e8",
+      "txHash": "0x07f9b2c393ced257ff4841d91c19bca5f748e7bcea3d2c3606614513db74b0a2",
       "kind": "transparent"
     },
     {
       "address": "0x59aC0a247692A772368a6AC633332782757e6555",
-      "txHash": "0xb062de8227b532b1ce16af0ce356725b73c10b584be71e5ded0ef98dc608adc6",
+      "txHash": "0xe4a571b0cfa97dd782a72744645a41f7e72ce8d40f0d6cf271d8adc894802f41",
       "kind": "transparent"
     }
   ],
@@ -1666,7 +1666,7 @@
     },
     "d8de515d0a2ad9113dfde5e9fb92fcb70e6dcd60bb1a68660250a3186c9e6a89": {
       "address": "0x7b5d2738Cf4FF49C88EE346ce665ea9f03F2260C",
-      "txHash": "0x3bb960189aa1390170cd35a9debb285632e36d8a730201299574f1c76b44acdb",
+      "txHash": "0x2b2b323f409ca66435fea19554f1e4037215dad2d7ce12a6e6448ade57ab007f",
       "layout": {
         "storage": [
           {
@@ -1834,7 +1834,7 @@
     },
     "847f8abe30ee3a4a7de9d6fd356f27055d6243fba66f77d42aa503995e56f757": {
       "address": "0xf77025E46A2a08616d2fcC1B5E19Fa289E0106D1",
-      "txHash": "0x2c683ac5d5551c2923c85fbcc379e663a884c3b22978e81142d9f1cc3f4920a4",
+      "txHash": "0x601c9eeb1ccc535dde65bed582cb3f0d51a408a4a18f7ee0c7ed56ba36c0d61d",
       "layout": {
         "storage": [
           {
@@ -1992,9 +1992,9 @@
         }
       }
     },
-    "73f95301a9931e1ae5d2b21c1c7636c8e18ddd397cac5bca4eac04d0fab22714": {
+    "c30000453486ed70fc9720cf34b822abc259d355f28ac4719099c67e9147010a": {
       "address": "0x3221679C531bCF7eB4f728BbAD3f4301D2E2d640",
-      "txHash": "0x3ecd418d039b51f8ce0ebec44d737d8d899693c065c5eb6cf6482055d89a9419",
+      "txHash": "0xfbdee34c4ddd0a5f66a3552af31a2db51f8644e16c8073a8b7482e6850e6129c",
       "layout": {
         "storage": [
           {
@@ -2092,7 +2092,7 @@
             "slot": "204",
             "type": "t_uint256",
             "contract": "PhiMap",
-            "src": "contracts/PhiMap.sol:93"
+            "src": "contracts/PhiMap.sol:94"
           },
           {
             "label": "ownerLists",
@@ -2100,7 +2100,7 @@
             "slot": "205",
             "type": "t_mapping(t_string_memory_ptr,t_address)",
             "contract": "PhiMap",
-            "src": "contracts/PhiMap.sol:94"
+            "src": "contracts/PhiMap.sol:95"
           },
           {
             "label": "userObject",
@@ -2108,7 +2108,7 @@
             "slot": "206",
             "type": "t_mapping(t_string_memory_ptr,t_array(t_struct(ObjectInfo)1689_storage)dyn_storage)",
             "contract": "PhiMap",
-            "src": "contracts/PhiMap.sol:96"
+            "src": "contracts/PhiMap.sol:97"
           },
           {
             "label": "wallPaper",
@@ -2116,7 +2116,7 @@
             "slot": "207",
             "type": "t_mapping(t_string_memory_ptr,t_struct(WallPaper)1652_storage)",
             "contract": "PhiMap",
-            "src": "contracts/PhiMap.sol:98"
+            "src": "contracts/PhiMap.sol:99"
           },
           {
             "label": "basePlate",
@@ -2124,7 +2124,7 @@
             "slot": "208",
             "type": "t_mapping(t_string_memory_ptr,t_struct(BasePlate)1657_storage)",
             "contract": "PhiMap",
-            "src": "contracts/PhiMap.sol:100"
+            "src": "contracts/PhiMap.sol:101"
           },
           {
             "label": "userObjectDeposit",
@@ -2132,7 +2132,7 @@
             "slot": "209",
             "type": "t_mapping(t_string_memory_ptr,t_array(t_struct(Deposit)1694_storage)dyn_storage)",
             "contract": "PhiMap",
-            "src": "contracts/PhiMap.sol:102"
+            "src": "contracts/PhiMap.sol:103"
           },
           {
             "label": "depositInfo",
@@ -2140,7 +2140,7 @@
             "slot": "210",
             "type": "t_mapping(t_string_memory_ptr,t_mapping(t_address,t_mapping(t_uint256,t_struct(DepositInfo)1703_storage)))",
             "contract": "PhiMap",
-            "src": "contracts/PhiMap.sol:103"
+            "src": "contracts/PhiMap.sol:104"
           }
         ],
         "types": {
@@ -2286,7 +2286,7 @@
             ],
             "numberOfBytes": "128"
           },
-          "t_struct(Link)1708_storage": {
+          "t_struct(Link)1710_storage": {
             "label": "struct PhiMap.Link",
             "members": [
               {
@@ -2300,9 +2300,15 @@
                 "type": "t_string_storage",
                 "offset": 0,
                 "slot": "1"
+              },
+              {
+                "label": "data",
+                "type": "t_uint256",
+                "offset": 0,
+                "slot": "2"
               }
             ],
-            "numberOfBytes": "64"
+            "numberOfBytes": "96"
           },
           "t_struct(MapSettings)1643_storage": {
             "label": "struct PhiMap.MapSettings",
@@ -2375,12 +2381,12 @@
               },
               {
                 "label": "link",
-                "type": "t_struct(Link)1708_storage",
+                "type": "t_struct(Link)1710_storage",
                 "offset": 0,
                 "slot": "3"
               }
             ],
-            "numberOfBytes": "160"
+            "numberOfBytes": "192"
           },
           "t_struct(RoleData)34_storage": {
             "label": "struct AccessControlUpgradeable.RoleData",

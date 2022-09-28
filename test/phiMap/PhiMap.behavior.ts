@@ -120,6 +120,7 @@ export function shouldBehaveWriteObjectToLand(): void {
       .writeObjectToLand("test", { contractAddress: this.questObject.address, tokenId: 1, xStart: 1, yStart: 1 }, [
         "",
         "",
+        0,
       ]);
     const status = await this.phiMap.checkDepositStatus("test", this.questObject.address, 1);
     expect(status.amount).to.equal(2);
@@ -194,9 +195,9 @@ export function shouldBehaveBatchWriteObjectToLand(): void {
         { contractAddress: this.questObject.address, tokenId: 3, xStart: 4, yStart: 3 },
       ],
       [
-        { title: "", url: "" },
-        { title: "", url: "" },
-        { title: "zak3939", url: "zak3939.eth" },
+        { title: "", url: "", data: 0 },
+        { title: "", url: "", data: 0 },
+        { title: "zak3939", url: "zak3939.eth", data: 0 },
       ],
       "0x0000000000000000000000000000000000000000",
       0,
@@ -234,7 +235,7 @@ export function shouldBehaveBatchRemoveAndWrite(): void {
         "test",
         [1],
         [{ contractAddress: this.questObject.address, tokenId: 2, xStart: 6, yStart: 7 }],
-        [{ title: "", url: "" }],
+        [{ title: "", url: "", data: 0 }],
         "0x0000000000000000000000000000000000000000",
         0,
         "0x0000000000000000000000000000000000000000",
@@ -345,22 +346,38 @@ export function CantWriteObjectToLand(): void {
     await expect(
       this.phiMap
         .connect(this.signers.alice)
-        .writeObjectToLand("test", { contractAddress: this.questObject.address, tokenId: 2, xStart: 15, yStart: 1 }),
+        .writeObjectToLand("test", { contractAddress: this.questObject.address, tokenId: 2, xStart: 15, yStart: 1 }, [
+          "",
+          "",
+          0,
+        ]),
     ).to.be.reverted;
     await expect(
       this.phiMap
         .connect(this.signers.alice)
-        .writeObjectToLand("test", { contractAddress: this.questObject.address, tokenId: 3, xStart: 1, yStart: 15 }),
+        .writeObjectToLand("test", { contractAddress: this.questObject.address, tokenId: 3, xStart: 1, yStart: 15 }, [
+          "",
+          "",
+          0,
+        ]),
     ).to.be.reverted;
     await expect(
       this.phiMap
         .connect(this.signers.alice)
-        .writeObjectToLand("test", { contractAddress: this.questObject.address, tokenId: 2, xStart: -1, yStart: 1 }),
+        .writeObjectToLand("test", { contractAddress: this.questObject.address, tokenId: 2, xStart: -1, yStart: 1 }, [
+          "",
+          "",
+          0,
+        ]),
     ).to.be.reverted;
     await expect(
       this.phiMap
         .connect(this.signers.alice)
-        .writeObjectToLand("test", { contractAddress: this.questObject.address, tokenId: 3, xStart: 1, yStart: -1 }),
+        .writeObjectToLand("test", { contractAddress: this.questObject.address, tokenId: 3, xStart: 1, yStart: -1 }, [
+          "",
+          "",
+          0,
+        ]),
     ).to.be.reverted;
   });
 }
@@ -439,7 +456,7 @@ export function shouldBehaveSave(): void {
         "test",
         [],
         [{ contractAddress: this.questObject.address, tokenId: 1, xStart: 1, yStart: 1 }],
-        [{ title: "test111", url: "" }],
+        [{ title: "test111", url: "", data: 0 }],
         "0x0000000000000000000000000000000000000000",
         0,
         "0x0000000000000000000000000000000000000000",
@@ -451,7 +468,7 @@ export function shouldBehaveSave(): void {
         "test",
         [0],
         [{ contractAddress: this.questObject.address, tokenId: 2, xStart: 2, yStart: 2 }],
-        [{ title: "test222", url: "" }],
+        [{ title: "test222", url: "", data: 0 }],
         "0x0000000000000000000000000000000000000000",
         0,
         "0x0000000000000000000000000000000000000000",
@@ -463,7 +480,7 @@ export function shouldBehaveSave(): void {
         "test",
         [],
         [{ contractAddress: this.questObject.address, tokenId: 3, xStart: 4, yStart: 3 }],
-        [{ title: "test333", url: "" }],
+        [{ title: "test333", url: "", data: 0 }],
         this.wallPaper.address,
         1,
         "0x0000000000000000000000000000000000000000",
@@ -521,7 +538,7 @@ export function CantNotDepositObjectWrite(): void {
           "phi.zak3939",
           [],
           [{ contractAddress: this.freeObject.address, tokenId: 3, xStart: 4, yStart: 3 }],
-          [{ title: "test333", url: "" }],
+          [{ title: "test333", url: "", data: 0 }],
           this.wallPaper.address,
           1,
           "0x0000000000000000000000000000000000000000",
@@ -544,7 +561,7 @@ export function CantObjectWriteOutofRange(): void {
           "phi.zak3939",
           [],
           [{ contractAddress: this.freeObject.address, tokenId: 2, xStart: -1, yStart: 15 }],
-          [{ title: "test333", url: "" }],
+          [{ title: "test333", url: "", data: 0 }],
           "0x0000000000000000000000000000000000000000",
           0,
           "0x0000000000000000000000000000000000000000",
@@ -558,7 +575,7 @@ export function CantObjectWriteOutofRange(): void {
           "phi.zak3939",
           [],
           [{ contractAddress: this.freeObject.address, tokenId: 2, xStart: 3, yStart: 17 }],
-          [{ title: "test333", url: "" }],
+          [{ title: "test333", url: "", data: 0 }],
           "0x0000000000000000000000000000000000000000",
           0,
           "0x0000000000000000000000000000000000000000",
@@ -572,7 +589,7 @@ export function CantObjectWriteOutofRange(): void {
           "phi.zak3939",
           [],
           [{ contractAddress: this.freeObject.address, tokenId: 2, xStart: 17, yStart: 3 }],
-          [{ title: "test222", url: "" }],
+          [{ title: "test222", url: "", data: 0 }],
           "0x0000000000000000000000000000000000000000",
           0,
           "0x0000000000000000000000000000000000000000",
@@ -586,7 +603,7 @@ export function CantObjectWriteOutofRange(): void {
           "phi.zak3939",
           [],
           [{ contractAddress: this.freeObject.address, tokenId: 2, xStart: 15, yStart: 15 }],
-          [{ title: "test333", url: "" }],
+          [{ title: "test333", url: "", data: 0 }],
           "0x0000000000000000000000000000000000000000",
           0,
           "0x0000000000000000000000000000000000000000",
@@ -600,7 +617,7 @@ export function CantObjectWriteOutofRange(): void {
           "phi.zak3939",
           [],
           [{ contractAddress: this.freeObject.address, tokenId: 2, xStart: 14, yStart: -1 }],
-          [{ title: "test333", url: "" }],
+          [{ title: "test333", url: "", data: 0 }],
           "0x0000000000000000000000000000000000000000",
           0,
           "0x0000000000000000000000000000000000000000",
@@ -614,7 +631,7 @@ export function CantObjectWriteOutofRange(): void {
           "phi.zak3939",
           [],
           [{ contractAddress: this.freeObject.address, tokenId: 2, xStart: 14, yStart: 17 }],
-          [{ title: "test333", url: "" }],
+          [{ title: "test333", url: "", data: 0 }],
           "0x0000000000000000000000000000000000000000",
           0,
           "0x0000000000000000000000000000000000000000",
@@ -628,7 +645,7 @@ export function CantObjectWriteOutofRange(): void {
           "phi.zak3939",
           [],
           [{ contractAddress: this.freeObject.address, tokenId: 3, xStart: 14, yStart: 15 }],
-          [{ title: "test333", url: "" }],
+          [{ title: "test333", url: "", data: 0 }],
           "0x0000000000000000000000000000000000000000",
           0,
           "0x0000000000000000000000000000000000000000",
@@ -646,7 +663,7 @@ export function CantObjectWriteCollision(): void {
         "phi.zak3939",
         [],
         [{ contractAddress: this.freeObject.address, tokenId: 2, xStart: 6, yStart: 6 }],
-        [{ title: "test333", url: "" }],
+        [{ title: "test333", url: "", data: 0 }],
         "0x0000000000000000000000000000000000000000",
         0,
         "0x0000000000000000000000000000000000000000",
@@ -660,7 +677,7 @@ export function CantObjectWriteCollision(): void {
           "phi.zak3939",
           [],
           [{ contractAddress: this.freeObject.address, tokenId: 2, xStart: 13, yStart: 15 }],
-          [{ title: "test222", url: "" }],
+          [{ title: "test222", url: "", data: 0 }],
           "0x0000000000000000000000000000000000000000",
           0,
           "0x0000000000000000000000000000000000000000",
@@ -675,7 +692,7 @@ export function CantObjectWriteCollision(): void {
           "phi.zak3939",
           [],
           [{ contractAddress: this.freeObject.address, tokenId: 2, xStart: 14, yStart: 15 }],
-          [{ title: "test333", url: "" }],
+          [{ title: "test333", url: "", data: 0 }],
           this.wallPaper.address,
           1,
           "0x0000000000000000000000000000000000000000",
@@ -701,7 +718,7 @@ export function CantSetInvalidSizeMap(): void {
           "phi.zak3939",
           [],
           [{ contractAddress: this.freeObject.address, tokenId: 2, xStart: 12, yStart: 12 }],
-          [{ title: "test333", url: "" }],
+          [{ title: "test333", url: "", data: 0 }],
           this.wallPaper.address,
           3,
           "0x0000000000000000000000000000000000000000",
@@ -747,7 +764,7 @@ export function CantWriteObjectToLandOverDeposit(): void {
         "phi.zak3939",
         [],
         [{ contractAddress: this.freeObject.address, tokenId: 4, xStart: 0, yStart: 0 }],
-        [{ title: "test333", url: "" }],
+        [{ title: "test333", url: "", data: 0 }],
         "0x0000000000000000000000000000000000000000",
         0,
         "0x0000000000000000000000000000000000000000",
@@ -760,7 +777,7 @@ export function CantWriteObjectToLandOverDeposit(): void {
           "phi.zak3939",
           [],
           [{ contractAddress: this.freeObject.address, tokenId: 4, xStart: 4, yStart: 4 }],
-          [{ title: "test333", url: "" }],
+          [{ title: "test333", url: "", data: 0 }],
           "0x0000000000000000000000000000000000000000",
           0,
           "0x0000000000000000000000000000000000000000",

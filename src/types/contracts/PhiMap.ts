@@ -86,11 +86,13 @@ export declare namespace PhiMap {
   export type LinkStruct = {
     title: PromiseOrValue<string>;
     url: PromiseOrValue<string>;
+    data: PromiseOrValue<BigNumberish>;
   };
 
-  export type LinkStructOutput = [string, string] & {
+  export type LinkStructOutput = [string, string, BigNumber] & {
     title: string;
     url: string;
+    data: BigNumber;
   };
 
   export type ObjectInfoStruct = {
@@ -152,7 +154,7 @@ export interface PhiMapInterface extends utils.Interface {
     "removehitelistObject(address)": FunctionFragment;
     "renounceRole(bytes32,address)": FunctionFragment;
     "revokeRole(bytes32,address)": FunctionFragment;
-    "save(string,uint256[],(address,uint256,uint8,uint8)[],(string,string)[],address,uint256,address,uint256)": FunctionFragment;
+    "save(string,uint256[],(address,uint256,uint8,uint8)[],(string,string,uint256)[],address,uint256,address,uint256)": FunctionFragment;
     "setWhitelistObject(address)": FunctionFragment;
     "supportsInterface(bytes4)": FunctionFragment;
     "userObject(string,uint256)": FunctionFragment;
@@ -162,7 +164,7 @@ export interface PhiMapInterface extends utils.Interface {
     "viewPhiland(string)": FunctionFragment;
     "viewPhilandArray(string)": FunctionFragment;
     "wallPaper(string)": FunctionFragment;
-    "writeObjectToLand(string,(address,uint256,uint8,uint8),(string,string))": FunctionFragment;
+    "writeObjectToLand(string,(address,uint256,uint8,uint8),(string,string,uint256))": FunctionFragment;
   };
 
   getFunction(
@@ -552,7 +554,7 @@ export interface PhiMapInterface extends utils.Interface {
     "WhitelistGranted(address,address)": EventFragment;
     "WhitelistRemoved(address,address)": EventFragment;
     "WithdrawSuccess(address,string,address,uint256,uint256)": EventFragment;
-    "WriteLink(string,address,uint256,string,string)": EventFragment;
+    "WriteLink(string,address,uint256,string,string,uint256)": EventFragment;
     "WriteObject(string,address,uint256,uint256,uint256)": EventFragment;
   };
 
@@ -778,9 +780,10 @@ export interface WriteLinkEventObject {
   tokenId: BigNumber;
   title: string;
   url: string;
+  data: BigNumber;
 }
 export type WriteLinkEvent = TypedEvent<
-  [string, string, BigNumber, string, string],
+  [string, string, BigNumber, string, string, BigNumber],
   WriteLinkEventObject
 >;
 
@@ -1771,19 +1774,21 @@ export interface PhiMap extends BaseContract {
       amount?: null
     ): WithdrawSuccessEventFilter;
 
-    "WriteLink(string,address,uint256,string,string)"(
+    "WriteLink(string,address,uint256,string,string,uint256)"(
       name?: null,
       contractAddress?: null,
       tokenId?: null,
       title?: null,
-      url?: null
+      url?: null,
+      data?: null
     ): WriteLinkEventFilter;
     WriteLink(
       name?: null,
       contractAddress?: null,
       tokenId?: null,
       title?: null,
-      url?: null
+      url?: null,
+      data?: null
     ): WriteLinkEventFilter;
 
     "WriteObject(string,address,uint256,uint256,uint256)"(
