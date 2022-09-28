@@ -4,7 +4,7 @@ import { ethers } from "hardhat";
 export function shouldBehaveSetbaseMetadataURI(): void {
   it("should Set baseMetadataURI", async function () {
     await this.freeObject.connect(this.signers.admin).setbaseMetadataURI("https://www.arweave.net/");
-    expect(await this.freeObject.connect(this.signers.alice).getBaseMetadataURI()).to.equal("https://www.arweave.net/");
+    expect(await this.freeObject.connect(this.signers.alice).baseMetadataURI()).to.equal("https://www.arweave.net/");
   });
 }
 

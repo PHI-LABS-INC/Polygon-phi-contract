@@ -18,7 +18,7 @@ export function shouldBehaveviewPhiland(): void {
 
 export function shouldBehaveViewNumberOfPhiland(): void {
   it("should get number of philand", async function () {
-    const NoP = await this.phiMap.connect(this.signers.alice).viewNumberOfPhiland();
+    const NoP = await this.phiMap.connect(this.signers.alice).numberOfLand();
     expect(NoP).to.equal(3);
   });
 }
