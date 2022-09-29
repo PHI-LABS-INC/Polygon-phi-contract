@@ -121,7 +121,7 @@ contract Registry is AccessControlUpgradeable {
 
     /// @dev set adminsigner
     function setAdminSigner(address verifierAdderss) external onlyOwner {
-        require(verifierAdderss != address(0));
+        require(verifierAdderss != address(0), "cant set address 0");
         _adminSigner = verifierAdderss;
         emit SetAdminSigner(verifierAdderss);
     }
