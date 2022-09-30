@@ -90,7 +90,7 @@ export async function settingPhi(): Promise<void> {
       { x: size[1], y: size[3], z: "0" },
       CreatorAddressEnum[wallPaperRowList[i].creator],
       String(wallPaperRowList[i].maxClaimed),
-      ethers.utils.parseEther("0"),
+      ethers.utils.parseEther(wallPaperRowList[i].price),
     ];
     console.log(calldata);
     res = await wallPaperContractInstance[funcName](...calldata);
