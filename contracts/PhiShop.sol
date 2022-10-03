@@ -76,9 +76,7 @@ contract PhiShop {
         uint256[] memory btokenIds
     ) external payable {
         // check if the function caller is not an zero account address
-        require(msg.sender != address(0));
-        // to prevent bots minting from a contract
-        require(msg.sender == tx.origin, "msg sender invalid");
+        require(msg.sender != address(0), "cant set address 0");
 
         if (ftokenIds.length != 0) {
             IFreeObject _fobject = IFreeObject(freeObjectAddress);
@@ -128,9 +126,7 @@ contract PhiShop {
         uint256[] memory depoitAmounts
     ) external payable {
         // check if the function caller is not an zero account address
-        require(msg.sender != address(0));
-        // to prevent bots minting from a contract
-        require(msg.sender == tx.origin, "msg sender invalid");
+        require(msg.sender != address(0), "cant set address 0");
 
         IPhiMap _map = IPhiMap(mapAddress);
 
