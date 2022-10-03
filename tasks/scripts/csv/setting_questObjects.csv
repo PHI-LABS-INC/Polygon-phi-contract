@@ -25,10 +25,10 @@ tokenId,name,image_url,json_url,size,relatedProject,creator,maxClaimed,price,EXP
 40,PHI Billboard,https://www.arweave.net/UC49CrzevlDFgXP9zy7TaKHBdsffbLCw_PjEi64gYUE?ext=png,https://www.arweave.net/dBNm9SmGPyTRf-Lsm-HGTFxD9IhTcXtc7d9_HfvmY-c,"[1,3,3]",PHI,eBoy,999999999,0,1000
 41,PHI Building Blockbob,https://www.arweave.net/e_in9SgPL25cCqK-TbAdADrZeCSePyLtSUxYVum5cwU?ext=png,https://www.arweave.net/xQq3ae1MheAt6tXCmTT2Nq4EjUtUDh5kZwvSJ0BrwTc,"[2,1,5]",PHI,eBoy,999999999,0,5000
 42,PHI Building,https://www.arweave.net/XxeuqIxgq8UPYKNkK641KHq9eLLGQaDfC7WWSrZWxLE?ext=png,https://www.arweave.net/PD5Qf9Xy_sXJmnffp5dQip1r_ifrVWgjVtaCVyddUDg,"[2,1,5]",PHI,eBoy,999999999,0,10000
-43,ETH CPU,https://www.arweave.net/_-KN1MmgoPm8BTZXM5GlZxL-sddRQLJ7EQZKOCa0R54?ext=png,https://www.arweave.net/Uk8OjT_OmkNVng0OH3rutJXc61AP4csroflWYiShoOc,"[1,1,1]",Ethereum,eBoy,999999999,0,100000
-44,ETH USB Building,https://www.arweave.net/Olf8NorC0znoTrxxi7tDhZK2BFK6SG-FNcABM3VRATs?ext=png,https://www.arweave.net/xLy_YY937iMOngi9uvagvw79KVY4RMxSRLduGsqcpzM,"[1,1,4]",Ethereum,eBoy,999999999,0,300000
-45,ETH Whale Statue,https://www.arweave.net/EsNAvo8T2rd5Lmz7X5wuFcFHoBLlHcujQjEmhAFWga8?ext=png,https://www.arweave.net/r_Qb0dwoTkWEyZqXn5XecviAnVb-HV5fnUd8r2grafE,"[2,3,2]",Ethereum,eBoy,999999999,0,500000
-46,ETH Office Building,https://www.arweave.net/K31dW0KMV4aToqSWH-k6-pkMZv1zsWd7jhTTBNtLgzU?ext=png,https://www.arweave.net/GUMZTDYKD7K1-G1KydYNjaio3uN9jcvjEt-fB_KfzU8,"[1,2,6]",Ethereum,eBoy,999999999,0,1000000
+43,ETH CPU,https://www.arweave.net/mAYYHWtKd7QK73AwtTIBr_83BV5wbkpR10_mPTps5G0?ext=png,https://www.arweave.net/_SlaM5hpNItF61CFkIbqj4t7ydXtCFw4bvAJhqhQnkE,"[1,1,1]",Ethereum,eBoy,999999999,0,5000
+44,ETH USB Building,https://www.arweave.net/5muPYTtNyq5MLmfh-4rwx88gm7BfiwrgvaNdK2bg2rY?ext=png,https://www.arweave.net/qpcI54pL-6-4uElY_2XkZpkv_ShZpeVcP9p62tcBAoQ,"[1,1,4]",Ethereum,eBoy,999999999,0,10000
+45,ETH Whale Statue,https://www.arweave.net/sKZesAIfcnTHBqYg2DJsJuNxMMNr1l4sztVsa7AGYhw?ext=png,https://www.arweave.net/29hcfovAL5iaTe52BK715-fx23cpTw9oeQDtp4Nm22w,"[2,3,2]",Ethereum,eBoy,999999999,0,15000
+46,ETH Office Building,https://www.arweave.net/vLTYgKSSGEt1TNLXHOhREGGuiVm_2jExj4s74y4qulE?ext=png,https://www.arweave.net/Ukdli2j4xLq7ATnKR2yKMcUuT_b8KSVLJJcb_0wGbCQ,"[1,2,6]",Ethereum,eBoy,999999999,0,20000
 47,PHI Monument,https://www.arweave.net/1Ht5x6P5vOe2CQcdOn9rBn7y_f4vrbDSKMvZmzm--ro?ext=png,https://www.arweave.net/9KaVIxUhSQ8CV8gON2yQZuNH0WpAwjvnqfFtsx9k9fw,"[1,2,2]",StarkNet,eBoy,999999999,0,1000
 94,PHI Cab,https://www.arweave.net/fWYkgrzdy7s1Hv9jP4kz3qGVJIhD76dwGI_hsVYXmQY?ext=png,https://www.arweave.net/SuYXK636AYKWKz5wf7OxI67jozejnD_rDJz323p1oOU,"[1,1,2]",PHI,ta2nb,999999999,0,100
 95,PHI Bus 1,https://www.arweave.net/m2P-AwGTLUuXbEuWUD96CQSp8jiuxDLemF5qoehWsio?ext=png,https://www.arweave.net/6iaEmxiSpBkx32sfmyse-gCow-oaS19sdWqxPiXIxOY,"[1,2,1]",PHI,Fuzuki,999999999,0,500
