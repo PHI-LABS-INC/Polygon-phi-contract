@@ -76,7 +76,7 @@ contract PhiShop {
         uint256[] memory btokenIds
     ) external payable {
         // check if the function caller is not an zero account address
-        require(msg.sender != address(0), "cant set address 0");
+        require(msg.sender != address(0), "invalid address");
 
         if (ftokenIds.length != 0) {
             IFreeObject _fobject = IFreeObject(freeObjectAddress);
@@ -111,9 +111,9 @@ contract PhiShop {
      * @param ftokenIds : free object tokenId list
      * @param ptokenIds : premium object tokenId list
      * @param wtokenIds : wallpaper tokenId list
-     * @param depoitContractAddresses : array of deposit contract addresses
-     * @param depoitTokenIds :  array of deposit token ids
-     * @param depoitAmounts :  array of deposit amounts
+     * @param depositContractAddresses : array of deposit contract addresses
+     * @param depositTokenIds :  array of deposit token ids
+     * @param depositAmounts :  array of deposit amounts
      */
     function shopBuyAndDepositObject(
         string memory name,
@@ -121,12 +121,12 @@ contract PhiShop {
         uint256[] memory ptokenIds,
         uint256[] memory wtokenIds,
         uint256[] memory btokenIds,
-        address[] memory depoitContractAddresses,
-        uint256[] memory depoitTokenIds,
-        uint256[] memory depoitAmounts
+        address[] memory depositContractAddresses,
+        uint256[] memory depositTokenIds,
+        uint256[] memory depositAmounts
     ) external payable {
         // check if the function caller is not an zero account address
-        require(msg.sender != address(0), "cant set address 0");
+        require(msg.sender != address(0), "invalid address");
 
         IPhiMap _map = IPhiMap(mapAddress);
 
@@ -161,7 +161,7 @@ contract PhiShop {
             msg.value
         );
 
-        _map.batchDepositObjectFromShop(name, msg.sender, depoitContractAddresses, depoitTokenIds, depoitAmounts);
-        emit ShopDepositSuccess(msg.sender, name, depoitAmounts.length);
+        _map.batchDepositObjectFromShop(name, msg.sender, depositContractAddresses, depositTokenIds, depositAmounts);
+        emit ShopDepositSuccess(msg.sender, name, depositAmounts.length);
     }
 }
