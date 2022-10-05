@@ -14,6 +14,7 @@ import type { Listener, Provider } from "@ethersproject/providers";
 import type {
   BaseContract,
   BigNumber,
+  BigNumberish,
   BytesLike,
   CallOverrides,
   ContractTransaction,
@@ -25,14 +26,24 @@ import type {
 
 export interface IPhiMapInterface extends utils.Interface {
   functions: {
+    "batchDepositObjectFromShop(string,address,address[],uint256[],uint256[])": FunctionFragment;
     "changePhilandOwner(string,address)": FunctionFragment;
     "create(string,address)": FunctionFragment;
+    "ownerOfPhiland(string)": FunctionFragment;
   };
 
   getFunction(
-    nameOrSignatureOrTopic: "changePhilandOwner" | "create"
+    nameOrSignatureOrTopic:
+      | "batchDepositObjectFromShop"
+      | "changePhilandOwner"
+      | "create"
+      | "ownerOfPhiland"
   ): FunctionFragment;
 
+  encodeFunctionData(
+    functionFragment: "batchDepositObjectFromShop",
+    values: [string, string, string[], BigNumberish[], BigNumberish[]]
+  ): string;
   encodeFunctionData(
     functionFragment: "changePhilandOwner",
     values: [string, string]
@@ -41,12 +52,24 @@ export interface IPhiMapInterface extends utils.Interface {
     functionFragment: "create",
     values: [string, string]
   ): string;
+  encodeFunctionData(
+    functionFragment: "ownerOfPhiland",
+    values: [string]
+  ): string;
 
+  decodeFunctionResult(
+    functionFragment: "batchDepositObjectFromShop",
+    data: BytesLike
+  ): Result;
   decodeFunctionResult(
     functionFragment: "changePhilandOwner",
     data: BytesLike
   ): Result;
   decodeFunctionResult(functionFragment: "create", data: BytesLike): Result;
+  decodeFunctionResult(
+    functionFragment: "ownerOfPhiland",
+    data: BytesLike
+  ): Result;
 
   events: {};
 }
@@ -78,6 +101,15 @@ export interface IPhiMap extends BaseContract {
   removeListener: OnEvent<this>;
 
   functions: {
+    batchDepositObjectFromShop(
+      name: string,
+      msgSender: string,
+      contractAddresses: string[],
+      tokenIds: BigNumberish[],
+      amounts: BigNumberish[],
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<ContractTransaction>;
+
     changePhilandOwner(
       name: string,
       caller: string,
@@ -89,7 +121,21 @@ export interface IPhiMap extends BaseContract {
       caller: string,
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<ContractTransaction>;
+
+    ownerOfPhiland(
+      name: string,
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<ContractTransaction>;
   };
+
+  batchDepositObjectFromShop(
+    name: string,
+    msgSender: string,
+    contractAddresses: string[],
+    tokenIds: BigNumberish[],
+    amounts: BigNumberish[],
+    overrides?: Overrides & { from?: string | Promise<string> }
+  ): Promise<ContractTransaction>;
 
   changePhilandOwner(
     name: string,
@@ -103,7 +149,21 @@ export interface IPhiMap extends BaseContract {
     overrides?: Overrides & { from?: string | Promise<string> }
   ): Promise<ContractTransaction>;
 
+  ownerOfPhiland(
+    name: string,
+    overrides?: Overrides & { from?: string | Promise<string> }
+  ): Promise<ContractTransaction>;
+
   callStatic: {
+    batchDepositObjectFromShop(
+      name: string,
+      msgSender: string,
+      contractAddresses: string[],
+      tokenIds: BigNumberish[],
+      amounts: BigNumberish[],
+      overrides?: CallOverrides
+    ): Promise<void>;
+
     changePhilandOwner(
       name: string,
       caller: string,
@@ -115,11 +175,22 @@ export interface IPhiMap extends BaseContract {
       caller: string,
       overrides?: CallOverrides
     ): Promise<void>;
+
+    ownerOfPhiland(name: string, overrides?: CallOverrides): Promise<string>;
   };
 
   filters: {};
 
   estimateGas: {
+    batchDepositObjectFromShop(
+      name: string,
+      msgSender: string,
+      contractAddresses: string[],
+      tokenIds: BigNumberish[],
+      amounts: BigNumberish[],
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<BigNumber>;
+
     changePhilandOwner(
       name: string,
       caller: string,
@@ -131,9 +202,23 @@ export interface IPhiMap extends BaseContract {
       caller: string,
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<BigNumber>;
+
+    ownerOfPhiland(
+      name: string,
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<BigNumber>;
   };
 
   populateTransaction: {
+    batchDepositObjectFromShop(
+      name: string,
+      msgSender: string,
+      contractAddresses: string[],
+      tokenIds: BigNumberish[],
+      amounts: BigNumberish[],
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<PopulatedTransaction>;
+
     changePhilandOwner(
       name: string,
       caller: string,
@@ -143,6 +228,11 @@ export interface IPhiMap extends BaseContract {
     create(
       name: string,
       caller: string,
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<PopulatedTransaction>;
+
+    ownerOfPhiland(
+      name: string,
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<PopulatedTransaction>;
   };

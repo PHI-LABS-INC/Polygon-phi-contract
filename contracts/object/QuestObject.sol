@@ -43,8 +43,10 @@ contract QuestObject is BaseObject, ERC1155Supply {
     constructor(address payable _treasuryAddress, address _phiMapAddress) ERC1155("") {
         require(_treasuryAddress != address(0), "cant set address 0");
         require(_phiMapAddress != address(0), "cant set address 0");
-        name = "Phi Quest Object";
-        symbol = "Phi-QOS";
+        // name = "Phi Quest Object";
+        // symbol = "Phi-QOS";
+        name = "Test Object";
+        symbol = "Test QOS";
         baseMetadataURI = "https://www.arweave.net/";
         treasuryAddress = _treasuryAddress;
         phiMapAddress = _phiMapAddress;
@@ -131,13 +133,13 @@ contract QuestObject is BaseObject, ERC1155Supply {
      */
     function getObject(address to, uint256 tokenId) external onlyOwner {
         // check if the function caller is not an zero account address
-        require(to != address(0));
+        require(to != address(0), "to(0) is invalid");
         // check token is open for sale
-        require(allObjects[tokenId].forSale);
+        require(allObjects[tokenId].forSale, "not open forSale");
         // check the token id exists
         isValid(tokenId);
         // check token's MaxClaimed
-        require(super.totalSupply(tokenId) <= allObjects[tokenId].maxClaimed);
+        require(super.totalSupply(tokenId) <= allObjects[tokenId].maxClaimed, "reach maxClaimed");
         // mint the token
         super._mint(to, tokenId, 1, "0x00");
         emit LogGetQuestObject(msg.sender, tokenId);

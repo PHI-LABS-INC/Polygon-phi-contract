@@ -25,7 +25,7 @@ import type {
   utils,
 } from "ethers";
 
-export declare namespace IWallpaper {
+export declare namespace IWallPaper {
   export type SizeStruct = {
     x: BigNumberish;
     y: BigNumberish;
@@ -39,7 +39,7 @@ export declare namespace IWallpaper {
   };
 }
 
-export interface IWallpaperInterface extends utils.Interface {
+export interface IWallPaperInterface extends utils.Interface {
   functions: {
     "balanceOf(address,uint256)": FunctionFragment;
     "batchWallPaperFromShop(address,uint256[])": FunctionFragment;
@@ -100,12 +100,12 @@ export interface IWallpaperInterface extends utils.Interface {
   events: {};
 }
 
-export interface IWallpaper extends BaseContract {
+export interface IWallPaper extends BaseContract {
   connect(signerOrProvider: Signer | Provider | string): this;
   attach(addressOrName: string): this;
   deployed(): Promise<this>;
 
-  interface: IWallpaperInterface;
+  interface: IWallPaperInterface;
 
   queryFilter<TEvent extends TypedEvent>(
     event: TypedEventFilter<TEvent>,
@@ -147,7 +147,7 @@ export interface IWallpaper extends BaseContract {
     getSize(
       tokenId: BigNumberish,
       overrides?: CallOverrides
-    ): Promise<[IWallpaper.SizeStructOutput]>;
+    ): Promise<[IWallPaper.SizeStructOutput]>;
 
     safeTransferFrom(
       from: string,
@@ -184,7 +184,7 @@ export interface IWallpaper extends BaseContract {
   getSize(
     tokenId: BigNumberish,
     overrides?: CallOverrides
-  ): Promise<IWallpaper.SizeStructOutput>;
+  ): Promise<IWallPaper.SizeStructOutput>;
 
   safeTransferFrom(
     from: string,
@@ -221,7 +221,7 @@ export interface IWallpaper extends BaseContract {
     getSize(
       tokenId: BigNumberish,
       overrides?: CallOverrides
-    ): Promise<IWallpaper.SizeStructOutput>;
+    ): Promise<IWallPaper.SizeStructOutput>;
 
     safeTransferFrom(
       from: string,

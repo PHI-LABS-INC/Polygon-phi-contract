@@ -4,9 +4,9 @@
 
 /* eslint-disable */
 import type {
-  IWallpaper,
-  IWallpaperInterface,
-} from "../../../contracts/interfaces/IWallpaper";
+  IWallPaper,
+  IWallPaperInterface,
+} from "../../../contracts/interfaces/IWallPaper";
 import type { Provider } from "@ethersproject/providers";
 import { Contract, Signer, utils } from "ethers";
 
@@ -100,7 +100,7 @@ const _abi = [
             type: "uint8",
           },
         ],
-        internalType: "struct IWallpaper.Size",
+        internalType: "struct IWallPaper.Size",
         name: "",
         type: "tuple",
       },
@@ -156,15 +156,15 @@ const _abi = [
   },
 ];
 
-export class IWallpaper__factory {
+export class IWallPaper__factory {
   static readonly abi = _abi;
-  static createInterface(): IWallpaperInterface {
-    return new utils.Interface(_abi) as IWallpaperInterface;
+  static createInterface(): IWallPaperInterface {
+    return new utils.Interface(_abi) as IWallPaperInterface;
   }
   static connect(
     address: string,
     signerOrProvider: Signer | Provider
-  ): IWallpaper {
-    return new Contract(address, _abi, signerOrProvider) as IWallpaper;
+  ): IWallPaper {
+    return new Contract(address, _abi, signerOrProvider) as IWallPaper;
   }
 }

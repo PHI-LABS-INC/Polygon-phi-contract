@@ -1,5 +1,4 @@
 import { expect } from "chai";
-import { ethers } from "hardhat";
 
 export function shouldBehaveOwnerOfPhiland(): void {
   it("should behave owner of philand", async function () {
@@ -19,7 +18,7 @@ export function shouldBehaveviewPhiland(): void {
 
 export function shouldBehaveViewNumberOfPhiland(): void {
   it("should get number of philand", async function () {
-    const NoP = await this.phiMap.connect(this.signers.alice).viewNumberOfPhiland();
+    const NoP = await this.phiMap.connect(this.signers.alice).numberOfLand();
     expect(NoP).to.equal(3);
   });
 }
@@ -121,6 +120,7 @@ export function shouldBehaveWriteObjectToLand(): void {
       .writeObjectToLand("test", { contractAddress: this.questObject.address, tokenId: 1, xStart: 1, yStart: 1 }, [
         "",
         "",
+        0,
       ]);
     const status = await this.phiMap.checkDepositStatus("test", this.questObject.address, 1);
     expect(status.amount).to.equal(2);
@@ -159,14 +159,20 @@ export function shouldBehaveViewPhiland(): void {
 
 export function shouldBehaveRemoveObjectFromLand(): void {
   it("should remove object from land", async function () {
-    await this.phiMap.connect(this.signers.alice).removeObjectFromLand("test", 0);
+    await this.phiMap
+      .connect(this.signers.alice)
+      .save(
+        "test",
+        [0],
+        [],
+        [],
+        "0x0000000000000000000000000000000000000000",
+        0,
+        "0x0000000000000000000000000000000000000000",
+        0,
+      );
     const land = await this.phiMap.connect(this.signers.admin).viewPhiland("test");
-    expect(land[0].contractAddress).to.equal("0x0000000000000000000000000000000000000000");
-    expect(land[0].tokenId).to.equal(0);
-    expect(land[0].xStart).to.equal(0);
-    expect(land[0].yStart).to.equal(0);
-    expect(land[0].xEnd).to.equal(0);
-    expect(land[0].yEnd).to.equal(0);
+    expect(land).to.deep.equal([]);
   });
 }
 
@@ -189,10 +195,12 @@ export function shouldBehaveBatchWriteObjectToLand(): void {
         { contractAddress: this.questObject.address, tokenId: 3, xStart: 4, yStart: 3 },
       ],
       [
-        { title: "", url: "" },
-        { title: "", url: "" },
-        { title: "", url: "" },
+        { title: "", url: "", data: 0 },
+        { title: "", url: "", data: 0 },
+        { title: "zak3939", url: "zak3939.eth", data: 0 },
       ],
+      "0x0000000000000000000000000000000000000000",
+      0,
       "0x0000000000000000000000000000000000000000",
       0,
     );
@@ -227,7 +235,9 @@ export function shouldBehaveBatchRemoveAndWrite(): void {
         "test",
         [1],
         [{ contractAddress: this.questObject.address, tokenId: 2, xStart: 6, yStart: 7 }],
-        [{ title: "", url: "" }],
+        [{ title: "", url: "", data: 0 }],
+        "0x0000000000000000000000000000000000000000",
+        0,
         "0x0000000000000000000000000000000000000000",
         0,
       );
@@ -248,52 +258,60 @@ export function shouldBehaveViewPhilandArray(): void {
   });
 }
 
-export function shouldBehaveWriteLinkToObject(): void {
-  it("should write link to object 1", async function () {
-    await this.phiMap.connect(this.signers.alice).writeLinkToObject("test", 1, ["zak3939", "zak3939.eth"]);
-    const objectLink = await this.phiMap.connect(this.signers.admin).viewObjectLink("test", 1);
-    expect(objectLink.title).to.equal("zak3939");
-    expect(objectLink.url).to.equal("zak3939.eth");
-  });
-}
+// export function shouldBehaveWriteLinkToObject(): void {
+//   it("should write link to object 1", async function () {
+//     await this.phiMap.connect(this.signers.alice).writeLinkToObject("test", 1, ["zak3939", "zak3939.eth"]);
+//     const objectLink = await this.phiMap.connect(this.signers.admin).viewObjectLink("test", 1);
+//     expect(objectLink.title).to.equal("zak3939");
+//     expect(objectLink.url).to.equal("zak3939.eth");
+//   });
+// }
 
-export function CantWriteLinkToAnotherUserObject(): void {
-  it("CantWrite link to another user object ", async function () {
-    await expect(this.phiMap.connect(this.signers.admin).writeLinkToObject("test", 1, ["zak3939", "zak3939.eth"])).to.be
-      .reverted;
-  });
-}
+// export function CantWriteLinkToAnotherUserObject(): void {
+//   it("CantWrite link to another user object ", async function () {
+//     await expect(this.phiMap.connect(this.signers.admin).writeLinkToObject("test", 1, ["zak3939", "zak3939.eth"])).to.be
+//       .reverted;
+//   });
+// }
 
-export function CantWriteLinkToObject(): void {
-  it("Cant write link to object 3", async function () {
-    await expect(this.phiMap.connect(this.signers.alice).writeLinkToObject("test", 3, ["zak3939", "zak3939.eth"])).to.be
-      .reverted;
-  });
-}
+// export function CantWriteLinkToObject(): void {
+//   it("Cant write link to object 3", async function () {
+//     await expect(this.phiMap.connect(this.signers.alice).writeLinkToObject("test", 3, ["zak3939", "zak3939.eth"])).to.be
+//       .reverted;
+//   });
+// }
 
 export function shouldBehaveViewLinks(): void {
   it("should write link to object 2 and check 2 link", async function () {
-    await this.phiMap.connect(this.signers.alice).writeLinkToObject("test", 2, ["zak3939", "zak3939.eth"]);
     const Links = await this.phiMap.connect(this.signers.admin).viewLinks("test");
-    expect(Links[2].title).to.equal("zak3939");
-    expect(Links[2].url).to.equal("zak3939.eth");
+    expect(Links[1].title).to.equal("zak3939");
+    expect(Links[1].url).to.equal("zak3939.eth");
   });
 }
 
-export function shouldBehaveRemoveLinkfromObject(): void {
-  it("should remove link from object 1", async function () {
-    await this.phiMap.connect(this.signers.alice).removeLinkFromObject("test", 1);
-    const objectLink = await this.phiMap.connect(this.signers.admin).viewObjectLink("test", 1);
-    expect(objectLink.title).to.equal("");
-    expect(objectLink.url).to.equal("");
-  });
-}
+// export function shouldBehaveRemoveLinkfromObject(): void {
+//   it("should remove link from object 1", async function () {
+//     await this.phiMap.connect(this.signers.alice).removeLinkFromObject("test", 1);
+//     const objectLink = await this.phiMap.connect(this.signers.admin).viewObjectLink("test", 1);
+//     expect(objectLink.title).to.equal("");
+//     expect(objectLink.url).to.equal("");
+//   });
+// }
 
 export function shouldBehavebatchRemoveAndWrite2(): void {
   it("should batch remove object from land", async function () {
     await this.phiMap
       .connect(this.signers.alice)
-      .save("test", [0, 2], [], [], "0x0000000000000000000000000000000000000000", 0);
+      .save(
+        "test",
+        [0, 2],
+        [],
+        [],
+        "0x0000000000000000000000000000000000000000",
+        0,
+        "0x0000000000000000000000000000000000000000",
+        0,
+      );
     const land = await this.phiMap.connect(this.signers.admin).viewPhiland("test");
     expect(land[0].contractAddress).to.equal(this.questObject.address);
     expect(land[0].tokenId).to.equal(3);
@@ -328,22 +346,38 @@ export function CantWriteObjectToLand(): void {
     await expect(
       this.phiMap
         .connect(this.signers.alice)
-        .writeObjectToLand("test", { contractAddress: this.questObject.address, tokenId: 2, xStart: 15, yStart: 1 }),
+        .writeObjectToLand("test", { contractAddress: this.questObject.address, tokenId: 2, xStart: 15, yStart: 1 }, [
+          "",
+          "",
+          0,
+        ]),
     ).to.be.reverted;
     await expect(
       this.phiMap
         .connect(this.signers.alice)
-        .writeObjectToLand("test", { contractAddress: this.questObject.address, tokenId: 3, xStart: 1, yStart: 15 }),
+        .writeObjectToLand("test", { contractAddress: this.questObject.address, tokenId: 3, xStart: 1, yStart: 15 }, [
+          "",
+          "",
+          0,
+        ]),
     ).to.be.reverted;
     await expect(
       this.phiMap
         .connect(this.signers.alice)
-        .writeObjectToLand("test", { contractAddress: this.questObject.address, tokenId: 2, xStart: -1, yStart: 1 }),
+        .writeObjectToLand("test", { contractAddress: this.questObject.address, tokenId: 2, xStart: -1, yStart: 1 }, [
+          "",
+          "",
+          0,
+        ]),
     ).to.be.reverted;
     await expect(
       this.phiMap
         .connect(this.signers.alice)
-        .writeObjectToLand("test", { contractAddress: this.questObject.address, tokenId: 3, xStart: 1, yStart: -1 }),
+        .writeObjectToLand("test", { contractAddress: this.questObject.address, tokenId: 3, xStart: 1, yStart: -1 }, [
+          "",
+          "",
+          0,
+        ]),
     ).to.be.reverted;
   });
 }
@@ -354,35 +388,63 @@ export function shouldBehaveChangeWallPaper(): void {
     const lastWallPaper = await this.phiMap.connect(this.signers.alice).checkWallPaper("test");
     expect(lastWallPaper.contractAddress).to.equal("0x0000000000000000000000000000000000000000");
 
-    await this.phiMap.connect(this.signers.alice).changeWallPaper("test", this.wallPaper.address, 1);
+    await this.phiMap
+      .connect(this.signers.alice)
+      .save("test", [], [], [], this.wallPaper.address, 1, "0x0000000000000000000000000000000000000000", 0);
     const currentWallPaper = await this.phiMap.connect(this.signers.alice).checkWallPaper("test");
     expect(currentWallPaper.contractAddress).to.equal(this.wallPaper.address);
     await this.wallPaper.connect(this.signers.alice).batchWallPaper([2]);
-    await this.phiMap.connect(this.signers.alice).changeWallPaper("test", this.wallPaper.address, 2);
+    await this.phiMap
+      .connect(this.signers.alice)
+      .save("test", [], [], [], this.wallPaper.address, 2, "0x0000000000000000000000000000000000000000", 0);
     const secondWallPaper = await this.phiMap.connect(this.signers.alice).checkWallPaper("test");
     expect(secondWallPaper.tokenId).to.equal(2);
+  });
+}
+
+export function shouldBehaveChangeBasePlate(): void {
+  it("should ChangeBasePlate", async function () {
+    await this.basePlate.connect(this.signers.alice).batchBasePlate([1]);
+    const lastBasePlate = await this.phiMap.connect(this.signers.alice).checkBasePlate("test");
+    expect(lastBasePlate.contractAddress).to.equal("0x0000000000000000000000000000000000000000");
+    await this.phiMap
+      .connect(this.signers.alice)
+      .save("test", [], [], [], "0x0000000000000000000000000000000000000000", 0, this.basePlate.address, 1);
+    const currentBasePlate = await this.phiMap.connect(this.signers.alice).checkBasePlate("test");
+    expect(currentBasePlate.contractAddress).to.equal(this.basePlate.address);
+    await this.basePlate.connect(this.signers.alice).batchBasePlate([2]);
+    await this.phiMap
+      .connect(this.signers.alice)
+      .save("test", [], [], [], "0x0000000000000000000000000000000000000000", 0, this.basePlate.address, 2);
+    const secondBasePlate = await this.phiMap.connect(this.signers.alice).checkBasePlate("test");
+    expect(secondBasePlate.tokenId).to.equal(2);
   });
 }
 
 export function shouldflipLockMap(): void {
   it("should flipLockMap", async function () {
     await this.phiMap.connect(this.signers.admin).flipLockMap();
-    await expect(this.phiMap.connect(this.signers.alice).changeWallPaper("test", this.wallPaper.address, 1)).to.be
-      .reverted;
+    await expect(
+      this.phiMap
+        .connect(this.signers.alice)
+        .save("test", [], [], [], this.wallPaper.address, 1, "0x0000000000000000000000000000000000000000", 0),
+    ).to.be.reverted;
     await this.phiMap.connect(this.signers.admin).flipLockMap();
-    await this.phiMap.connect(this.signers.alice).changeWallPaper("test", this.wallPaper.address, 1);
+    await this.phiMap
+      .connect(this.signers.alice)
+      .save("test", [], [], [], this.wallPaper.address, 1, "0x0000000000000000000000000000000000000000", 0);
     const currentWallPaper = await this.phiMap.connect(this.signers.alice).checkWallPaper("test");
     expect(currentWallPaper.contractAddress).to.equal(this.wallPaper.address);
   });
 }
 
-export function shouldBehaveWithdrawWallPaper(): void {
-  it("should WithdrawWallPaper", async function () {
-    await this.phiMap.connect(this.signers.alice).withdrawWallPaper("test");
-    const lastWallPaper = await this.phiMap.connect(this.signers.alice).checkWallPaper("test");
-    expect(lastWallPaper.contractAddress).to.equal("0x0000000000000000000000000000000000000000");
-  });
-}
+// export function shouldBehaveWithdrawWallPaper(): void {
+//   it("should WithdrawWallPaper", async function () {
+//     await this.phiMap.connect(this.signers.alice).withdrawWallPaper("test");
+//     const lastWallPaper = await this.phiMap.connect(this.signers.alice).checkWallPaper("test");
+//     expect(lastWallPaper.contractAddress).to.equal("0x0000000000000000000000000000000000000000");
+//   });
+// }
 
 export function shouldBehaveSave(): void {
   it("should save object to land", async function () {
@@ -394,7 +456,9 @@ export function shouldBehaveSave(): void {
         "test",
         [],
         [{ contractAddress: this.questObject.address, tokenId: 1, xStart: 1, yStart: 1 }],
-        [{ title: "test111", url: "" }],
+        [{ title: "test111", url: "", data: 0 }],
+        "0x0000000000000000000000000000000000000000",
+        0,
         "0x0000000000000000000000000000000000000000",
         0,
       );
@@ -404,7 +468,9 @@ export function shouldBehaveSave(): void {
         "test",
         [0],
         [{ contractAddress: this.questObject.address, tokenId: 2, xStart: 2, yStart: 2 }],
-        [{ title: "test222", url: "" }],
+        [{ title: "test222", url: "", data: 0 }],
+        "0x0000000000000000000000000000000000000000",
+        0,
         "0x0000000000000000000000000000000000000000",
         0,
       );
@@ -414,9 +480,11 @@ export function shouldBehaveSave(): void {
         "test",
         [],
         [{ contractAddress: this.questObject.address, tokenId: 3, xStart: 4, yStart: 3 }],
-        [{ title: "test333", url: "" }],
+        [{ title: "test333", url: "", data: 0 }],
         this.wallPaper.address,
         1,
+        "0x0000000000000000000000000000000000000000",
+        0,
       );
 
     const aliceENSLand2 = await this.phiMap.connect(this.signers.alice).viewPhiland("test");
@@ -470,9 +538,11 @@ export function CantNotDepositObjectWrite(): void {
           "phi.zak3939",
           [],
           [{ contractAddress: this.freeObject.address, tokenId: 3, xStart: 4, yStart: 3 }],
-          [{ title: "test333", url: "" }],
+          [{ title: "test333", url: "", data: 0 }],
           this.wallPaper.address,
           1,
+          "0x0000000000000000000000000000000000000000",
+          0,
         ),
     ).to.be.reverted;
   });
@@ -491,7 +561,9 @@ export function CantObjectWriteOutofRange(): void {
           "phi.zak3939",
           [],
           [{ contractAddress: this.freeObject.address, tokenId: 2, xStart: -1, yStart: 15 }],
-          [{ title: "test333", url: "" }],
+          [{ title: "test333", url: "", data: 0 }],
+          "0x0000000000000000000000000000000000000000",
+          0,
           "0x0000000000000000000000000000000000000000",
           0,
         ),
@@ -503,7 +575,9 @@ export function CantObjectWriteOutofRange(): void {
           "phi.zak3939",
           [],
           [{ contractAddress: this.freeObject.address, tokenId: 2, xStart: 3, yStart: 17 }],
-          [{ title: "test333", url: "" }],
+          [{ title: "test333", url: "", data: 0 }],
+          "0x0000000000000000000000000000000000000000",
+          0,
           "0x0000000000000000000000000000000000000000",
           0,
         ),
@@ -515,7 +589,9 @@ export function CantObjectWriteOutofRange(): void {
           "phi.zak3939",
           [],
           [{ contractAddress: this.freeObject.address, tokenId: 2, xStart: 17, yStart: 3 }],
-          [{ title: "test222", url: "" }],
+          [{ title: "test222", url: "", data: 0 }],
+          "0x0000000000000000000000000000000000000000",
+          0,
           "0x0000000000000000000000000000000000000000",
           0,
         ),
@@ -527,7 +603,9 @@ export function CantObjectWriteOutofRange(): void {
           "phi.zak3939",
           [],
           [{ contractAddress: this.freeObject.address, tokenId: 2, xStart: 15, yStart: 15 }],
-          [{ title: "test333", url: "" }],
+          [{ title: "test333", url: "", data: 0 }],
+          "0x0000000000000000000000000000000000000000",
+          0,
           "0x0000000000000000000000000000000000000000",
           0,
         ),
@@ -539,7 +617,9 @@ export function CantObjectWriteOutofRange(): void {
           "phi.zak3939",
           [],
           [{ contractAddress: this.freeObject.address, tokenId: 2, xStart: 14, yStart: -1 }],
-          [{ title: "test333", url: "" }],
+          [{ title: "test333", url: "", data: 0 }],
+          "0x0000000000000000000000000000000000000000",
+          0,
           "0x0000000000000000000000000000000000000000",
           0,
         ),
@@ -551,7 +631,9 @@ export function CantObjectWriteOutofRange(): void {
           "phi.zak3939",
           [],
           [{ contractAddress: this.freeObject.address, tokenId: 2, xStart: 14, yStart: 17 }],
-          [{ title: "test333", url: "" }],
+          [{ title: "test333", url: "", data: 0 }],
+          "0x0000000000000000000000000000000000000000",
+          0,
           "0x0000000000000000000000000000000000000000",
           0,
         ),
@@ -563,7 +645,9 @@ export function CantObjectWriteOutofRange(): void {
           "phi.zak3939",
           [],
           [{ contractAddress: this.freeObject.address, tokenId: 3, xStart: 14, yStart: 15 }],
-          [{ title: "test333", url: "" }],
+          [{ title: "test333", url: "", data: 0 }],
+          "0x0000000000000000000000000000000000000000",
+          0,
           "0x0000000000000000000000000000000000000000",
           0,
         ),
@@ -579,7 +663,9 @@ export function CantObjectWriteCollision(): void {
         "phi.zak3939",
         [],
         [{ contractAddress: this.freeObject.address, tokenId: 2, xStart: 6, yStart: 6 }],
-        [{ title: "test333", url: "" }],
+        [{ title: "test333", url: "", data: 0 }],
+        "0x0000000000000000000000000000000000000000",
+        0,
         "0x0000000000000000000000000000000000000000",
         0,
       );
@@ -591,7 +677,9 @@ export function CantObjectWriteCollision(): void {
           "phi.zak3939",
           [],
           [{ contractAddress: this.freeObject.address, tokenId: 2, xStart: 13, yStart: 15 }],
-          [{ title: "test222", url: "" }],
+          [{ title: "test222", url: "", data: 0 }],
+          "0x0000000000000000000000000000000000000000",
+          0,
           "0x0000000000000000000000000000000000000000",
           0,
         ),
@@ -604,9 +692,11 @@ export function CantObjectWriteCollision(): void {
           "phi.zak3939",
           [],
           [{ contractAddress: this.freeObject.address, tokenId: 2, xStart: 14, yStart: 15 }],
-          [{ title: "test333", url: "" }],
+          [{ title: "test333", url: "", data: 0 }],
           this.wallPaper.address,
           1,
+          "0x0000000000000000000000000000000000000000",
+          0,
         ),
     ).to.be.reverted;
   });
@@ -628,9 +718,11 @@ export function CantSetInvalidSizeMap(): void {
           "phi.zak3939",
           [],
           [{ contractAddress: this.freeObject.address, tokenId: 2, xStart: 12, yStart: 12 }],
-          [{ title: "test333", url: "" }],
+          [{ title: "test333", url: "", data: 0 }],
           this.wallPaper.address,
           3,
+          "0x0000000000000000000000000000000000000000",
+          0,
         ),
     ).to.be.reverted;
   });
@@ -639,8 +731,11 @@ export function CantSetInvalidSizeMap(): void {
 export function CantSetNotbalanceWallPaper(): void {
   it("CantSetNotbalanceWallPaper", async function () {
     await this.wallPaper.connect(this.signers.alice).batchWallPaper([1]);
-    await expect(this.phiMap.connect(this.signers.bob).changeWallPaper("phi.zak3939", this.wallPaper.address, 1)).to.be
-      .reverted;
+    await expect(
+      this.phiMap
+        .connect(this.signers.bob)
+        .save("phi.zak3939", [], [], [], this.wallPaper.address, 1, "0x0000000000000000000000000000000000000000", 0),
+    ).to.be.reverted;
   });
 }
 
@@ -665,18 +760,28 @@ export function CantWriteObjectToLandOverDeposit(): void {
     await this.phiMap.connect(this.signers.bob).batchDepositObject("phi.zak3939", [this.freeObject.address], [4], [1]);
     await this.phiMap
       .connect(this.signers.bob)
-      .writeObjectToLand(
+      .save(
         "phi.zak3939",
-        { contractAddress: this.freeObject.address, tokenId: 4, xStart: 0, yStart: 0 },
-        ["", ""],
+        [],
+        [{ contractAddress: this.freeObject.address, tokenId: 4, xStart: 0, yStart: 0 }],
+        [{ title: "test333", url: "", data: 0 }],
+        "0x0000000000000000000000000000000000000000",
+        0,
+        "0x0000000000000000000000000000000000000000",
+        0,
       );
     await expect(
       this.phiMap
         .connect(this.signers.bob)
-        .writeObjectToLand(
+        .save(
           "phi.zak3939",
-          { contractAddress: this.freeObject.address, tokenId: 4, xStart: 4, yStart: 4 },
-          ["", ""],
+          [],
+          [{ contractAddress: this.freeObject.address, tokenId: 4, xStart: 4, yStart: 4 }],
+          [{ title: "test333", url: "", data: 0 }],
+          "0x0000000000000000000000000000000000000000",
+          0,
+          "0x0000000000000000000000000000000000000000",
+          0,
         ),
     ).to.be.reverted;
   });

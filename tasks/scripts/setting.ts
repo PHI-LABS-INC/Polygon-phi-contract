@@ -15,8 +15,9 @@ interface CreatorAddress {
   [key: string]: string;
 }
 export const CreatorAddressEnum: CreatorAddress = {
-  eBoy: "0xb7caa0ed757bbfaa208342752c9b1c541e36a4b9",
-  ta2nb: "0x143aA7d940482F00872AcC1C31b54127c7E75171",
+  eBoy: "0x4489E91a8A23AE1bdfd1F0B4a8F142acAFe95eE2",
+  ta2nb: "0x4489E91a8A23AE1bdfd1F0B4a8F142acAFe95eE2",
+  Fuzuki: "0x4489E91a8A23AE1bdfd1F0B4a8F142acAFe95eE2",
 };
 
 export async function settingPhi(): Promise<void> {
@@ -45,6 +46,7 @@ export async function settingPhi(): Promise<void> {
   const premiumObjectAbiName = "PremiumObject";
   const questObjectAbiName = "QuestObject";
   const freeObjectAbiName = "FreeObject";
+  const basePlateAbiName = "BasePlate";
   const wallPaperAbiName = "WallPaper";
   const phiShopAbiName = "PhiShop";
 
@@ -54,6 +56,7 @@ export async function settingPhi(): Promise<void> {
   const premiumObjectAddress = getAddress(premiumObjectAbiName, NETWORK);
   const questObjectAddress = getAddress(questObjectAbiName, NETWORK);
   const freeObjectAddress = getAddress(freeObjectAbiName, NETWORK);
+  const basePlateAddress = getAddress(basePlateAbiName, NETWORK);
   const wallPaperAddress = getAddress(wallPaperAbiName, NETWORK);
   const phiShopAddress = getAddress(phiShopAbiName, NETWORK);
 
@@ -63,6 +66,7 @@ export async function settingPhi(): Promise<void> {
   const premiumObjectContractFactory = (await hre.ethers.getContractFactory(premiumObjectAbiName)) as any;
   const questObjectContractFactory = (await hre.ethers.getContractFactory(questObjectAbiName)) as any;
   const freeObjectContractFactory = (await hre.ethers.getContractFactory(freeObjectAbiName)) as any;
+  const basePlateContractFactory = (await hre.ethers.getContractFactory(basePlateAbiName)) as any;
   const wallPaperContractFactory = (await hre.ethers.getContractFactory(wallPaperAbiName)) as any;
   const phiShopContractFactory = (await hre.ethers.getContractFactory(phiShopAbiName)) as any;
 
@@ -72,6 +76,7 @@ export async function settingPhi(): Promise<void> {
   const premiumObjectContractInstance = await premiumObjectContractFactory.attach(premiumObjectAddress);
   const questObjectContractInstance = await questObjectContractFactory.attach(questObjectAddress);
   const freeObjectContractInstance = await freeObjectContractFactory.attach(freeObjectAddress);
+  const basePlateContractInstance = await basePlateContractFactory.attach(basePlateAddress);
   const wallPaperContractInstance = await wallPaperContractFactory.attach(wallPaperAddress);
   const phiShopContractInstance = await phiShopContractFactory.attach(phiShopAddress);
 
@@ -89,12 +94,34 @@ export async function settingPhi(): Promise<void> {
       { x: size[1], y: size[3], z: "0" },
       CreatorAddressEnum[wallPaperRowList[i].creator],
       String(wallPaperRowList[i].maxClaimed),
-      ethers.utils.parseEther("0"),
+      ethers.utils.parseEther(wallPaperRowList[i].price),
     ];
     console.log(calldata);
     res = await wallPaperContractInstance[funcName](...calldata);
     console.log("create Object Response:", res);
   }
+
+  const baseplatecsv = readFileSync(`${__dirname}/csv/setting_baseplate.csv`, {
+    encoding: "utf8",
+  });
+  const baseplateRowList = new CSV(baseplatecsv, { header: true, cast: false }).parse();
+  funcName = "createBasePlate";
+  for (let i = 0; i < baseplateRowList.length; i++) {
+    const size = String(baseplateRowList[i].size);
+    const metadataURL = String(baseplateRowList[i].json_url).split("/");
+    calldata = [
+      String(baseplateRowList[i].tokenId),
+      metadataURL.slice(-1)[0],
+      { x: size[1], y: size[3], z: "0" },
+      CreatorAddressEnum[baseplateRowList[i].creator],
+      String(baseplateRowList[i].maxClaimed),
+      ethers.utils.parseEther(baseplateRowList[i].price),
+    ];
+    console.log(calldata);
+    res = await basePlateContractInstance[funcName](...calldata);
+    console.log("create Object Response:", res);
+  }
+
   const premiumObjectscsv = readFileSync(`${__dirname}/csv/setting_premiumObjects.csv`, {
     encoding: "utf8",
   });
@@ -181,6 +208,9 @@ export async function settingPhi(): Promise<void> {
   const DEFAULT_ADMIN_ROLE = "0x0000000000000000000000000000000000000000000000000000000000000000";
   funcName = "grantRole";
   calldata = [DEFAULT_ADMIN_ROLE, phiRegistryAddress];
+  res = await phiMapContractInstance.grantRole(...calldata);
+  console.log("grantRole Response:", res);
+  calldata = [DEFAULT_ADMIN_ROLE, phiShopAddress];
   res = await phiMapContractInstance.grantRole(...calldata);
   console.log("grantRole Response:", res);
 

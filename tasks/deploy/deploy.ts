@@ -14,14 +14,13 @@ export async function deployPhi(): Promise<void> {
     NETWORK = hre.network.name;
   }
 
-  const ENS_ADDRESS = getRequiredEnv(`${NETWORK.toUpperCase()}_ENS_ADDRESS`);
-
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-ignore
   const BLOCK_NUMBER = await l1Signer.provider.getBlockNumber();
   console.log(l1Signer.address);
   console.log(`Deploying from:`);
   console.log(`\tl1: ${(await l1Signer.getAddress()).toString()}`);
+  const SALES_ADDRESS = getRequiredEnv(`${NETWORK.toUpperCase()}_SALES_ADDRESS`);
 
   const phiClaimAbiName = "PhiClaim";
   const phiMapAbiName = "PhiMap";
@@ -66,6 +65,7 @@ export function printAddresses() {
     "FreeObject",
     "QuestObject",
     "WallPaper",
+    "BasePlate",
     "PhiMap",
     "Registry",
     "PhiClaim",
@@ -98,16 +98,15 @@ export async function deployPhiPolygon(): Promise<void> {
   const freeObject = await deployL1(NETWORK, "FreeObject", BLOCK_NUMBER, [l1Signer.address, phiMap.address]);
   const questObject = await deployL1(NETWORK, "QuestObject", BLOCK_NUMBER, [l1Signer.address, phiMap.address]);
   const wallPaper = await deployL1(NETWORK, "WallPaper", BLOCK_NUMBER, [l1Signer.address, phiMap.address]);
+  const basePlate = await deployL1(NETWORK, "BasePlate", BLOCK_NUMBER, [l1Signer.address, phiMap.address]);
   const phiShop = await deployL1(NETWORK, "PhiShop", BLOCK_NUMBER, [
     freeObject.address,
     premiumObject.address,
     wallPaper.address,
+    basePlate.address,
+    phiMap.address,
   ]);
-
   const phiClaim = await deployL1Upgrade(NETWORK, "PhiClaim", BLOCK_NUMBER, [l1Signer.address, l1Signer.address]);
-
-  // const phiMapAbiName = "PhiMap";
-  // const phiMapAddress = getAddress(phiMapAbiName, NETWORK);
   const Registry = await deployL1Upgrade(NETWORK, "Registry", BLOCK_NUMBER, [
     l1Signer.address,
     phiMap.address,

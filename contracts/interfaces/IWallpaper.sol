@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: GPL-2.0-or-later
 pragma solidity ^0.8.7;
 
-interface IWallpaper {
+interface IWallPaper {
     struct Size {
         uint8 x;
         uint8 y;

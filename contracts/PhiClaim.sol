@@ -67,7 +67,7 @@ contract PhiClaim is AccessControlUpgradeable {
     constructor() initializer {}
 
     function initialize(address admin, address adminSigner) external initializer {
-        require(adminSigner != address(0));
+        require(adminSigner != address(0), "cant set address 0");
         _adminSigner = adminSigner;
         __AccessControl_init();
         _setupRole(DEFAULT_ADMIN_ROLE, admin);

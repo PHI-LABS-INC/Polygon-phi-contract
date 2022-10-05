@@ -19,7 +19,9 @@ abstract contract BaseObject is MultiOwner, IERC2981, ReentrancyGuard {
     /* -------------------------------- ROYALTIES ------------------------------- */
     address public shopAddress;
     address payable public treasuryAddress;
+    /// @notice get for primary market ratio.
     uint256 public royalityFee;
+    /// @notice get for second market ratio.
     uint256 public secondaryRoyalty;
     uint256 public paymentBalanceOwner;
     /* --------------------------------- ****** --------------------------------- */
@@ -139,9 +141,6 @@ abstract contract BaseObject is MultiOwner, IERC2981, ReentrancyGuard {
     }
 
     /* --------------------------------- GETTER --------------------------------- */
-    function getBaseMetadataURI() external view returns (string memory) {
-        return baseMetadataURI;
-    }
 
     function getMaxClaimed(uint256 tokenId) external view returns (uint256) {
         return allObjects[tokenId].maxClaimed;
@@ -176,16 +175,17 @@ abstract contract BaseObject is MultiOwner, IERC2981, ReentrancyGuard {
         return allObjects[tokenId];
     }
 
-    function getTreasuryAddress() external view returns (address) {
-        return treasuryAddress;
-    }
-
     /* -------------------------------------------------------------------------- */
     /*                                  ROYALTIES                                 */
     /* -------------------------------------------------------------------------- */
     /* --------------------------------- PUBLIC --------------------------------- */
     /// @notice EIP2981 royalty standard
-    function royaltyInfo(uint256, uint256 salePrice) external view returns (address receiver, uint256 royaltyAmount) {
+    function royaltyInfo(uint256, uint256 salePrice)
+        external
+        view
+        override
+        returns (address receiver, uint256 royaltyAmount)
+    {
         return (address(this), (salePrice * secondaryRoyalty) / 10000);
     }
 
@@ -199,11 +199,6 @@ abstract contract BaseObject is MultiOwner, IERC2981, ReentrancyGuard {
     function addToOwnerBalance(uint256 amount) internal {
         emit PaymentReceivedOwner(amount);
         paymentBalanceOwner += amount;
-    }
-
-    /// @notice get for primary market ratio.
-    function getRoyalityFee() external view returns (uint256) {
-        return royalityFee;
     }
 
     /* ---------------------------------- ADMIN --------------------------------- */

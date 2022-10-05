@@ -2,12 +2,13 @@ import type { SignerWithAddress } from "@nomiclabs/hardhat-ethers/dist/src/signe
 import { artifacts, ethers, upgrades, waffle } from "hardhat";
 import type { Artifact } from "hardhat/types";
 
-import { PhiShop, PremiumObject } from "../../src/types";
+import { BasePlate, PhiShop, PremiumObject, Registry } from "../../src/types";
 import { PhiMap } from "../../src/types/contracts/PhiMap";
 import { FreeObject } from "../../src/types/contracts/object/FreeObject";
 import { WallPaper } from "../../src/types/contracts/object/WallPaper";
+import { getENSCoupon } from "../helpers";
 import { Signers } from "../types";
-import { shouldBehaveShopObject } from "./PhiShop.behavior";
+import { shouldBehaveShopBuyAndDepositObject, shouldBehaveShopObject } from "./PhiShop.behavior";
 
 describe("Unit tests PhiShop", function () {
   before(async function () {
@@ -45,18 +46,49 @@ describe("Unit tests PhiShop", function () {
       ])
     );
 
+    const basePlateArtifact: Artifact = await artifacts.readArtifact("BasePlate");
+    this.basePlate = <BasePlate>(
+      await waffle.deployContract(this.signers.admin, basePlateArtifact, [
+        this.signers.treasury.address,
+        this.phiMap.address,
+      ])
+    );
+
     const phiShopArtifact: Artifact = await artifacts.readArtifact("PhiShop");
     this.phiShop = <PhiShop>(
       await waffle.deployContract(this.signers.admin, phiShopArtifact, [
         this.freeObject.address,
         this.premiumObject.address,
         this.wallPaper.address,
+        this.basePlate.address,
+        this.phiMap.address,
       ])
     );
+    const PhiRegistry = await ethers.getContractFactory("Registry");
+    const phiRegistry = await upgrades.deployProxy(PhiRegistry, [
+      this.signers.admin.address,
+      this.phiMap.address,
+      this.signers.admin.address,
+    ]);
+    this.phiRegistry = <Registry>await phiRegistry.deployed();
+
+    const DEFAULT_ADMIN_ROLE = "0x0000000000000000000000000000000000000000000000000000000000000000";
+
+    await this.phiMap.connect(this.signers.admin).grantRole(DEFAULT_ADMIN_ROLE, this.phiRegistry.address);
+    await this.phiMap.connect(this.signers.admin).grantRole(DEFAULT_ADMIN_ROLE, this.phiShop.address);
+
+    const fakeCoupon = getENSCoupon("zak3939", this.signers.admin.address, this.phiRegistry.address);
+    await this.phiRegistry.connect(this.signers.admin).createPhiland("zak3939", fakeCoupon);
 
     await this.freeObject.connect(this.signers.admin).setShopAddress(this.phiShop.address);
     await this.premiumObject.connect(this.signers.admin).setShopAddress(this.phiShop.address);
     await this.wallPaper.connect(this.signers.admin).setShopAddress(this.phiShop.address);
+    await this.basePlate.connect(this.signers.admin).setShopAddress(this.phiShop.address);
+
+    await this.phiMap.connect(this.signers.admin).setWhitelistObject(this.freeObject.address);
+    await this.phiMap.connect(this.signers.admin).setWhitelistObject(this.premiumObject.address);
+    await this.phiMap.connect(this.signers.admin).setWhitelistObject(this.wallPaper.address);
+    await this.phiMap.connect(this.signers.admin).setWhitelistObject(this.basePlate.address);
 
     await this.freeObject
       .connect(this.signers.admin)
@@ -108,5 +140,6 @@ describe("Unit tests PhiShop", function () {
 
   describe("PhiShop", function () {
     shouldBehaveShopObject();
+    shouldBehaveShopBuyAndDepositObject();
   });
 });

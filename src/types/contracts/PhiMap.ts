@@ -48,6 +48,16 @@ export declare namespace PhiMap {
     used: BigNumber;
   };
 
+  export type BasePlateStruct = {
+    contractAddress: string;
+    tokenId: BigNumberish;
+  };
+
+  export type BasePlateStructOutput = [string, BigNumber] & {
+    contractAddress: string;
+    tokenId: BigNumber;
+  };
+
   export type WallPaperStruct = {
     contractAddress: string;
     tokenId: BigNumberish;
@@ -72,11 +82,12 @@ export declare namespace PhiMap {
     yStart: number;
   };
 
-  export type LinkStruct = { title: string; url: string };
+  export type LinkStruct = { title: string; url: string; data: BigNumberish };
 
-  export type LinkStructOutput = [string, string] & {
+  export type LinkStructOutput = [string, string, BigNumber] & {
     title: string;
     url: string;
+    data: BigNumber;
   };
 
   export type ObjectInfoStruct = {
@@ -111,11 +122,13 @@ export declare namespace PhiMap {
 export interface PhiMapInterface extends utils.Interface {
   functions: {
     "DEFAULT_ADMIN_ROLE()": FunctionFragment;
+    "basePlate(string)": FunctionFragment;
     "batchDepositObject(string,address[],uint256[],uint256[])": FunctionFragment;
+    "batchDepositObjectFromShop(string,address,address[],uint256[],uint256[])": FunctionFragment;
     "batchWithdrawObject(string,address[],uint256[],uint256[])": FunctionFragment;
     "changePhilandOwner(string,address)": FunctionFragment;
-    "changeWallPaper(string,address,uint256)": FunctionFragment;
     "checkAllDepositStatus(string)": FunctionFragment;
+    "checkBasePlate(string)": FunctionFragment;
     "checkDepositStatus(string,address,uint256)": FunctionFragment;
     "checkWallPaper(string)": FunctionFragment;
     "create(string,address)": FunctionFragment;
@@ -133,35 +146,32 @@ export interface PhiMapInterface extends utils.Interface {
     "onERC1155Received(address,address,uint256,uint256,bytes)": FunctionFragment;
     "ownerLists(string)": FunctionFragment;
     "ownerOfPhiland(string)": FunctionFragment;
-    "removeLinkFromObject(string,uint256)": FunctionFragment;
-    "removeObjectFromLand(string,uint256)": FunctionFragment;
     "removehitelistObject(address)": FunctionFragment;
     "renounceRole(bytes32,address)": FunctionFragment;
     "revokeRole(bytes32,address)": FunctionFragment;
-    "save(string,uint256[],(address,uint256,uint8,uint8)[],(string,string)[],address,uint256)": FunctionFragment;
+    "save(string,uint256[],(address,uint256,uint8,uint8)[],(string,string,uint256)[],address,uint256,address,uint256)": FunctionFragment;
     "setWhitelistObject(address)": FunctionFragment;
     "supportsInterface(bytes4)": FunctionFragment;
     "userObject(string,uint256)": FunctionFragment;
     "userObjectDeposit(string,uint256)": FunctionFragment;
     "viewLinks(string)": FunctionFragment;
-    "viewNumberOfPhiland()": FunctionFragment;
     "viewObjectLink(string,uint256)": FunctionFragment;
     "viewPhiland(string)": FunctionFragment;
     "viewPhilandArray(string)": FunctionFragment;
     "wallPaper(string)": FunctionFragment;
-    "withdrawWallPaper(string)": FunctionFragment;
-    "writeLinkToObject(string,uint256,(string,string))": FunctionFragment;
-    "writeObjectToLand(string,(address,uint256,uint8,uint8),(string,string))": FunctionFragment;
+    "writeObjectToLand(string,(address,uint256,uint8,uint8),(string,string,uint256))": FunctionFragment;
   };
 
   getFunction(
     nameOrSignatureOrTopic:
       | "DEFAULT_ADMIN_ROLE"
+      | "basePlate"
       | "batchDepositObject"
+      | "batchDepositObjectFromShop"
       | "batchWithdrawObject"
       | "changePhilandOwner"
-      | "changeWallPaper"
       | "checkAllDepositStatus"
+      | "checkBasePlate"
       | "checkDepositStatus"
       | "checkWallPaper"
       | "create"
@@ -179,8 +189,6 @@ export interface PhiMapInterface extends utils.Interface {
       | "onERC1155Received"
       | "ownerLists"
       | "ownerOfPhiland"
-      | "removeLinkFromObject"
-      | "removeObjectFromLand"
       | "removehitelistObject"
       | "renounceRole"
       | "revokeRole"
@@ -190,13 +198,10 @@ export interface PhiMapInterface extends utils.Interface {
       | "userObject"
       | "userObjectDeposit"
       | "viewLinks"
-      | "viewNumberOfPhiland"
       | "viewObjectLink"
       | "viewPhiland"
       | "viewPhilandArray"
       | "wallPaper"
-      | "withdrawWallPaper"
-      | "writeLinkToObject"
       | "writeObjectToLand"
   ): FunctionFragment;
 
@@ -204,9 +209,14 @@ export interface PhiMapInterface extends utils.Interface {
     functionFragment: "DEFAULT_ADMIN_ROLE",
     values?: undefined
   ): string;
+  encodeFunctionData(functionFragment: "basePlate", values: [string]): string;
   encodeFunctionData(
     functionFragment: "batchDepositObject",
     values: [string, string[], BigNumberish[], BigNumberish[]]
+  ): string;
+  encodeFunctionData(
+    functionFragment: "batchDepositObjectFromShop",
+    values: [string, string, string[], BigNumberish[], BigNumberish[]]
   ): string;
   encodeFunctionData(
     functionFragment: "batchWithdrawObject",
@@ -217,11 +227,11 @@ export interface PhiMapInterface extends utils.Interface {
     values: [string, string]
   ): string;
   encodeFunctionData(
-    functionFragment: "changeWallPaper",
-    values: [string, string, BigNumberish]
+    functionFragment: "checkAllDepositStatus",
+    values: [string]
   ): string;
   encodeFunctionData(
-    functionFragment: "checkAllDepositStatus",
+    functionFragment: "checkBasePlate",
     values: [string]
   ): string;
   encodeFunctionData(
@@ -287,14 +297,6 @@ export interface PhiMapInterface extends utils.Interface {
     values: [string]
   ): string;
   encodeFunctionData(
-    functionFragment: "removeLinkFromObject",
-    values: [string, BigNumberish]
-  ): string;
-  encodeFunctionData(
-    functionFragment: "removeObjectFromLand",
-    values: [string, BigNumberish]
-  ): string;
-  encodeFunctionData(
     functionFragment: "removehitelistObject",
     values: [string]
   ): string;
@@ -313,6 +315,8 @@ export interface PhiMapInterface extends utils.Interface {
       BigNumberish[],
       PhiMap.ObjectStruct[],
       PhiMap.LinkStruct[],
+      string,
+      BigNumberish,
       string,
       BigNumberish
     ]
@@ -335,10 +339,6 @@ export interface PhiMapInterface extends utils.Interface {
   ): string;
   encodeFunctionData(functionFragment: "viewLinks", values: [string]): string;
   encodeFunctionData(
-    functionFragment: "viewNumberOfPhiland",
-    values?: undefined
-  ): string;
-  encodeFunctionData(
     functionFragment: "viewObjectLink",
     values: [string, BigNumberish]
   ): string;
@@ -349,14 +349,6 @@ export interface PhiMapInterface extends utils.Interface {
   ): string;
   encodeFunctionData(functionFragment: "wallPaper", values: [string]): string;
   encodeFunctionData(
-    functionFragment: "withdrawWallPaper",
-    values: [string]
-  ): string;
-  encodeFunctionData(
-    functionFragment: "writeLinkToObject",
-    values: [string, BigNumberish, PhiMap.LinkStruct]
-  ): string;
-  encodeFunctionData(
     functionFragment: "writeObjectToLand",
     values: [string, PhiMap.ObjectStruct, PhiMap.LinkStruct]
   ): string;
@@ -365,8 +357,13 @@ export interface PhiMapInterface extends utils.Interface {
     functionFragment: "DEFAULT_ADMIN_ROLE",
     data: BytesLike
   ): Result;
+  decodeFunctionResult(functionFragment: "basePlate", data: BytesLike): Result;
   decodeFunctionResult(
     functionFragment: "batchDepositObject",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
+    functionFragment: "batchDepositObjectFromShop",
     data: BytesLike
   ): Result;
   decodeFunctionResult(
@@ -378,11 +375,11 @@ export interface PhiMapInterface extends utils.Interface {
     data: BytesLike
   ): Result;
   decodeFunctionResult(
-    functionFragment: "changeWallPaper",
+    functionFragment: "checkAllDepositStatus",
     data: BytesLike
   ): Result;
   decodeFunctionResult(
-    functionFragment: "checkAllDepositStatus",
+    functionFragment: "checkBasePlate",
     data: BytesLike
   ): Result;
   decodeFunctionResult(
@@ -439,14 +436,6 @@ export interface PhiMapInterface extends utils.Interface {
     data: BytesLike
   ): Result;
   decodeFunctionResult(
-    functionFragment: "removeLinkFromObject",
-    data: BytesLike
-  ): Result;
-  decodeFunctionResult(
-    functionFragment: "removeObjectFromLand",
-    data: BytesLike
-  ): Result;
-  decodeFunctionResult(
     functionFragment: "removehitelistObject",
     data: BytesLike
   ): Result;
@@ -471,10 +460,6 @@ export interface PhiMapInterface extends utils.Interface {
   ): Result;
   decodeFunctionResult(functionFragment: "viewLinks", data: BytesLike): Result;
   decodeFunctionResult(
-    functionFragment: "viewNumberOfPhiland",
-    data: BytesLike
-  ): Result;
-  decodeFunctionResult(
     functionFragment: "viewObjectLink",
     data: BytesLike
   ): Result;
@@ -488,19 +473,12 @@ export interface PhiMapInterface extends utils.Interface {
   ): Result;
   decodeFunctionResult(functionFragment: "wallPaper", data: BytesLike): Result;
   decodeFunctionResult(
-    functionFragment: "withdrawWallPaper",
-    data: BytesLike
-  ): Result;
-  decodeFunctionResult(
-    functionFragment: "writeLinkToObject",
-    data: BytesLike
-  ): Result;
-  decodeFunctionResult(
     functionFragment: "writeObjectToLand",
     data: BytesLike
   ): Result;
 
   events: {
+    "ChangeBasePlate(string,address,uint256)": EventFragment;
     "ChangePhilandOwner(string,address)": EventFragment;
     "ChangeWallPaper(string,address,uint256)": EventFragment;
     "CreatedMap(string,address,uint256)": EventFragment;
@@ -517,10 +495,11 @@ export interface PhiMapInterface extends utils.Interface {
     "WhitelistGranted(address,address)": EventFragment;
     "WhitelistRemoved(address,address)": EventFragment;
     "WithdrawSuccess(address,string,address,uint256,uint256)": EventFragment;
-    "WriteLink(string,address,uint256,string,string)": EventFragment;
+    "WriteLink(string,address,uint256,string,string,uint256)": EventFragment;
     "WriteObject(string,address,uint256,uint256,uint256)": EventFragment;
   };
 
+  getEvent(nameOrSignatureOrTopic: "ChangeBasePlate"): EventFragment;
   getEvent(nameOrSignatureOrTopic: "ChangePhilandOwner"): EventFragment;
   getEvent(nameOrSignatureOrTopic: "ChangeWallPaper"): EventFragment;
   getEvent(nameOrSignatureOrTopic: "CreatedMap"): EventFragment;
@@ -540,6 +519,18 @@ export interface PhiMapInterface extends utils.Interface {
   getEvent(nameOrSignatureOrTopic: "WriteLink"): EventFragment;
   getEvent(nameOrSignatureOrTopic: "WriteObject"): EventFragment;
 }
+
+export interface ChangeBasePlateEventObject {
+  name: string;
+  contractAddress: string;
+  tokenId: BigNumber;
+}
+export type ChangeBasePlateEvent = TypedEvent<
+  [string, string, BigNumber],
+  ChangeBasePlateEventObject
+>;
+
+export type ChangeBasePlateEventFilter = TypedEventFilter<ChangeBasePlateEvent>;
 
 export interface ChangePhilandOwnerEventObject {
   name: string;
@@ -730,9 +721,10 @@ export interface WriteLinkEventObject {
   tokenId: BigNumber;
   title: string;
   url: string;
+  data: BigNumber;
 }
 export type WriteLinkEvent = TypedEvent<
-  [string, string, BigNumber, string, string],
+  [string, string, BigNumber, string, string, BigNumber],
   WriteLinkEventObject
 >;
 
@@ -781,8 +773,24 @@ export interface PhiMap extends BaseContract {
   functions: {
     DEFAULT_ADMIN_ROLE(overrides?: CallOverrides): Promise<[string]>;
 
+    basePlate(
+      arg0: string,
+      overrides?: CallOverrides
+    ): Promise<
+      [string, BigNumber] & { contractAddress: string; tokenId: BigNumber }
+    >;
+
     batchDepositObject(
       name: string,
+      contractAddresses: string[],
+      tokenIds: BigNumberish[],
+      amounts: BigNumberish[],
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<ContractTransaction>;
+
+    batchDepositObjectFromShop(
+      name: string,
+      msgSender: string,
       contractAddresses: string[],
       tokenIds: BigNumberish[],
       amounts: BigNumberish[],
@@ -803,17 +811,15 @@ export interface PhiMap extends BaseContract {
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<ContractTransaction>;
 
-    changeWallPaper(
-      name: string,
-      contractAddress: string,
-      tokenId: BigNumberish,
-      overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<ContractTransaction>;
-
     checkAllDepositStatus(
       name: string,
       overrides?: CallOverrides
     ): Promise<[PhiMap.DepositInfoStructOutput[]]>;
+
+    checkBasePlate(
+      name: string,
+      overrides?: CallOverrides
+    ): Promise<[PhiMap.BasePlateStructOutput]>;
 
     checkDepositStatus(
       name: string,
@@ -912,18 +918,6 @@ export interface PhiMap extends BaseContract {
 
     ownerOfPhiland(name: string, overrides?: CallOverrides): Promise<[string]>;
 
-    removeLinkFromObject(
-      name: string,
-      objectIndex: BigNumberish,
-      overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<ContractTransaction>;
-
-    removeObjectFromLand(
-      name: string,
-      index: BigNumberish,
-      overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<ContractTransaction>;
-
     removehitelistObject(
       oldObject: string,
       overrides?: Overrides & { from?: string | Promise<string> }
@@ -946,8 +940,10 @@ export interface PhiMap extends BaseContract {
       removeIndexArray: BigNumberish[],
       objectDatas: PhiMap.ObjectStruct[],
       links: PhiMap.LinkStruct[],
-      contractAddress: string,
-      tokenId: BigNumberish,
+      wcontractAddress: string,
+      wtokenId: BigNumberish,
+      bcontractAddress: string,
+      btokenId: BigNumberish,
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<ContractTransaction>;
 
@@ -998,8 +994,6 @@ export interface PhiMap extends BaseContract {
       overrides?: CallOverrides
     ): Promise<[PhiMap.LinkStructOutput[]]>;
 
-    viewNumberOfPhiland(overrides?: CallOverrides): Promise<[BigNumber]>;
-
     viewObjectLink(
       name: string,
       objectIndex: BigNumberish,
@@ -1023,18 +1017,6 @@ export interface PhiMap extends BaseContract {
       [string, BigNumber] & { contractAddress: string; tokenId: BigNumber }
     >;
 
-    withdrawWallPaper(
-      name: string,
-      overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<ContractTransaction>;
-
-    writeLinkToObject(
-      name: string,
-      objectIndex: BigNumberish,
-      link: PhiMap.LinkStruct,
-      overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<ContractTransaction>;
-
     writeObjectToLand(
       name: string,
       objectData: PhiMap.ObjectStruct,
@@ -1045,8 +1027,24 @@ export interface PhiMap extends BaseContract {
 
   DEFAULT_ADMIN_ROLE(overrides?: CallOverrides): Promise<string>;
 
+  basePlate(
+    arg0: string,
+    overrides?: CallOverrides
+  ): Promise<
+    [string, BigNumber] & { contractAddress: string; tokenId: BigNumber }
+  >;
+
   batchDepositObject(
     name: string,
+    contractAddresses: string[],
+    tokenIds: BigNumberish[],
+    amounts: BigNumberish[],
+    overrides?: Overrides & { from?: string | Promise<string> }
+  ): Promise<ContractTransaction>;
+
+  batchDepositObjectFromShop(
+    name: string,
+    msgSender: string,
     contractAddresses: string[],
     tokenIds: BigNumberish[],
     amounts: BigNumberish[],
@@ -1067,17 +1065,15 @@ export interface PhiMap extends BaseContract {
     overrides?: Overrides & { from?: string | Promise<string> }
   ): Promise<ContractTransaction>;
 
-  changeWallPaper(
-    name: string,
-    contractAddress: string,
-    tokenId: BigNumberish,
-    overrides?: Overrides & { from?: string | Promise<string> }
-  ): Promise<ContractTransaction>;
-
   checkAllDepositStatus(
     name: string,
     overrides?: CallOverrides
   ): Promise<PhiMap.DepositInfoStructOutput[]>;
+
+  checkBasePlate(
+    name: string,
+    overrides?: CallOverrides
+  ): Promise<PhiMap.BasePlateStructOutput>;
 
   checkDepositStatus(
     name: string,
@@ -1176,18 +1172,6 @@ export interface PhiMap extends BaseContract {
 
   ownerOfPhiland(name: string, overrides?: CallOverrides): Promise<string>;
 
-  removeLinkFromObject(
-    name: string,
-    objectIndex: BigNumberish,
-    overrides?: Overrides & { from?: string | Promise<string> }
-  ): Promise<ContractTransaction>;
-
-  removeObjectFromLand(
-    name: string,
-    index: BigNumberish,
-    overrides?: Overrides & { from?: string | Promise<string> }
-  ): Promise<ContractTransaction>;
-
   removehitelistObject(
     oldObject: string,
     overrides?: Overrides & { from?: string | Promise<string> }
@@ -1210,8 +1194,10 @@ export interface PhiMap extends BaseContract {
     removeIndexArray: BigNumberish[],
     objectDatas: PhiMap.ObjectStruct[],
     links: PhiMap.LinkStruct[],
-    contractAddress: string,
-    tokenId: BigNumberish,
+    wcontractAddress: string,
+    wtokenId: BigNumberish,
+    bcontractAddress: string,
+    btokenId: BigNumberish,
     overrides?: Overrides & { from?: string | Promise<string> }
   ): Promise<ContractTransaction>;
 
@@ -1262,8 +1248,6 @@ export interface PhiMap extends BaseContract {
     overrides?: CallOverrides
   ): Promise<PhiMap.LinkStructOutput[]>;
 
-  viewNumberOfPhiland(overrides?: CallOverrides): Promise<BigNumber>;
-
   viewObjectLink(
     name: string,
     objectIndex: BigNumberish,
@@ -1287,18 +1271,6 @@ export interface PhiMap extends BaseContract {
     [string, BigNumber] & { contractAddress: string; tokenId: BigNumber }
   >;
 
-  withdrawWallPaper(
-    name: string,
-    overrides?: Overrides & { from?: string | Promise<string> }
-  ): Promise<ContractTransaction>;
-
-  writeLinkToObject(
-    name: string,
-    objectIndex: BigNumberish,
-    link: PhiMap.LinkStruct,
-    overrides?: Overrides & { from?: string | Promise<string> }
-  ): Promise<ContractTransaction>;
-
   writeObjectToLand(
     name: string,
     objectData: PhiMap.ObjectStruct,
@@ -1309,8 +1281,24 @@ export interface PhiMap extends BaseContract {
   callStatic: {
     DEFAULT_ADMIN_ROLE(overrides?: CallOverrides): Promise<string>;
 
+    basePlate(
+      arg0: string,
+      overrides?: CallOverrides
+    ): Promise<
+      [string, BigNumber] & { contractAddress: string; tokenId: BigNumber }
+    >;
+
     batchDepositObject(
       name: string,
+      contractAddresses: string[],
+      tokenIds: BigNumberish[],
+      amounts: BigNumberish[],
+      overrides?: CallOverrides
+    ): Promise<void>;
+
+    batchDepositObjectFromShop(
+      name: string,
+      msgSender: string,
       contractAddresses: string[],
       tokenIds: BigNumberish[],
       amounts: BigNumberish[],
@@ -1331,17 +1319,15 @@ export interface PhiMap extends BaseContract {
       overrides?: CallOverrides
     ): Promise<void>;
 
-    changeWallPaper(
-      name: string,
-      contractAddress: string,
-      tokenId: BigNumberish,
-      overrides?: CallOverrides
-    ): Promise<void>;
-
     checkAllDepositStatus(
       name: string,
       overrides?: CallOverrides
     ): Promise<PhiMap.DepositInfoStructOutput[]>;
+
+    checkBasePlate(
+      name: string,
+      overrides?: CallOverrides
+    ): Promise<PhiMap.BasePlateStructOutput>;
 
     checkDepositStatus(
       name: string,
@@ -1432,18 +1418,6 @@ export interface PhiMap extends BaseContract {
 
     ownerOfPhiland(name: string, overrides?: CallOverrides): Promise<string>;
 
-    removeLinkFromObject(
-      name: string,
-      objectIndex: BigNumberish,
-      overrides?: CallOverrides
-    ): Promise<void>;
-
-    removeObjectFromLand(
-      name: string,
-      index: BigNumberish,
-      overrides?: CallOverrides
-    ): Promise<void>;
-
     removehitelistObject(
       oldObject: string,
       overrides?: CallOverrides
@@ -1466,8 +1440,10 @@ export interface PhiMap extends BaseContract {
       removeIndexArray: BigNumberish[],
       objectDatas: PhiMap.ObjectStruct[],
       links: PhiMap.LinkStruct[],
-      contractAddress: string,
-      tokenId: BigNumberish,
+      wcontractAddress: string,
+      wtokenId: BigNumberish,
+      bcontractAddress: string,
+      btokenId: BigNumberish,
       overrides?: CallOverrides
     ): Promise<void>;
 
@@ -1518,8 +1494,6 @@ export interface PhiMap extends BaseContract {
       overrides?: CallOverrides
     ): Promise<PhiMap.LinkStructOutput[]>;
 
-    viewNumberOfPhiland(overrides?: CallOverrides): Promise<BigNumber>;
-
     viewObjectLink(
       name: string,
       objectIndex: BigNumberish,
@@ -1543,15 +1517,6 @@ export interface PhiMap extends BaseContract {
       [string, BigNumber] & { contractAddress: string; tokenId: BigNumber }
     >;
 
-    withdrawWallPaper(name: string, overrides?: CallOverrides): Promise<void>;
-
-    writeLinkToObject(
-      name: string,
-      objectIndex: BigNumberish,
-      link: PhiMap.LinkStruct,
-      overrides?: CallOverrides
-    ): Promise<void>;
-
     writeObjectToLand(
       name: string,
       objectData: PhiMap.ObjectStruct,
@@ -1561,6 +1526,17 @@ export interface PhiMap extends BaseContract {
   };
 
   filters: {
+    "ChangeBasePlate(string,address,uint256)"(
+      name?: null,
+      contractAddress?: null,
+      tokenId?: null
+    ): ChangeBasePlateEventFilter;
+    ChangeBasePlate(
+      name?: null,
+      contractAddress?: null,
+      tokenId?: null
+    ): ChangeBasePlateEventFilter;
+
     "ChangePhilandOwner(string,address)"(
       name?: null,
       sender?: string | null
@@ -1706,19 +1682,21 @@ export interface PhiMap extends BaseContract {
       amount?: null
     ): WithdrawSuccessEventFilter;
 
-    "WriteLink(string,address,uint256,string,string)"(
+    "WriteLink(string,address,uint256,string,string,uint256)"(
       name?: null,
       contractAddress?: null,
       tokenId?: null,
       title?: null,
-      url?: null
+      url?: null,
+      data?: null
     ): WriteLinkEventFilter;
     WriteLink(
       name?: null,
       contractAddress?: null,
       tokenId?: null,
       title?: null,
-      url?: null
+      url?: null,
+      data?: null
     ): WriteLinkEventFilter;
 
     "WriteObject(string,address,uint256,uint256,uint256)"(
@@ -1740,8 +1718,19 @@ export interface PhiMap extends BaseContract {
   estimateGas: {
     DEFAULT_ADMIN_ROLE(overrides?: CallOverrides): Promise<BigNumber>;
 
+    basePlate(arg0: string, overrides?: CallOverrides): Promise<BigNumber>;
+
     batchDepositObject(
       name: string,
+      contractAddresses: string[],
+      tokenIds: BigNumberish[],
+      amounts: BigNumberish[],
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<BigNumber>;
+
+    batchDepositObjectFromShop(
+      name: string,
+      msgSender: string,
       contractAddresses: string[],
       tokenIds: BigNumberish[],
       amounts: BigNumberish[],
@@ -1762,17 +1751,12 @@ export interface PhiMap extends BaseContract {
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<BigNumber>;
 
-    changeWallPaper(
-      name: string,
-      contractAddress: string,
-      tokenId: BigNumberish,
-      overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<BigNumber>;
-
     checkAllDepositStatus(
       name: string,
       overrides?: CallOverrides
     ): Promise<BigNumber>;
+
+    checkBasePlate(name: string, overrides?: CallOverrides): Promise<BigNumber>;
 
     checkDepositStatus(
       name: string,
@@ -1855,18 +1839,6 @@ export interface PhiMap extends BaseContract {
 
     ownerOfPhiland(name: string, overrides?: CallOverrides): Promise<BigNumber>;
 
-    removeLinkFromObject(
-      name: string,
-      objectIndex: BigNumberish,
-      overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<BigNumber>;
-
-    removeObjectFromLand(
-      name: string,
-      index: BigNumberish,
-      overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<BigNumber>;
-
     removehitelistObject(
       oldObject: string,
       overrides?: Overrides & { from?: string | Promise<string> }
@@ -1889,8 +1861,10 @@ export interface PhiMap extends BaseContract {
       removeIndexArray: BigNumberish[],
       objectDatas: PhiMap.ObjectStruct[],
       links: PhiMap.LinkStruct[],
-      contractAddress: string,
-      tokenId: BigNumberish,
+      wcontractAddress: string,
+      wtokenId: BigNumberish,
+      bcontractAddress: string,
+      btokenId: BigNumberish,
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<BigNumber>;
 
@@ -1918,8 +1892,6 @@ export interface PhiMap extends BaseContract {
 
     viewLinks(name: string, overrides?: CallOverrides): Promise<BigNumber>;
 
-    viewNumberOfPhiland(overrides?: CallOverrides): Promise<BigNumber>;
-
     viewObjectLink(
       name: string,
       objectIndex: BigNumberish,
@@ -1935,18 +1907,6 @@ export interface PhiMap extends BaseContract {
 
     wallPaper(arg0: string, overrides?: CallOverrides): Promise<BigNumber>;
 
-    withdrawWallPaper(
-      name: string,
-      overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<BigNumber>;
-
-    writeLinkToObject(
-      name: string,
-      objectIndex: BigNumberish,
-      link: PhiMap.LinkStruct,
-      overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<BigNumber>;
-
     writeObjectToLand(
       name: string,
       objectData: PhiMap.ObjectStruct,
@@ -1960,8 +1920,22 @@ export interface PhiMap extends BaseContract {
       overrides?: CallOverrides
     ): Promise<PopulatedTransaction>;
 
+    basePlate(
+      arg0: string,
+      overrides?: CallOverrides
+    ): Promise<PopulatedTransaction>;
+
     batchDepositObject(
       name: string,
+      contractAddresses: string[],
+      tokenIds: BigNumberish[],
+      amounts: BigNumberish[],
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<PopulatedTransaction>;
+
+    batchDepositObjectFromShop(
+      name: string,
+      msgSender: string,
       contractAddresses: string[],
       tokenIds: BigNumberish[],
       amounts: BigNumberish[],
@@ -1982,14 +1956,12 @@ export interface PhiMap extends BaseContract {
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<PopulatedTransaction>;
 
-    changeWallPaper(
+    checkAllDepositStatus(
       name: string,
-      contractAddress: string,
-      tokenId: BigNumberish,
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: CallOverrides
     ): Promise<PopulatedTransaction>;
 
-    checkAllDepositStatus(
+    checkBasePlate(
       name: string,
       overrides?: CallOverrides
     ): Promise<PopulatedTransaction>;
@@ -2084,18 +2056,6 @@ export interface PhiMap extends BaseContract {
       overrides?: CallOverrides
     ): Promise<PopulatedTransaction>;
 
-    removeLinkFromObject(
-      name: string,
-      objectIndex: BigNumberish,
-      overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<PopulatedTransaction>;
-
-    removeObjectFromLand(
-      name: string,
-      index: BigNumberish,
-      overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<PopulatedTransaction>;
-
     removehitelistObject(
       oldObject: string,
       overrides?: Overrides & { from?: string | Promise<string> }
@@ -2118,8 +2078,10 @@ export interface PhiMap extends BaseContract {
       removeIndexArray: BigNumberish[],
       objectDatas: PhiMap.ObjectStruct[],
       links: PhiMap.LinkStruct[],
-      contractAddress: string,
-      tokenId: BigNumberish,
+      wcontractAddress: string,
+      wtokenId: BigNumberish,
+      bcontractAddress: string,
+      btokenId: BigNumberish,
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<PopulatedTransaction>;
 
@@ -2150,10 +2112,6 @@ export interface PhiMap extends BaseContract {
       overrides?: CallOverrides
     ): Promise<PopulatedTransaction>;
 
-    viewNumberOfPhiland(
-      overrides?: CallOverrides
-    ): Promise<PopulatedTransaction>;
-
     viewObjectLink(
       name: string,
       objectIndex: BigNumberish,
@@ -2173,18 +2131,6 @@ export interface PhiMap extends BaseContract {
     wallPaper(
       arg0: string,
       overrides?: CallOverrides
-    ): Promise<PopulatedTransaction>;
-
-    withdrawWallPaper(
-      name: string,
-      overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<PopulatedTransaction>;
-
-    writeLinkToObject(
-      name: string,
-      objectIndex: BigNumberish,
-      link: PhiMap.LinkStruct,
-      overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<PopulatedTransaction>;
 
     writeObjectToLand(
