@@ -5,7 +5,7 @@
 !.yarn/plugins
 !.yarn/sdks
 !.yarn/versions
-**/artifacts
+# **/artifacts
 **/build
 **/cache
 **/coverage
