@@ -227,6 +227,9 @@ export async function settingPhi(): Promise<void> {
   calldata = [wallPaperAddress];
   res = await phiMapContractInstance.setWhitelistObject(...calldata);
   console.log("setWhitelistObjectResponse:", res);
+  calldata = [basePlateAddress];
+  res = await phiMapContractInstance.setWhitelistObject(...calldata);
+  console.log("setWhitelistObjectResponse:", res);
 
   funcName = "setShopAddress";
   calldata = [phiShopAddress];
@@ -235,6 +238,8 @@ export async function settingPhi(): Promise<void> {
   res = await freeObjectContractInstance[funcName](...calldata);
   console.log("setShopAddress Response:", res);
   res = await wallPaperContractInstance[funcName](...calldata);
+  console.log("setShopAddress Response:", res);
+  res = await basePlateContractInstance[funcName](...calldata);
   console.log("setShopAddress Response:", res);
 
   funcName = "setTreasuryAddress";
@@ -246,6 +251,8 @@ export async function settingPhi(): Promise<void> {
   res = await freeObjectContractInstance[funcName](...calldata);
   console.log("setTreasuryAddress Response:", res);
   res = await wallPaperContractInstance[funcName](...calldata);
+  console.log("setTreasuryAddress Response:", res);
+  res = await basePlateContractInstance[funcName](...calldata);
   console.log("setTreasuryAddress Response:", res);
 
   calldata = ["0xAA9bD7C35be4915dC1F18Afad6E631f0AfCF2461"];
