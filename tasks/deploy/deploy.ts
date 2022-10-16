@@ -93,6 +93,8 @@ export async function deployPhiPolygon(): Promise<void> {
   console.log(l1Signer.address);
   console.log(`Deploying from:`);
   console.log(`\tl1: ${(await l1Signer.getAddress()).toString()}`);
+  const SALES_ADDRESS = getRequiredEnv("POLYGON_SALES_ADDRESS");
+  console.log(`sales address: ${SALES_ADDRESS}`);
   const phiMap = await deployL1Upgrade(NETWORK, "PhiMap", BLOCK_NUMBER, [l1Signer.address]);
   const premiumObject = await deployL1(NETWORK, "PremiumObject", BLOCK_NUMBER, [l1Signer.address, phiMap.address]);
   const freeObject = await deployL1(NETWORK, "FreeObject", BLOCK_NUMBER, [l1Signer.address, phiMap.address]);

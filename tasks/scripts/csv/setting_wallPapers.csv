@@ -1,5 +1,4 @@
-tokenId,name,image_url,json_url,size,creator,maxClaimed,price,EXP,RevealDate
-100001,Blank,https://www.arweave.net/Yv1WiJlsyjcCUPmndk5-Z0i99avxnEAdE0Wmfdbvhto?ext=png,https://www.arweave.net/_Z-UmaWTtUz-3-GtuUuT14QZYgOvp4JHFIcbUtWn650,"[8,8,0]",,eBoy,999999999,1,0,2022/11/01
+tokenId,name,image_url,json_url,size,relatedProject,creator,maxClaimed,price,EXP,RevealDate
 100002,Cali,https://www.arweave.net/uvfDNbY0CBB8iWAiIEHO6XgDN8Aw7EK0dP1vbG9na38?ext=png,https://www.arweave.net/L8W4xQDFJlJPEPjwC_qEUSeNU7GvVBRjvYXbhfwRXUU,"[8,8,0]",,eBoy,999999999,2,0,2022/11/01
 100003,Checkerscali,https://www.arweave.net/w0-DZ2LYYuSRb7v8zCCbtTkowgy8H4i1JNsEJDYqjic?ext=png,https://www.arweave.net/7m4KwTxlKPolzSLDJBQYwIfO7NVh9Wn5Ws_e4MeZJKw,"[8,8,0]",,eBoy,999999999,2,0,2022/11/01
 100004,Checkmate,https://www.arweave.net/NKdURTwk3eMVRs4ADMYcZW55enkdlEatKfu-hOK3e6k?ext=png,https://www.arweave.net/q88stitXrVTouwjw22FLACxqlAnSyiFnGN8jPenQSjs,"[8,8,0]",,eBoy,999999999,3,0,2022/11/01
