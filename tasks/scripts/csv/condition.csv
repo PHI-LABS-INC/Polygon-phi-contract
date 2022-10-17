@@ -11,7 +11,10 @@ LinkToFriends,5,100042
 LinkToFriends,10,100043
 ChangePhilandOwner,1,100061
 PicnicWallpaper,3,100062
-ENSOwner,01,100201
+BeginnerQuest,1,100101
+BeginnerQuest,2,100102
+BeginnerQuest,3,100103
+ENSOwner,1,100201
 ETHHolding,01,100301
 ETHHolding,1,100302
 ETHHolding,5,100303
