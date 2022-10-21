@@ -10,7 +10,7 @@
 //  / /   /
 //  \/___/
 
-pragma solidity ^0.8.7;
+pragma solidity ^0.8.16;
 import "@openzeppelin/contracts/token/ERC1155/extensions/ERC1155Supply.sol";
 import { BaseObject } from "../utils/BaseObject.sol";
 
@@ -114,7 +114,7 @@ contract FreeObject is BaseObject, ERC1155Supply {
      * @param tokenId : object nft token_id
      * @dev pay royality to phi wallet and creator
      */
-    function _getFreeObject(uint256 tokenId) internal {
+    function _getFreeObject(uint256 tokenId) internal nonReentrant {
         // check token is open for sale
         require(allObjects[tokenId].forSale, "not open for sale");
         // check the token id exists
@@ -139,7 +139,7 @@ contract FreeObject is BaseObject, ERC1155Supply {
     /* -------------------------------------------------------------------------- */
     /*                                SHOP METHOD                                 */
     /* -------------------------------------------------------------------------- */
-    function _getFreeObject(address to, uint256 tokenId) internal {
+    function _getFreeObject(address to, uint256 tokenId) internal nonReentrant {
         // check token is open for sale
         require(allObjects[tokenId].forSale, "not open for sale");
         // check the token id exists

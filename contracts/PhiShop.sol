@@ -10,15 +10,16 @@
 //  / /   /
 //  \/___/
 
-pragma solidity ^0.8.7;
+pragma solidity ^0.8.16;
 import { IFreeObject } from "./interfaces/IFreeObject.sol";
 import { IPremiumObject } from "./interfaces/IPremiumObject.sol";
 import { IWallPaper } from "./interfaces/IWallPaper.sol";
 import { IBasePlate } from "./interfaces/IBasePlate.sol";
 import { IPhiMap } from "./interfaces/IPhiMap.sol";
+import { ReentrancyGuard } from "@openzeppelin/contracts/security/ReentrancyGuard.sol";
 
 /// @title PhiShop Contract
-contract PhiShop {
+contract PhiShop is ReentrancyGuard {
     /* --------------------------------- ****** --------------------------------- */
     /* -------------------------------------------------------------------------- */
     /*                                   CONFIG                                   */
@@ -50,6 +51,11 @@ contract PhiShop {
         address _basePlateAddress,
         address _mapAddress
     ) {
+        require(_freeObjectAddress != address(0), "cant set address 0");
+        require(_premiumObjectAddress != address(0), "cant set address 0");
+        require(_wallPaperAddress != address(0), "cant set address 0");
+        require(_basePlateAddress != address(0), "cant set address 0");
+        require(_mapAddress != address(0), "cant set address 0");
         freeObjectAddress = _freeObjectAddress;
         premiumObjectAddress = _premiumObjectAddress;
         wallPaperAddress = _wallPaperAddress;
@@ -74,7 +80,7 @@ contract PhiShop {
         uint256[] memory ptokenIds,
         uint256[] memory wtokenIds,
         uint256[] memory btokenIds
-    ) external payable {
+    ) external payable nonReentrant {
         // check if the function caller is not an zero account address
         require(msg.sender != address(0), "invalid address");
 
@@ -124,7 +130,7 @@ contract PhiShop {
         address[] memory depositContractAddresses,
         uint256[] memory depositTokenIds,
         uint256[] memory depositAmounts
-    ) external payable {
+    ) external payable nonReentrant {
         // check if the function caller is not an zero account address
         require(msg.sender != address(0), "invalid address");
 

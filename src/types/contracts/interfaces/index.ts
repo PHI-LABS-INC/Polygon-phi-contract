@@ -5,6 +5,8 @@ export type { IBasePlate } from "./IBasePlate";
 export type { IFreeObject } from "./IFreeObject";
 export type { IObject } from "./IObject";
 export type { IPhiMap } from "./IPhiMap";
+export type { IPhiShop } from "./IPhiShop";
 export type { IPremiumObject } from "./IPremiumObject";
 export type { IQuestObject } from "./IQuestObject";
+export type { IRegistry } from "./IRegistry";
 export type { IWallPaper } from "./IWallPaper";

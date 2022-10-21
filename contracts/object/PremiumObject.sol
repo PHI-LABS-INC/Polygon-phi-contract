@@ -10,7 +10,7 @@
 //  / /   /
 //  \/___/
 
-pragma solidity ^0.8.7;
+pragma solidity ^0.8.16;
 import "@openzeppelin/contracts/token/ERC1155/extensions/ERC1155Supply.sol";
 import "@openzeppelin/contracts/utils/math/SafeMath.sol";
 import { BaseObject } from "../utils/BaseObject.sol";
@@ -131,7 +131,7 @@ contract PremiumObject is BaseObject, ERC1155Supply {
      * @param tokenId : object nft token_id
      * @dev pay royality to phi wallet and creator
      */
-    function _buyObject(uint256 tokenId) internal {
+    function _buyObject(uint256 tokenId) internal nonReentrant {
         // check the token id exists
         isValid(tokenId);
         // check token is open for sale
@@ -154,7 +154,7 @@ contract PremiumObject is BaseObject, ERC1155Supply {
         emit LogBuyObject(msg.sender, tokenId, allObjects[tokenId].price);
     }
 
-    function batchBuyObject(uint256[] memory tokenIds) external payable nonReentrant {
+    function batchBuyObject(uint256[] memory tokenIds) external payable {
         uint256 allprice;
         // check if the function caller is not an zero account address
         require(msg.sender != address(0), "msg sender invalid");
@@ -184,7 +184,7 @@ contract PremiumObject is BaseObject, ERC1155Supply {
      * @param tokenId : object nft token_id
      * @dev only used by batchBuyObjectFromShop
      */
-    function _buyObject(address to, uint256 tokenId) internal {
+    function _buyObject(address to, uint256 tokenId) internal nonReentrant {
         // check the token id exists
         isValid(tokenId);
         // check token is open for sale
@@ -225,7 +225,7 @@ contract PremiumObject is BaseObject, ERC1155Supply {
      * @dev only executed by shop contract
      * @notify This method needs setShopAddress
      */
-    function batchBuyObjectFromShop(address to, uint256[] memory tokenIds) external payable nonReentrant {
+    function batchBuyObjectFromShop(address to, uint256[] memory tokenIds) external payable {
         // to prevent bots minting from a contract
         require(msg.sender == shopAddress, "msg sender invalid");
         uint256 tokenIdsLength = tokenIds.length;

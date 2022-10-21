@@ -10,7 +10,7 @@
 //  / /   /
 //  \/___/
 
-pragma solidity ^0.8.7;
+pragma solidity ^0.8.16;
 import { IPhiMap } from "./interfaces/IPhiMap.sol";
 import { AccessControlUpgradeable } from "@openzeppelin/contracts-upgradeable/access/AccessControlUpgradeable.sol";
 

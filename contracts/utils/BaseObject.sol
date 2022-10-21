@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: GPL-2.0-or-later
-pragma solidity ^0.8.7;
+pragma solidity ^0.8.16;
 import { MultiOwner } from "../utils/MultiOwner.sol";
 import { IERC2981 } from "@openzeppelin/contracts/interfaces/IERC2981.sol";
 import { ReentrancyGuard } from "@openzeppelin/contracts/security/ReentrancyGuard.sol";
@@ -136,6 +136,7 @@ abstract contract BaseObject is MultiOwner, IERC2981, ReentrancyGuard {
     }
 
     function setShopAddress(address _shopAddress) external onlyOwner {
+        require(_shopAddress != address(0), "cant set address 0");
         shopAddress = _shopAddress;
         emit SetShopAddress(shopAddress);
     }

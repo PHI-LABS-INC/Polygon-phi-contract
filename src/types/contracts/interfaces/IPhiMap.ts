@@ -24,25 +24,64 @@ import type {
   utils,
 } from "ethers";
 
+export declare namespace IPhiMap {
+  export type ObjectStruct = {
+    contractAddress: string;
+    tokenId: BigNumberish;
+    xStart: BigNumberish;
+    yStart: BigNumberish;
+  };
+
+  export type ObjectStructOutput = [string, BigNumber, number, number] & {
+    contractAddress: string;
+    tokenId: BigNumber;
+    xStart: number;
+    yStart: number;
+  };
+
+  export type LinkStruct = { title: string; url: string };
+
+  export type LinkStructOutput = [string, string] & {
+    title: string;
+    url: string;
+  };
+}
+
 export interface IPhiMapInterface extends utils.Interface {
   functions: {
+    "batchDepositObject(string,address[],uint256[],uint256[])": FunctionFragment;
     "batchDepositObjectFromShop(string,address,address[],uint256[],uint256[])": FunctionFragment;
+    "batchWithdrawObject(string,address[],uint256[],uint256[])": FunctionFragment;
     "changePhilandOwner(string,address)": FunctionFragment;
     "create(string,address)": FunctionFragment;
+    "mapInitialization(string)": FunctionFragment;
     "ownerOfPhiland(string)": FunctionFragment;
+    "save(string,uint256[],(address,uint256,uint8,uint8)[],(string,string)[],address,uint256)": FunctionFragment;
   };
 
   getFunction(
     nameOrSignatureOrTopic:
+      | "batchDepositObject"
       | "batchDepositObjectFromShop"
+      | "batchWithdrawObject"
       | "changePhilandOwner"
       | "create"
+      | "mapInitialization"
       | "ownerOfPhiland"
+      | "save"
   ): FunctionFragment;
 
   encodeFunctionData(
+    functionFragment: "batchDepositObject",
+    values: [string, string[], BigNumberish[], BigNumberish[]]
+  ): string;
+  encodeFunctionData(
     functionFragment: "batchDepositObjectFromShop",
     values: [string, string, string[], BigNumberish[], BigNumberish[]]
+  ): string;
+  encodeFunctionData(
+    functionFragment: "batchWithdrawObject",
+    values: [string, string[], BigNumberish[], BigNumberish[]]
   ): string;
   encodeFunctionData(
     functionFragment: "changePhilandOwner",
@@ -53,12 +92,35 @@ export interface IPhiMapInterface extends utils.Interface {
     values: [string, string]
   ): string;
   encodeFunctionData(
+    functionFragment: "mapInitialization",
+    values: [string]
+  ): string;
+  encodeFunctionData(
     functionFragment: "ownerOfPhiland",
     values: [string]
   ): string;
+  encodeFunctionData(
+    functionFragment: "save",
+    values: [
+      string,
+      BigNumberish[],
+      IPhiMap.ObjectStruct[],
+      IPhiMap.LinkStruct[],
+      string,
+      BigNumberish
+    ]
+  ): string;
 
   decodeFunctionResult(
+    functionFragment: "batchDepositObject",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
     functionFragment: "batchDepositObjectFromShop",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
+    functionFragment: "batchWithdrawObject",
     data: BytesLike
   ): Result;
   decodeFunctionResult(
@@ -67,9 +129,14 @@ export interface IPhiMapInterface extends utils.Interface {
   ): Result;
   decodeFunctionResult(functionFragment: "create", data: BytesLike): Result;
   decodeFunctionResult(
+    functionFragment: "mapInitialization",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
     functionFragment: "ownerOfPhiland",
     data: BytesLike
   ): Result;
+  decodeFunctionResult(functionFragment: "save", data: BytesLike): Result;
 
   events: {};
 }
@@ -101,9 +168,25 @@ export interface IPhiMap extends BaseContract {
   removeListener: OnEvent<this>;
 
   functions: {
+    batchDepositObject(
+      name: string,
+      contractAddresses: string[],
+      tokenIds: BigNumberish[],
+      amounts: BigNumberish[],
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<ContractTransaction>;
+
     batchDepositObjectFromShop(
       name: string,
       msgSender: string,
+      contractAddresses: string[],
+      tokenIds: BigNumberish[],
+      amounts: BigNumberish[],
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<ContractTransaction>;
+
+    batchWithdrawObject(
+      name: string,
       contractAddresses: string[],
       tokenIds: BigNumberish[],
       amounts: BigNumberish[],
@@ -122,15 +205,46 @@ export interface IPhiMap extends BaseContract {
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<ContractTransaction>;
 
+    mapInitialization(
+      name: string,
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<ContractTransaction>;
+
     ownerOfPhiland(
       name: string,
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<ContractTransaction>;
+
+    save(
+      name: string,
+      removeIndexArray: BigNumberish[],
+      objectDatas: IPhiMap.ObjectStruct[],
+      links: IPhiMap.LinkStruct[],
+      wcontractAddress: string,
+      wtokenId: BigNumberish,
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<ContractTransaction>;
   };
+
+  batchDepositObject(
+    name: string,
+    contractAddresses: string[],
+    tokenIds: BigNumberish[],
+    amounts: BigNumberish[],
+    overrides?: Overrides & { from?: string | Promise<string> }
+  ): Promise<ContractTransaction>;
 
   batchDepositObjectFromShop(
     name: string,
     msgSender: string,
+    contractAddresses: string[],
+    tokenIds: BigNumberish[],
+    amounts: BigNumberish[],
+    overrides?: Overrides & { from?: string | Promise<string> }
+  ): Promise<ContractTransaction>;
+
+  batchWithdrawObject(
+    name: string,
     contractAddresses: string[],
     tokenIds: BigNumberish[],
     amounts: BigNumberish[],
@@ -149,15 +263,46 @@ export interface IPhiMap extends BaseContract {
     overrides?: Overrides & { from?: string | Promise<string> }
   ): Promise<ContractTransaction>;
 
+  mapInitialization(
+    name: string,
+    overrides?: Overrides & { from?: string | Promise<string> }
+  ): Promise<ContractTransaction>;
+
   ownerOfPhiland(
     name: string,
     overrides?: Overrides & { from?: string | Promise<string> }
   ): Promise<ContractTransaction>;
 
+  save(
+    name: string,
+    removeIndexArray: BigNumberish[],
+    objectDatas: IPhiMap.ObjectStruct[],
+    links: IPhiMap.LinkStruct[],
+    wcontractAddress: string,
+    wtokenId: BigNumberish,
+    overrides?: Overrides & { from?: string | Promise<string> }
+  ): Promise<ContractTransaction>;
+
   callStatic: {
+    batchDepositObject(
+      name: string,
+      contractAddresses: string[],
+      tokenIds: BigNumberish[],
+      amounts: BigNumberish[],
+      overrides?: CallOverrides
+    ): Promise<void>;
+
     batchDepositObjectFromShop(
       name: string,
       msgSender: string,
+      contractAddresses: string[],
+      tokenIds: BigNumberish[],
+      amounts: BigNumberish[],
+      overrides?: CallOverrides
+    ): Promise<void>;
+
+    batchWithdrawObject(
+      name: string,
       contractAddresses: string[],
       tokenIds: BigNumberish[],
       amounts: BigNumberish[],
@@ -176,15 +321,43 @@ export interface IPhiMap extends BaseContract {
       overrides?: CallOverrides
     ): Promise<void>;
 
+    mapInitialization(name: string, overrides?: CallOverrides): Promise<void>;
+
     ownerOfPhiland(name: string, overrides?: CallOverrides): Promise<string>;
+
+    save(
+      name: string,
+      removeIndexArray: BigNumberish[],
+      objectDatas: IPhiMap.ObjectStruct[],
+      links: IPhiMap.LinkStruct[],
+      wcontractAddress: string,
+      wtokenId: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<void>;
   };
 
   filters: {};
 
   estimateGas: {
+    batchDepositObject(
+      name: string,
+      contractAddresses: string[],
+      tokenIds: BigNumberish[],
+      amounts: BigNumberish[],
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<BigNumber>;
+
     batchDepositObjectFromShop(
       name: string,
       msgSender: string,
+      contractAddresses: string[],
+      tokenIds: BigNumberish[],
+      amounts: BigNumberish[],
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<BigNumber>;
+
+    batchWithdrawObject(
+      name: string,
       contractAddresses: string[],
       tokenIds: BigNumberish[],
       amounts: BigNumberish[],
@@ -203,16 +376,47 @@ export interface IPhiMap extends BaseContract {
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<BigNumber>;
 
+    mapInitialization(
+      name: string,
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<BigNumber>;
+
     ownerOfPhiland(
       name: string,
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<BigNumber>;
+
+    save(
+      name: string,
+      removeIndexArray: BigNumberish[],
+      objectDatas: IPhiMap.ObjectStruct[],
+      links: IPhiMap.LinkStruct[],
+      wcontractAddress: string,
+      wtokenId: BigNumberish,
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<BigNumber>;
   };
 
   populateTransaction: {
+    batchDepositObject(
+      name: string,
+      contractAddresses: string[],
+      tokenIds: BigNumberish[],
+      amounts: BigNumberish[],
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<PopulatedTransaction>;
+
     batchDepositObjectFromShop(
       name: string,
       msgSender: string,
+      contractAddresses: string[],
+      tokenIds: BigNumberish[],
+      amounts: BigNumberish[],
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<PopulatedTransaction>;
+
+    batchWithdrawObject(
+      name: string,
       contractAddresses: string[],
       tokenIds: BigNumberish[],
       amounts: BigNumberish[],
@@ -231,8 +435,23 @@ export interface IPhiMap extends BaseContract {
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<PopulatedTransaction>;
 
+    mapInitialization(
+      name: string,
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<PopulatedTransaction>;
+
     ownerOfPhiland(
       name: string,
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<PopulatedTransaction>;
+
+    save(
+      name: string,
+      removeIndexArray: BigNumberish[],
+      objectDatas: IPhiMap.ObjectStruct[],
+      links: IPhiMap.LinkStruct[],
+      wcontractAddress: string,
+      wtokenId: BigNumberish,
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<PopulatedTransaction>;
   };

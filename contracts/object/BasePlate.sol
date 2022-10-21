@@ -10,7 +10,7 @@
 //  / /   /
 //  \/___/
 
-pragma solidity ^0.8.7;
+pragma solidity ^0.8.16;
 import "@openzeppelin/contracts/token/ERC1155/extensions/ERC1155Supply.sol";
 import "@openzeppelin/contracts/utils/math/SafeMath.sol";
 import { BaseObject } from "../utils/BaseObject.sol";
@@ -130,7 +130,7 @@ contract BasePlate is BaseObject, ERC1155Supply {
      * @param tokenId : BasePlate nft token_id
      * @dev pay royality to phi wallet and creator
      */
-    function _buyBasePlate(uint256 tokenId) internal {
+    function _buyBasePlate(uint256 tokenId) internal nonReentrant {
         // check the token id exists
         isValid(tokenId);
         // check token is open for sale
@@ -153,7 +153,7 @@ contract BasePlate is BaseObject, ERC1155Supply {
         emit LogBuyBasePlate(msg.sender, tokenId, allObjects[tokenId].price);
     }
 
-    function batchBasePlate(uint256[] memory tokenIds) external payable nonReentrant {
+    function batchBasePlate(uint256[] memory tokenIds) external payable {
         uint256 allprice;
         // check if the function caller is not an zero account address
         require(msg.sender != address(0), "msg sender(0) is invalid");
@@ -183,7 +183,7 @@ contract BasePlate is BaseObject, ERC1155Supply {
      * @param tokenId : object nft token_id
      * @dev only used by batchBasePlateFromShop
      */
-    function _buyBasePlate(address to, uint256 tokenId) internal {
+    function _buyBasePlate(address to, uint256 tokenId) internal nonReentrant {
         // check the token id exists
         isValid(tokenId);
         // check token is open for sale
@@ -224,7 +224,7 @@ contract BasePlate is BaseObject, ERC1155Supply {
      * @dev only executed by shop contract
      * @notify This method needs to setShopAddress
      */
-    function batchBasePlateFromShop(address to, uint256[] memory tokenIds) external payable nonReentrant {
+    function batchBasePlateFromShop(address to, uint256[] memory tokenIds) external payable {
         // to prevent bots minting from a contract
         require(msg.sender == shopAddress, "msg sender invalid");
 

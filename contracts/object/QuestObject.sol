@@ -10,7 +10,7 @@
 //  / /   /
 //  \/___/
 
-pragma solidity ^0.8.7;
+pragma solidity ^0.8.16;
 import "@openzeppelin/contracts/token/ERC1155/extensions/ERC1155Supply.sol";
 import { BaseObject } from "../utils/BaseObject.sol";
 
@@ -131,7 +131,7 @@ contract QuestObject is BaseObject, ERC1155Supply {
      * @param tokenId : object nft token_id
      * @dev onlyOwnerMethod. generally, this method is invoked by phiClaim contract
      */
-    function getObject(address to, uint256 tokenId) external onlyOwner {
+    function getObject(address to, uint256 tokenId) external onlyOwner nonReentrant {
         // check if the function caller is not an zero account address
         require(to != address(0), "to(0) is invalid");
         // check token is open for sale
