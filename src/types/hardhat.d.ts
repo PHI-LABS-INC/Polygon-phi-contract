@@ -93,6 +93,10 @@ declare module "hardhat/types/runtime" {
       signerOrOptions?: ethers.Signer | FactoryOptions
     ): Promise<Contracts.IPhiMap__factory>;
     getContractFactory(
+      name: "IPhiShop",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.IPhiShop__factory>;
+    getContractFactory(
       name: "IPremiumObject",
       signerOrOptions?: ethers.Signer | FactoryOptions
     ): Promise<Contracts.IPremiumObject__factory>;
@@ -100,6 +104,10 @@ declare module "hardhat/types/runtime" {
       name: "IQuestObject",
       signerOrOptions?: ethers.Signer | FactoryOptions
     ): Promise<Contracts.IQuestObject__factory>;
+    getContractFactory(
+      name: "IRegistry",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.IRegistry__factory>;
     getContractFactory(
       name: "IWallPaper",
       signerOrOptions?: ethers.Signer | FactoryOptions
@@ -250,6 +258,11 @@ declare module "hardhat/types/runtime" {
       signer?: ethers.Signer
     ): Promise<Contracts.IPhiMap>;
     getContractAt(
+      name: "IPhiShop",
+      address: string,
+      signer?: ethers.Signer
+    ): Promise<Contracts.IPhiShop>;
+    getContractAt(
       name: "IPremiumObject",
       address: string,
       signer?: ethers.Signer
@@ -259,6 +272,11 @@ declare module "hardhat/types/runtime" {
       address: string,
       signer?: ethers.Signer
     ): Promise<Contracts.IQuestObject>;
+    getContractAt(
+      name: "IRegistry",
+      address: string,
+      signer?: ethers.Signer
+    ): Promise<Contracts.IRegistry>;
     getContractAt(
       name: "IWallPaper",
       address: string,

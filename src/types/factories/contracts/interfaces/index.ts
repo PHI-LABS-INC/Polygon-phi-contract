@@ -5,6 +5,8 @@ export { IBasePlate__factory } from "./IBasePlate__factory";
 export { IFreeObject__factory } from "./IFreeObject__factory";
 export { IObject__factory } from "./IObject__factory";
 export { IPhiMap__factory } from "./IPhiMap__factory";
+export { IPhiShop__factory } from "./IPhiShop__factory";
 export { IPremiumObject__factory } from "./IPremiumObject__factory";
 export { IQuestObject__factory } from "./IQuestObject__factory";
+export { IRegistry__factory } from "./IRegistry__factory";
 export { IWallPaper__factory } from "./IWallPaper__factory";
