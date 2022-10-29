@@ -44,10 +44,8 @@ contract WallPaper is BaseObject, ERC1155Supply {
     constructor(address payable _treasuryAddress, address _phiMapAddress) ERC1155("") {
         require(_treasuryAddress != address(0), "cant set address 0");
         require(_phiMapAddress != address(0), "cant set address 0");
-        // name = "Phi Wall Paper";
-        // symbol = "Phi-WAL";
-        name = "Test Object";
-        symbol = "Test WOS";
+        name = "Phi Wallpaper";
+        symbol = "Phi-WAL";
         baseMetadataURI = "https://www.arweave.net/";
         treasuryAddress = _treasuryAddress;
         phiMapAddress = _phiMapAddress;
