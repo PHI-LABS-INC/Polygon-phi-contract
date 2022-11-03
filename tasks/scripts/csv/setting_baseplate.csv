@@ -1,10 +1,11 @@
 tokenId,name,image_url,json_url,size,relatedProject,creator,maxClaimed,price,EXP,RevealDate
-100001,Gcteal,https://www.arweave.net/FYAm90MOBCtTlSvpyiY_ZtDyagCoXu3A30Fe8pLdYOE?ext=png,https://www.arweave.net/RPsaTFOgKjprbm3mhM133qlvkPUvCqbcXqSBiT18uxY,"[8,8,0]",,eBoy,999999999,5,0,2022/11/01
-100002,Gcyellow,https://www.arweave.net/T0IK0uIZmd8Q8DCfjSk3YX0ng74bzNz3S6lMKiEXTJU?ext=png,https://www.arweave.net/7HhwNn1kgb7lAzpRGMkcv0oyGKqgX_vMqO9yhNLzcg0,"[8,8,0]",,eBoy,999999999,5,0,2022/11/01
-100003,Maple,https://www.arweave.net/q_4Ms4LYrxtGTcLuFdexlO_xMHZQT1yveDJekOEpbGU?ext=png,https://www.arweave.net/inrgqXITzfByjTl53Sas2-mn6EUNrFFN7VHzHtIi0BM,"[8,8,0]",,eBoy,999999999,5,0,2022/11/01
-100004,Noun Bright,https://www.arweave.net/YCzWr_3Kwz9jOPAOZpbN9Wus1i4FKIykHV-i_ryFH1g?ext=png,https://www.arweave.net/O0GDyqYBUWo8jiOgC1bdudPKIbEk-N1rxw7AwzSITGA,"[8,8,0]",,eBoy,999999999,5,0,2022/11/01
-100005,Standard,https://www.arweave.net/uemaJpSaoKLyQXe1-7IaztUTvnEi63I-H-ttOnG8OXU?ext=png,https://www.arweave.net/4RbZuWLHDW_bzdL9gDmMSSPGFy5Z-NIPXlP5u8UvhJI,"[8,8,0]",,eBoy,999999999,0,0,2022/11/01
-100106,PHI Blue,https://www.arweave.net/bMMuZrnJgTYfEsTBh5OR-GBLrUPonsHI_fU6yhiXvDU?ext=png,https://www.arweave.net/TAmYIO-51Jn4o_4ghfvP3tzwm_wfChKGUq0gvcjIILs,"[8,8,0]",,eBoy,999999999,5,0,2022/11/01
-100207,PHI Green,https://www.arweave.net/zFwtb9SCTxDEMY2-mmxbpV7oWV0XioGLQb_Mvxey0bc?ext=png,https://www.arweave.net/ECCYfiEmDF_nwP6hj24YRdjI0sOUskDJtllLFRWSAGc,"[8,8,0]",,eBoy,999999999,5,0,2022/11/01
-100308,PHI Red,https://www.arweave.net/7c8WIhuNOC_Rg_Ayd4wrlzaiJi-COsoNmVDQAwsNmPY?ext=png,https://www.arweave.net/Iw4KU_4UbqRe5LjOmD-KnFLW_OS68IRwYTF9wvocboQ,"[8,8,0]",,eBoy,999999999,5,0,2022/11/01
-100409,Walnut,https://www.arweave.net/Oz-lzY9zLCmhBuozqvg7OMqq4w9L3yXI5UjFQX7StaU?ext=png,https://www.arweave.net/wmhniGgHzBiz0hkbM8D-aooH8IovZuOAaAydbzkcd8g,"[8,8,0]",,eBoy,999999999,5,0,2022/11/01
+100001,Gitcoin Teal,https://www.arweave.net/Y2Y2vb6tpQdpMrZVfVNEuDNQarU5HQhWmPK867ZP-n4?ext=png,https://www.arweave.net/PcaTftlxjNylJ_DJr9leVLH6RM6iBoNI1Qp4ieBsRD8,"[8,8,0]",,eBoy,999999999,5,0,
+100002,Gitcoin Yellow,https://www.arweave.net/9CXodwIY2msHz5A49eHy1ZTjzCZcywHf5V2D4HVbsiI?ext=png,https://www.arweave.net/NzPDa1iWXoLo5-OMXOMOuRJIFTx8yLiXNHqRXOX7fDw,"[8,8,0]",,eBoy,999999999,5,0,
+100003,Maple Wood,https://www.arweave.net/AySorruJwsXwkl6FVA5TL8ceF3k8A6nOkwzlRtWExTE?ext=png,https://www.arweave.net/EJRHM6xusyIro___kiLbRLpFe8MO8CkTE8yFJUiYli8,"[8,8,0]",,eBoy,999999999,5,0,
+100005,Standard,https://www.arweave.net/eMpx_kJj0l0CvbXj5xhROkxzUnf_wGjx4LohMorwwZI?ext=png,https://www.arweave.net/1UioTzSZKLh2VLnqJP7OPQakVofJzlb1ra0JxAl-AIo,"[8,8,0]",,eBoy,999999999,0,0,
+100006,PC Connectors,https://www.arweave.net/OqXiiptKEsb47818ygkAiGSjxHsWuClNmFapfe7OFSA?ext=png,https://www.arweave.net/3JEcAb_Cg1sBJO1QCR2gduM7xOo3B8D8GgXxbwZrFSo,"[8,8,0]",,eBoy,999999999,5,0,
+100007,Anthracite,https://www.arweave.net/KEiQwjsOUdl_eT5B4vwPfUf4KkebZ1coVKBc1UZQqBI?ext=png,https://www.arweave.net/G8uNEVRHw5zPQ9sR3OkFbOLeFoGhzgHiIDG9Pn20Ddk,"[8,8,0]",,eBoy,999999999,5,0,
+100106,PHI Blue,https://www.arweave.net/ygWL5vAgOM53aW3HH_lrbhjYZhY81AleNZg017lclLE?ext=png,https://www.arweave.net/PnlO4T51U0bzq5fcrDU0ZIYtcE6PSXuoKMypyWnIoM4,"[8,8,0]",,eBoy,999999999,5,0,
+100207,PHI Green,https://www.arweave.net/spJ301FzQnEyKonKuJB1j7u9jH3jk7OhlZ5Tp_0dA5M?ext=png,https://www.arweave.net/W62eChsOA7atl6npu0PHmJwXb80p6ZODyDwiSEa18iQ,"[8,8,0]",,eBoy,999999999,5,0,
+100308,PHI Red,https://www.arweave.net/7SB3HSRjSYtoLS4fnJXkYlewqxX8KMwkUjB0-ZJ4fHY?ext=png,https://www.arweave.net/AoPSiLXkqMYmhkudBxpEd2wjGL3z299XLfRG3_5_pdQ,"[8,8,0]",,eBoy,999999999,5,0,
+100409,Walnut Wood,https://www.arweave.net/BgWnkanV-sMUZ5KWXSFKI83pHcxTrwGTr_K8G6osXh8?ext=png,https://www.arweave.net/xF0XzquSCOd4b0NQ45zrVm7EnnH17XyZvS_hSjjy2tg,"[8,8,0]",,eBoy,999999999,5,0,

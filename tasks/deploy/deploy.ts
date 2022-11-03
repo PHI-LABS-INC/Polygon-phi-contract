@@ -96,11 +96,11 @@ export async function deployPhiPolygon(): Promise<void> {
   const SALES_ADDRESS = getRequiredEnv("POLYGON_SALES_ADDRESS");
   console.log(`sales address: ${SALES_ADDRESS}`);
   const phiMap = await deployL1Upgrade(NETWORK, "PhiMap", BLOCK_NUMBER, [l1Signer.address]);
-  const premiumObject = await deployL1(NETWORK, "PremiumObject", BLOCK_NUMBER, [l1Signer.address, phiMap.address]);
-  const freeObject = await deployL1(NETWORK, "FreeObject", BLOCK_NUMBER, [l1Signer.address, phiMap.address]);
-  const questObject = await deployL1(NETWORK, "QuestObject", BLOCK_NUMBER, [l1Signer.address, phiMap.address]);
-  const wallPaper = await deployL1(NETWORK, "WallPaper", BLOCK_NUMBER, [l1Signer.address, phiMap.address]);
-  const basePlate = await deployL1(NETWORK, "BasePlate", BLOCK_NUMBER, [l1Signer.address, phiMap.address]);
+  const premiumObject = await deployL1(NETWORK, "PremiumObject", BLOCK_NUMBER, [SALES_ADDRESS, phiMap.address]);
+  const freeObject = await deployL1(NETWORK, "FreeObject", BLOCK_NUMBER, [SALES_ADDRESS, phiMap.address]);
+  const questObject = await deployL1(NETWORK, "QuestObject", BLOCK_NUMBER, [SALES_ADDRESS, phiMap.address]);
+  const wallPaper = await deployL1(NETWORK, "WallPaper", BLOCK_NUMBER, [SALES_ADDRESS, phiMap.address]);
+  const basePlate = await deployL1(NETWORK, "BasePlate", BLOCK_NUMBER, [SALES_ADDRESS, phiMap.address]);
   const phiShop = await deployL1(NETWORK, "PhiShop", BLOCK_NUMBER, [
     freeObject.address,
     premiumObject.address,

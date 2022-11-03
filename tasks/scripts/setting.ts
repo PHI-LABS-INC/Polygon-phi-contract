@@ -15,9 +15,9 @@ interface CreatorAddress {
   [key: string]: string;
 }
 export const CreatorAddressEnum: CreatorAddress = {
-  eBoy: "0x4489E91a8A23AE1bdfd1F0B4a8F142acAFe95eE2",
-  ta2nb: "0x4489E91a8A23AE1bdfd1F0B4a8F142acAFe95eE2",
-  Fuzuki: "0x4489E91a8A23AE1bdfd1F0B4a8F142acAFe95eE2",
+  eBoy: "0x7CA1668517f4E9ce1e993fc09D07585C210Ee162",
+  ta2nb: "0x7CA1668517f4E9ce1e993fc09D07585C210Ee162",
+  Fuzuki: "0x7CA1668517f4E9ce1e993fc09D07585C210Ee162",
 };
 
 export async function settingPhi(): Promise<void> {
@@ -80,7 +80,7 @@ export async function settingPhi(): Promise<void> {
   const wallPaperContractInstance = await wallPaperContractFactory.attach(wallPaperAddress);
   const phiShopContractInstance = await phiShopContractFactory.attach(phiShopAddress);
 
-  // const wallPaperscsv = readFileSync(`${__dirname}/csv/setting_wallPapers.csv`, {
+  // const wallPaperscsv = readFileSync(`${__dirname}/csv/setting_wallpaper.csv`, {
   //   encoding: "utf8",
   // });
   // const wallPaperRowList = new CSV(wallPaperscsv, { header: true, cast: false }).parse();
@@ -143,24 +143,24 @@ export async function settingPhi(): Promise<void> {
   //   console.log("create Object Response:", res);
   // }
 
-  // const freeObjectscsv = readFileSync(`${__dirname}/csv/setting_freeObjects.csv`, {
-  //   encoding: "utf8",
-  // });
-  // const freeObjectRowList = new CSV(freeObjectscsv, { header: true, cast: false }).parse();
-  // funcName = "createObject";
-  // for (let i = 0; i < freeObjectRowList.length; i++) {
-  //   const size = String(freeObjectRowList[i].size);
-  //   const metadataURL = String(freeObjectRowList[i].json_url).split("/");
-  //   calldata = [
-  //     String(freeObjectRowList[i].tokenId),
-  //     metadataURL.slice(-1)[0],
-  //     { x: size[1], y: size[3], z: size[5] },
-  //     CreatorAddressEnum[freeObjectRowList[i].creator],
-  //   ];
-  //   console.log(calldata);
-  //   res = await freeObjectContractInstance[funcName](...calldata);
-  //   console.log("create Object Response:", res);
-  // }
+  const freeObjectscsv = readFileSync(`${__dirname}/csv/setting_freeObjects.csv`, {
+    encoding: "utf8",
+  });
+  const freeObjectRowList = new CSV(freeObjectscsv, { header: true, cast: false }).parse();
+  funcName = "createObject";
+  for (let i = 0; i < freeObjectRowList.length; i++) {
+    const size = String(freeObjectRowList[i].size);
+    const metadataURL = String(freeObjectRowList[i].json_url).split("/");
+    calldata = [
+      String(freeObjectRowList[i].tokenId),
+      metadataURL.slice(-1)[0],
+      { x: size[1], y: size[3], z: size[5] },
+      CreatorAddressEnum[freeObjectRowList[i].creator],
+    ];
+    console.log(calldata);
+    res = await freeObjectContractInstance[funcName](...calldata);
+    console.log("create Object Response:", res);
+  }
   const conditioncsv = readFileSync(`${__dirname}/csv/condition.csv`, {
     encoding: "utf8",
   });
@@ -197,67 +197,67 @@ export async function settingPhi(): Promise<void> {
     console.log("create Object Response:", res);
   }
 
-  // funcName = "setOwner";
-  // calldata = [phiMapAddress];
-  // res = await questObjectContractInstance[funcName](...calldata);
-  // console.log("setOwner Response:", res);
-  // calldata = [phiClaimAddress];
-  // res = await questObjectContractInstance[funcName](...calldata);
-  // console.log("setOwner Response:", res);
+  funcName = "setOwner";
+  calldata = [phiMapAddress];
+  res = await questObjectContractInstance[funcName](...calldata);
+  console.log("setOwner Response:", res);
+  calldata = [phiClaimAddress];
+  res = await questObjectContractInstance[funcName](...calldata);
+  console.log("setOwner Response:", res);
 
-  // const DEFAULT_ADMIN_ROLE = "0x0000000000000000000000000000000000000000000000000000000000000000";
-  // funcName = "grantRole";
-  // calldata = [DEFAULT_ADMIN_ROLE, phiRegistryAddress];
-  // res = await phiMapContractInstance.grantRole(...calldata);
-  // console.log("grantRole Response:", res);
-  // calldata = [DEFAULT_ADMIN_ROLE, phiShopAddress];
-  // res = await phiMapContractInstance.grantRole(...calldata);
-  // console.log("grantRole Response:", res);
+  const DEFAULT_ADMIN_ROLE = "0x0000000000000000000000000000000000000000000000000000000000000000";
+  funcName = "grantRole";
+  calldata = [DEFAULT_ADMIN_ROLE, phiRegistryAddress];
+  res = await phiMapContractInstance.grantRole(...calldata);
+  console.log("grantRole Response:", res);
+  calldata = [DEFAULT_ADMIN_ROLE, phiShopAddress];
+  res = await phiMapContractInstance.grantRole(...calldata);
+  console.log("grantRole Response:", res);
 
-  // funcName = "setWhitelistObject";
-  // calldata = [premiumObjectAddress];
-  // res = await phiMapContractInstance.setWhitelistObject(...calldata);
-  // console.log("setWhitelistObjectResponse:", res);
-  // calldata = [questObjectAddress];
-  // res = await phiMapContractInstance.setWhitelistObject(...calldata);
-  // console.log("setWhitelistObjectResponse:", res);
-  // calldata = [freeObjectAddress];
-  // res = await phiMapContractInstance.setWhitelistObject(...calldata);
-  // console.log("setWhitelistObjectResponse:", res);
-  // calldata = [wallPaperAddress];
-  // res = await phiMapContractInstance.setWhitelistObject(...calldata);
-  // console.log("setWhitelistObjectResponse:", res);
-  // calldata = [basePlateAddress];
-  // res = await phiMapContractInstance.setWhitelistObject(...calldata);
-  // console.log("setWhitelistObjectResponse:", res);
+  funcName = "setWhitelistObject";
+  calldata = [premiumObjectAddress];
+  res = await phiMapContractInstance.setWhitelistObject(...calldata);
+  console.log("setWhitelistObjectResponse:", res);
+  calldata = [questObjectAddress];
+  res = await phiMapContractInstance.setWhitelistObject(...calldata);
+  console.log("setWhitelistObjectResponse:", res);
+  calldata = [freeObjectAddress];
+  res = await phiMapContractInstance.setWhitelistObject(...calldata);
+  console.log("setWhitelistObjectResponse:", res);
+  calldata = [wallPaperAddress];
+  res = await phiMapContractInstance.setWhitelistObject(...calldata);
+  console.log("setWhitelistObjectResponse:", res);
+  calldata = [basePlateAddress];
+  res = await phiMapContractInstance.setWhitelistObject(...calldata);
+  console.log("setWhitelistObjectResponse:", res);
 
-  // funcName = "setShopAddress";
-  // calldata = [phiShopAddress];
-  // res = await premiumObjectContractInstance[funcName](...calldata);
-  // console.log("setShopAddress Response:", res);
-  // res = await freeObjectContractInstance[funcName](...calldata);
-  // console.log("setShopAddress Response:", res);
-  // res = await wallPaperContractInstance[funcName](...calldata);
-  // console.log("setShopAddress Response:", res);
-  // res = await basePlateContractInstance[funcName](...calldata);
-  // console.log("setShopAddress Response:", res);
+  funcName = "setShopAddress";
+  calldata = [phiShopAddress];
+  res = await premiumObjectContractInstance[funcName](...calldata);
+  console.log("setShopAddress Response:", res);
+  res = await freeObjectContractInstance[funcName](...calldata);
+  console.log("setShopAddress Response:", res);
+  res = await wallPaperContractInstance[funcName](...calldata);
+  console.log("setShopAddress Response:", res);
+  res = await basePlateContractInstance[funcName](...calldata);
+  console.log("setShopAddress Response:", res);
 
-  // funcName = "setTreasuryAddress";
-  // calldata = ["0xe35E5f8B912C25cDb6B00B347cb856467e4112A3"];
-  // res = await questObjectContractInstance[funcName](...calldata);
-  // console.log("setTreasuryAddress Response:", res);
-  // res = await premiumObjectContractInstance[funcName](...calldata);
-  // console.log("setTreasuryAddress Response:", res);
-  // res = await freeObjectContractInstance[funcName](...calldata);
-  // console.log("setTreasuryAddress Response:", res);
-  // res = await wallPaperContractInstance[funcName](...calldata);
-  // console.log("setTreasuryAddress Response:", res);
-  // res = await basePlateContractInstance[funcName](...calldata);
-  // console.log("setTreasuryAddress Response:", res);
+  funcName = "setTreasuryAddress";
+  calldata = ["0xe35E5f8B912C25cDb6B00B347cb856467e4112A3"];
+  res = await questObjectContractInstance[funcName](...calldata);
+  console.log("setTreasuryAddress Response:", res);
+  res = await premiumObjectContractInstance[funcName](...calldata);
+  console.log("setTreasuryAddress Response:", res);
+  res = await freeObjectContractInstance[funcName](...calldata);
+  console.log("setTreasuryAddress Response:", res);
+  res = await wallPaperContractInstance[funcName](...calldata);
+  console.log("setTreasuryAddress Response:", res);
+  res = await basePlateContractInstance[funcName](...calldata);
+  console.log("setTreasuryAddress Response:", res);
 
-  // calldata = ["0xAA9bD7C35be4915dC1F18Afad6E631f0AfCF2461"];
-  // res = await phiRegistryContractInstance.setAdminSigner(...calldata);
-  // console.log("setAdminSigner Response:", res);
-  // res = await phiClaimContractInstance.setAdminSigner(...calldata);
-  // console.log("setAdminSigner Response:", res);
+  calldata = ["0xAA9bD7C35be4915dC1F18Afad6E631f0AfCF2461"];
+  res = await phiRegistryContractInstance.setAdminSigner(...calldata);
+  console.log("setAdminSigner Response:", res);
+  res = await phiClaimContractInstance.setAdminSigner(...calldata);
+  console.log("setAdminSigner Response:", res);
 }
