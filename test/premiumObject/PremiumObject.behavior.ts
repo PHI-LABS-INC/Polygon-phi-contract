@@ -159,7 +159,7 @@ export function shouldBehaveRoyaltyWithdraw(): void {
   it("should Behave Royalty Withdraw", async function () {
     const ethToSend = ethers.utils.parseEther("0.05");
     const royaltyInfo = await this.premiumObject.connect(this.signers.bob).royaltyInfo(0, ethToSend);
-    expect(royaltyInfo.royaltyAmount).to.equal(ethers.utils.parseEther("0.0005").toString());
+    expect(royaltyInfo.royaltyAmount).to.equal(ethers.utils.parseEther("0.0025").toString());
     await this.signers.bob.sendTransaction({
       to: this.premiumObject.address,
       value: royaltyInfo.royaltyAmount,

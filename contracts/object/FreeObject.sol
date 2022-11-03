@@ -36,14 +36,12 @@ contract FreeObject is BaseObject, ERC1155Supply {
     constructor(address payable _treasuryAddress, address _phiMapAddress) ERC1155("") {
         require(_treasuryAddress != address(0), "cant set address 0");
         require(_phiMapAddress != address(0), "cant set address 0");
-        // name = "Phi Free Object";
-        // symbol = "Phi-FOS";
-        name = "Test Object";
-        symbol = "Test FOS";
+        name = "Phi Free Object";
+        symbol = "Phi-FOS";
         baseMetadataURI = "https://www.arweave.net/";
         treasuryAddress = _treasuryAddress;
-        secondaryRoyalty = 100;
         phiMapAddress = _phiMapAddress;
+        secondaryRoyalty = 0;
     }
 
     /* --------------------------------- ****** --------------------------------- */

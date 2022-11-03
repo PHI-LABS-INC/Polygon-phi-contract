@@ -43,14 +43,12 @@ contract QuestObject is BaseObject, ERC1155Supply {
     constructor(address payable _treasuryAddress, address _phiMapAddress) ERC1155("") {
         require(_treasuryAddress != address(0), "cant set address 0");
         require(_phiMapAddress != address(0), "cant set address 0");
-        // name = "Phi Quest Object";
-        // symbol = "Phi-QOS";
-        name = "Test Object";
-        symbol = "Test QOS";
+        name = "Phi Quest Object";
+        symbol = "Phi-QOS";
         baseMetadataURI = "https://www.arweave.net/";
         treasuryAddress = _treasuryAddress;
         phiMapAddress = _phiMapAddress;
-        secondaryRoyalty = 500;
+        secondaryRoyalty = 1000;
     }
 
     /* --------------------------------- ****** --------------------------------- */

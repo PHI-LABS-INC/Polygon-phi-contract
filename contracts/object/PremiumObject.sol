@@ -45,15 +45,13 @@ contract PremiumObject is BaseObject, ERC1155Supply {
     constructor(address payable _treasuryAddress, address _phiMapAddress) ERC1155("") {
         require(_treasuryAddress != address(0), "cant set address 0");
         require(_phiMapAddress != address(0), "cant set address 0");
-        // name = "Phi Premium Object";
-        // symbol = "Phi-POS";
-        name = "Test Object";
-        symbol = "Test POS";
+        name = "Phi Premium Object";
+        symbol = "Phi-POS";
         baseMetadataURI = "https://www.arweave.net/";
         treasuryAddress = _treasuryAddress;
         phiMapAddress = _phiMapAddress;
         royalityFee = 0;
-        secondaryRoyalty = 100;
+        secondaryRoyalty = 500;
     }
 
     /* --------------------------------- ****** --------------------------------- */
