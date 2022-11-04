@@ -1,4 +1,5 @@
 import { getRequiredEnv } from "@makerdao/hardhat-utils";
+import { Signer } from "ethers";
 import hre from "hardhat";
 import { isEmpty } from "lodash";
 
@@ -116,9 +117,16 @@ export async function deployPhiPolygon(): Promise<void> {
   ]);
 }
 
-async function deployL1(network: string, name: string, blockNumber: number, calldata: any = [], saveName?: string) {
+async function deployL1(
+  network: string,
+  name: string,
+  blockNumber: number,
+  calldata: any = [],
+  saveName?: string,
+  signerOrOptions?: Signer,
+) {
   console.log(`Deploying: ${name}${(saveName && "/" + saveName) || ""}...`);
-  const contractFactory = await hre.ethers.getContractFactory(name);
+  const contractFactory = await hre.ethers.getContractFactory(name, signerOrOptions);
   console.log(calldata);
   const contract = await contractFactory.deploy(...calldata);
   save(saveName || name, contract, hre.network.name, blockNumber);
@@ -142,9 +150,10 @@ async function deployL1Upgrade(
   blockNumber: number,
   calldata: any = [],
   saveName?: string,
+  signerOrOptions?: Signer,
 ) {
   console.log(`Deploying: ${name}${(saveName && "/" + saveName) || ""}...`);
-  const contractFactory = await hre.ethers.getContractFactory(name);
+  const contractFactory = await hre.ethers.getContractFactory(name, signerOrOptions);
   console.log(calldata);
   const upgrade = await hre.upgrades.deployProxy(contractFactory, [...calldata]);
   const contract = await upgrade.deployed();

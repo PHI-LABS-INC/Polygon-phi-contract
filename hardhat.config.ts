@@ -25,6 +25,16 @@ if (!infuraApiKey) {
   throw new Error("Please set your INFURA_API_KEY in a .env file");
 }
 
+const ALCHEMY_API_KEY: string | undefined = process.env.ALCHEMY_API_KEY;
+if (!ALCHEMY_API_KEY) {
+  throw new Error("Please set your ALCHEMY_API_KEY in a .env file");
+}
+
+const ADMIN_SIGNER_PRIVATE_KEY: string | undefined = process.env.ADMIN_SIGNER_PRIVATE_KEY;
+if (!ADMIN_SIGNER_PRIVATE_KEY) {
+  throw new Error("Please set your ADMIN_SIGNER_PRIVATE_KEY in a .env file");
+}
+
 const chainIds = {
   "arbitrum-mainnet": 42161,
   avalanche: 43114,
@@ -47,15 +57,19 @@ function getChainConfig(chain: keyof typeof chainIds): NetworkUserConfig {
     case "bsc":
       jsonRpcUrl = "https://bsc-dataseed1.binance.org";
       break;
+    case "polygon-mainnet":
+      jsonRpcUrl = "https://polygon-mainnet.g.alchemy.com/v2/" + ALCHEMY_API_KEY;
+      break;
     default:
       jsonRpcUrl = "https://" + chain + ".infura.io/v3/" + infuraApiKey;
   }
   return {
-    accounts: {
-      count: 10,
-      mnemonic,
-      path: "m/44'/60'/0'/0",
-    },
+    // accounts: {
+    //   count: 10,
+    //   mnemonic,
+    //   path: "m/44'/60'/0'/0",
+    // },
+    accounts: [`0x${ADMIN_SIGNER_PRIVATE_KEY}`],
     chainId: chainIds[chain],
     url: jsonRpcUrl,
   };

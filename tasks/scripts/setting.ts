@@ -80,68 +80,68 @@ export async function settingPhi(): Promise<void> {
   const wallPaperContractInstance = await wallPaperContractFactory.attach(wallPaperAddress);
   const phiShopContractInstance = await phiShopContractFactory.attach(phiShopAddress);
 
-  // const wallPaperscsv = readFileSync(`${__dirname}/csv/setting_wallpaper.csv`, {
-  //   encoding: "utf8",
-  // });
-  // const wallPaperRowList = new CSV(wallPaperscsv, { header: true, cast: false }).parse();
-  // funcName = "createWallPaper";
-  // for (let i = 0; i < wallPaperRowList.length; i++) {
-  //   const size = String(wallPaperRowList[i].size);
-  //   const metadataURL = String(wallPaperRowList[i].json_url).split("/");
-  //   calldata = [
-  //     String(wallPaperRowList[i].tokenId),
-  //     metadataURL.slice(-1)[0],
-  //     { x: size[1], y: size[3], z: "0" },
-  //     CreatorAddressEnum[wallPaperRowList[i].creator],
-  //     String(wallPaperRowList[i].maxClaimed),
-  //     ethers.utils.parseEther(wallPaperRowList[i].price),
-  //   ];
-  //   console.log(calldata);
-  //   res = await wallPaperContractInstance[funcName](...calldata);
-  //   console.log("create Object Response:", res);
-  // }
+  const wallPaperscsv = readFileSync(`${__dirname}/csv/setting_wallpaper.csv`, {
+    encoding: "utf8",
+  });
+  const wallPaperRowList = new CSV(wallPaperscsv, { header: true, cast: false }).parse();
+  funcName = "createWallPaper";
+  for (let i = 0; i < wallPaperRowList.length; i++) {
+    const size = String(wallPaperRowList[i].size);
+    const metadataURL = String(wallPaperRowList[i].json_url).split("/");
+    calldata = [
+      String(wallPaperRowList[i].tokenId),
+      metadataURL.slice(-1)[0],
+      { x: size[1], y: size[3], z: "0" },
+      CreatorAddressEnum[wallPaperRowList[i].creator],
+      String(wallPaperRowList[i].maxClaimed),
+      ethers.utils.parseEther(wallPaperRowList[i].price),
+    ];
+    console.log(calldata);
+    res = await wallPaperContractInstance[funcName](...calldata);
+    console.log("create Object Response:", res);
+  }
 
-  // const baseplatecsv = readFileSync(`${__dirname}/csv/setting_baseplate.csv`, {
-  //   encoding: "utf8",
-  // });
-  // const baseplateRowList = new CSV(baseplatecsv, { header: true, cast: false }).parse();
-  // funcName = "createBasePlate";
-  // for (let i = 0; i < baseplateRowList.length; i++) {
-  //   const size = String(baseplateRowList[i].size);
-  //   const metadataURL = String(baseplateRowList[i].json_url).split("/");
-  //   calldata = [
-  //     String(baseplateRowList[i].tokenId),
-  //     metadataURL.slice(-1)[0],
-  //     { x: size[1], y: size[3], z: "0" },
-  //     CreatorAddressEnum[baseplateRowList[i].creator],
-  //     String(baseplateRowList[i].maxClaimed),
-  //     ethers.utils.parseEther(baseplateRowList[i].price),
-  //   ];
-  //   console.log(calldata);
-  //   res = await basePlateContractInstance[funcName](...calldata);
-  //   console.log("create Object Response:", res);
-  // }
+  const baseplatecsv = readFileSync(`${__dirname}/csv/setting_baseplate.csv`, {
+    encoding: "utf8",
+  });
+  const baseplateRowList = new CSV(baseplatecsv, { header: true, cast: false }).parse();
+  funcName = "createBasePlate";
+  for (let i = 0; i < baseplateRowList.length; i++) {
+    const size = String(baseplateRowList[i].size);
+    const metadataURL = String(baseplateRowList[i].json_url).split("/");
+    calldata = [
+      String(baseplateRowList[i].tokenId),
+      metadataURL.slice(-1)[0],
+      { x: size[1], y: size[3], z: "0" },
+      CreatorAddressEnum[baseplateRowList[i].creator],
+      String(baseplateRowList[i].maxClaimed),
+      ethers.utils.parseEther(baseplateRowList[i].price),
+    ];
+    console.log(calldata);
+    res = await basePlateContractInstance[funcName](...calldata);
+    console.log("create Object Response:", res);
+  }
 
-  // const premiumObjectscsv = readFileSync(`${__dirname}/csv/setting_premiumObjects.csv`, {
-  //   encoding: "utf8",
-  // });
-  // const premiumObjectRowList = new CSV(premiumObjectscsv, { header: true, cast: false }).parse();
-  // funcName = "createObject";
-  // for (let i = 0; i < premiumObjectRowList.length; i++) {
-  //   const size = String(premiumObjectRowList[i].size);
-  //   const metadataURL = String(premiumObjectRowList[i].json_url).split("/");
-  //   calldata = [
-  //     String(premiumObjectRowList[i].tokenId),
-  //     metadataURL.slice(-1)[0],
-  //     { x: size[1], y: size[3], z: size[5] },
-  //     CreatorAddressEnum[premiumObjectRowList[i].creator],
-  //     String(premiumObjectRowList[i].maxClaimed),
-  //     ethers.utils.parseEther(premiumObjectRowList[i].price),
-  //   ];
-  //   console.log(calldata);
-  //   res = await premiumObjectContractInstance[funcName](...calldata);
-  //   console.log("create Object Response:", res);
-  // }
+  const premiumObjectscsv = readFileSync(`${__dirname}/csv/setting_premiumObjects.csv`, {
+    encoding: "utf8",
+  });
+  const premiumObjectRowList = new CSV(premiumObjectscsv, { header: true, cast: false }).parse();
+  funcName = "createObject";
+  for (let i = 0; i < premiumObjectRowList.length; i++) {
+    const size = String(premiumObjectRowList[i].size);
+    const metadataURL = String(premiumObjectRowList[i].json_url).split("/");
+    calldata = [
+      String(premiumObjectRowList[i].tokenId),
+      metadataURL.slice(-1)[0],
+      { x: size[1], y: size[3], z: size[5] },
+      CreatorAddressEnum[premiumObjectRowList[i].creator],
+      String(premiumObjectRowList[i].maxClaimed),
+      ethers.utils.parseEther(premiumObjectRowList[i].price),
+    ];
+    console.log(calldata);
+    res = await premiumObjectContractInstance[funcName](...calldata);
+    console.log("create Object Response:", res);
+  }
 
   const freeObjectscsv = readFileSync(`${__dirname}/csv/setting_freeObjects.csv`, {
     encoding: "utf8",
