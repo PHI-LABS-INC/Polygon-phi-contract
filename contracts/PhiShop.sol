@@ -106,7 +106,7 @@ contract PhiShop is ReentrancyGuard {
         emit LogShopBuyObject(
             msg.sender,
             receiverAddress,
-            ftokenIds.length + ftokenIds.length + wtokenIds.length + btokenIds.length,
+            ftokenIds.length + ptokenIds.length + wtokenIds.length + btokenIds.length,
             msg.value
         );
     }
@@ -163,7 +163,7 @@ contract PhiShop is ReentrancyGuard {
         emit LogShopBuyObject(
             msg.sender,
             msg.sender,
-            ftokenIds.length + ftokenIds.length + wtokenIds.length + btokenIds.length,
+            ftokenIds.length + ptokenIds.length + wtokenIds.length + btokenIds.length,
             msg.value
         );
 
