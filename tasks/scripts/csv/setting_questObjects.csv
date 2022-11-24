@@ -1,6 +1,9 @@
 tokenId,name,image_url,json_url,size,relatedProject,creator,maxClaimed,price,EXP,RevealDate
 100001,PHI Logo Monument,https://www.arweave.net/47AloaAgG7UFYuZjieYi4b2QOD1TG2pFYAbsshULtEY?ext=png,https://www.arweave.net/qE-yT3OCl_RizQNXDZ_7fGSmnP-hMpvhtQYqOyhmOYQ,"[1,2,2]",PHI,eBoy,999999999,0,3500,2022/11/11
 100002,PHI Scaffold Logo,https://www.arweave.net/oOnimxYDfu7cJqem41yKRwP20F44F36ezjYaDqq9m80?ext=png,https://www.arweave.net/sUsp_tNJ7p2vPFcv65yvscOW9Xt_UC1OCg9vLrXM35s,"[1,1,2]",PHI,eBoy,999999999,0,2000,2022/11/11
+100003,Trophy of Top Land Power Score,https://www.arweave.net/e1sVHzTkGvSTvkDxsyF9PBjbYOJQvhli9E4tduDOR4Y?ext=png,https://www.arweave.net/R0nY9ISarn4hmTRpKZXEgA9e5aGbE_IVpzktTOrZ0PM,"[1,1,2]",PHI,ta2nb,999999999,0,3000,2022/11/28
+100004,Trophy of Top Social Score,https://www.arweave.net/z4ZGZV8CxXAnXrxdZtzari2YzloWYO_s7upK4ULR_Yk?ext=png,https://www.arweave.net/o7dLjUsvbok3kpukOEpfqBRW44jEN1UnVnNc1Usa_7Q,"[1,1,2]",PHI,ta2nb,999999999,0,3000,2022/11/28
+100005,Trophy of Top Attention Score,https://www.arweave.net/cXsUzibP3ZVxiGipLXgkw0fXwU9BndQ1FNmUKFqZS3Y?ext=png,https://www.arweave.net/0miacoprRIC2tMVwYWoTpvKdrQL8h6WVu7Wj_gke2A0,"[1,1,2]",PHI,ta2nb,999999999,0,3000,2022/11/28
 100011,Chess PHI,https://www.arweave.net/63FbFzlyZGMsrH2f2CeGhOA3raNIpD5gte8DELseobg?ext=png,https://www.arweave.net/rgeuFGHk44SfmqEI1tXAjyOZbdriM70Lrt7sISwlVZo,"[1,1,1]",PHI,eBoy,999999999,0,1000,2022/11/11
 100012,PHI City Logo,https://www.arweave.net/WiEmwXdF0gsI6H9NT-2_Y9CuzlYV37kg6Mx8f112VUE?ext=png,https://www.arweave.net/qilhvBPa9_M9rkLspYbrMhLpymCmWvzDy5AxMhQrAPs,"[1,2,2]",PHI,eBoy,999999999,0,1000,2022/11/11
 100013,Billboard PHI Digital Rain,https://www.arweave.net/s9lHcysXbHiuPqtod2d12oXsvubOtiIFIdhEUbvPYtQ?ext=png,https://www.arweave.net/LfExYkh-VR70UpkeCcVMDTvA2rJ9df09wbS3mGH6e5E,"[1,3,3]",PHI,eBoy,999999999,0,1000,2022/11/11
@@ -53,3 +56,6 @@ tokenId,name,image_url,json_url,size,relatedProject,creator,maxClaimed,price,EXP
 100804,Snapshot Election Tower,https://www.arweave.net/Kk_tYP3OKWR_AGdEZ8f1MT93DiUrzTuu9Yl1uv-CyzU?ext=png,https://www.arweave.net/Z870j8G72UswOh731ZRq4wnZGJvUs0bk3SaX7iVrE58,"[2,2,5]",Snapshot,eBoy,999999999,0,2000,2022/11/11
 100805,Snapshot Building,https://www.arweave.net/p7-ypzvcEP1u0_vKmTSv2VWoTwhiD_mPIToaypPwLoo?ext=png,https://www.arweave.net/IJIVTYToPtRFwjVj-7ITU6Z6oSoQv8TdGLLpm1r4k4c,"[2,1,4]",Snapshot,eBoy,999999999,0,3000,2022/11/11
 100901,Smoothie Truck,https://www.arweave.net/F_pFU2luMib-Z-vMGgA3pff_v9hOcqsFOGfI9SDj4Rk?ext=png,https://www.arweave.net/3WNnYIfvayuU5Rtzk9MYS1olE9QqrMHoYBIYwnoHGqU,"[2,1,1]",Smoothie,Fuzuki,999999999,0,1000,2022/11/11
+199901,Dotty Samurai,https://www.arweave.net/THPscj954qvRV4mD89ulafWzOfxNI5FYqy-BogsVgIo?ext=png,https://www.arweave.net/Pb9oD7rFdwjGVm97IClxIW_PtKIV4s2CVqMxE4DODPA,"[1,1,2]",Debugging,ta2nb,999999999,0,,2022/11/28
+199902,Dotty Pepe,https://www.arweave.net/1fG10RGuqrYuZZ4I8Kv3nqTb0NoMhKf1oIqqiUAi6XU?ext=png,https://www.arweave.net/4a4Ip465FSBY_MgcDoQgOYls_-Hq8uizRwUwSP-Qeeg,"[1,1,2]",Debugging,ta2nb,999999999,0,,2022/11/28
+199903,Dotty Samurai,https://www.arweave.net/2_iBYoYujW9tjiXiIMVGlu7JXsIyVDflTPA1Usib0R4?ext=png,https://www.arweave.net/KPIohOvlpz2hvXNVnf1xxbGA_3jkz0Jlawx8EDa_P5M,"[1,1,2]",Debugging,ta2nb,999999999,0,,2022/11/28
