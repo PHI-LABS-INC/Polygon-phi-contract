@@ -5,6 +5,7 @@ export * as interfaces from "./interfaces";
 export * as object from "./object";
 export * as utils from "./utils";
 export { PhiClaim__factory } from "./PhiClaim__factory";
+export { PhiClaimTest__factory } from "./PhiClaimTest__factory";
 export { PhiMap__factory } from "./PhiMap__factory";
 export { PhiShop__factory } from "./PhiShop__factory";
 export { Registry__factory } from "./Registry__factory";

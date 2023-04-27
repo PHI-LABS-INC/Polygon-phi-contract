@@ -72,6 +72,8 @@ export type { WallPaper } from "./contracts/object/WallPaper";
 export { WallPaper__factory } from "./factories/contracts/object/WallPaper__factory";
 export type { PhiClaim } from "./contracts/PhiClaim";
 export { PhiClaim__factory } from "./factories/contracts/PhiClaim__factory";
+export type { PhiClaimTest } from "./contracts/PhiClaimTest";
+export { PhiClaimTest__factory } from "./factories/contracts/PhiClaimTest__factory";
 export type { PhiMap } from "./contracts/PhiMap";
 export { PhiMap__factory } from "./factories/contracts/PhiMap__factory";
 export type { PhiShop } from "./contracts/PhiShop";

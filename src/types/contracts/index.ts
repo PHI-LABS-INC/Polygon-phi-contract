@@ -13,6 +13,7 @@ export type { object };
 
 export type { utils };
 export type { PhiClaim } from "./PhiClaim";
+export type { PhiClaimTest } from "./PhiClaimTest";
 export type { PhiMap } from "./PhiMap";
 export type { PhiShop } from "./PhiShop";
 export type { Registry } from "./Registry";
