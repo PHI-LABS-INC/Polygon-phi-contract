@@ -97,6 +97,7 @@
     "@nomiclabs/ethereumjs-vm": "^4.2.2",
     "@openzeppelin/contracts": "^4.5.0",
     "@openzeppelin/contracts-upgradeable": "^4.6.0",
+    "@openzeppelin/hardhat-defender": "^1.8.2",
     "@openzeppelin/hardhat-upgrades": "^1.17.0",
     "comma-separated-values": "^3.6.4",
     "ethereumjs-util": "^7.1.4",

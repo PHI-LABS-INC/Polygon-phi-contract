@@ -1,5 +1,6 @@
 import "@nomiclabs/hardhat-etherscan";
 import "@nomiclabs/hardhat-waffle";
+import "@openzeppelin/hardhat-defender";
 import "@openzeppelin/hardhat-upgrades";
 import "@typechain/hardhat";
 import { config as dotenvConfig } from "dotenv";
@@ -33,6 +34,16 @@ if (!ALCHEMY_API_KEY) {
 const ADMIN_SIGNER_PRIVATE_KEY: string | undefined = process.env.ADMIN_SIGNER_PRIVATE_KEY;
 if (!ADMIN_SIGNER_PRIVATE_KEY) {
   throw new Error("Please set your ADMIN_SIGNER_PRIVATE_KEY in a .env file");
+}
+
+const DEFENDER_TEAM_API_KEY: string | undefined = process.env.DEFENDER_TEAM_API_KEY;
+if (!DEFENDER_TEAM_API_KEY) {
+  throw new Error("Please set your DEFENDER_TEAM_API_KEY in a .env file");
+}
+
+const DEFENDER_TEAM_API_SECRET_KEY: string | undefined = process.env.DEFENDER_TEAM_API_SECRET_KEY;
+if (!DEFENDER_TEAM_API_SECRET_KEY) {
+  throw new Error("Please set your DEFENDER_TEAM_API_SECRET_KEY in a .env file");
 }
 
 const chainIds = {
@@ -76,6 +87,10 @@ function getChainConfig(chain: keyof typeof chainIds): NetworkUserConfig {
 }
 
 const config: HardhatUserConfig = {
+  defender: {
+    apiKey: DEFENDER_TEAM_API_KEY,
+    apiSecret: DEFENDER_TEAM_API_SECRET_KEY,
+  },
   defaultNetwork: "hardhat",
   etherscan: {
     apiKey: {

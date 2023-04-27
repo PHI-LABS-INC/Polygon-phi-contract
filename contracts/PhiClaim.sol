@@ -158,6 +158,7 @@ contract PhiClaim is AccessControlUpgradeable {
     ) external onlyIfAllreadyClaimedObject(contractAddress, tokenId) {
         // to prevent bots minting from a contract
         require(msg.sender == tx.origin);
+        require(tokenId == couponType[condition]);
         IQuestObject _questObject = IQuestObject(contractAddress);
         // Check that the coupon sent was signed by the admin signer
         bytes32 digest = keccak256(abi.encode(contractAddress, couponType[condition], msg.sender));
