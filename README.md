@@ -1,23 +1,18 @@
 # About
 
 This repository is Phi contract repository.
-For testnet launch.
 
 # What is Phi
 
-Phi is a protocol for creating an open and fair Metaverse.
+Phi is a protocol for creating an open Metaverse.
 Blockchain's fairness, openness, and network effects. So we are trying to adopt these blockchain features into Metaverse. Phi is a completely new bottom-up Metaverse that everyone can participate in, extend, connect, and edit. Phi adopts Internet mechanisms to the Metaverse, creating a standard of value that is independent of the size and location of the land and stimulating user creativity.
 
 Learn more
-There is a long document about the project on the [Phi](https://medium.com/@phi.xyz/introducing-phi-a-blockchain-native-metaverse-with-ens-and-on-chain-activities-1f5bb1a02eed). Start there and we'll add to this guide as questions come up.
+There is a long document about the project on the [Phi](https://medium.com/@phi.xyz/introducing-phi-a-blockchain-native-metaverse-with-ens-and-on-chain-activities-1f5bb1a02eed).
 
 # License
 
 GNU GENERAL PUBLIC LICENSE, Version 2
-
-# Contract Architecture
-
-![Contract Overview](/PHI_Overview.png)
 
 # Contribute
 
