@@ -81,11 +81,11 @@ contract PhiClaim is AccessControlUpgradeable {
     /*                                  MODIFIERS                                 */
     /* -------------------------------------------------------------------------- */
     /**
-     * @notice Require: First time claim by msg.sender
+     * @notice Require: First time claim by _msgSender()
      */
     modifier onlyIfAllreadyClaimedObject(address contractAddress, uint256 tokenId) {
-        if (phiClaimedLists[msg.sender][contractAddress][tokenId] == _CLAIMED) {
-            revert AllreadyClaimedObject({ sender: msg.sender, tokenId: tokenId });
+        if (phiClaimedLists[_msgSender()][contractAddress][tokenId] == _CLAIMED) {
+            revert AllreadyClaimedObject({ sender: _msgSender(), tokenId: tokenId });
         }
         _;
     }
@@ -93,8 +93,8 @@ contract PhiClaim is AccessControlUpgradeable {
      * @notice Require: Execution by admin.
      */
     modifier onlyOwner() {
-        if (!hasRole(DEFAULT_ADMIN_ROLE, msg.sender)) {
-            revert NotAdminCall({ sender: msg.sender });
+        if (!hasRole(DEFAULT_ADMIN_ROLE, _msgSender())) {
+            revert NotAdminCall({ sender: _msgSender() });
         }
         _;
     }
@@ -131,7 +131,7 @@ contract PhiClaim is AccessControlUpgradeable {
     function isVerifiedCoupon(bytes32 digest, Coupon memory coupon) internal view returns (bool) {
         address signer = ecrecover(digest, coupon.v, coupon.r, coupon.s);
         if (signer == address(0)) {
-            revert ECDSAInvalidSignature({ sender: msg.sender, signer: signer, digest: digest, coupon: coupon });
+            revert ECDSAInvalidSignature({ sender: _msgSender(), signer: signer, digest: digest, coupon: coupon });
         }
         return signer == _adminSigner;
     }
@@ -157,16 +157,16 @@ contract PhiClaim is AccessControlUpgradeable {
         Coupon memory coupon
     ) external onlyIfAllreadyClaimedObject(contractAddress, tokenId) {
         // to prevent bots minting from a contract
-        require(msg.sender == tx.origin);
+        require(_msgSender() == tx.origin);
         require(tokenId == couponType[condition]);
         IQuestObject _questObject = IQuestObject(contractAddress);
         // Check that the coupon sent was signed by the admin signer
-        bytes32 digest = keccak256(abi.encode(contractAddress, couponType[condition], msg.sender));
+        bytes32 digest = keccak256(abi.encode(contractAddress, couponType[condition], _msgSender()));
         require(isVerifiedCoupon(digest, coupon), "Invalid coupon");
         // Register as an already CLAIMED ADDRESS
-        phiClaimedLists[msg.sender][contractAddress][tokenId] = _CLAIMED;
-        _questObject.getObject(msg.sender, tokenId);
-        emit LogClaimObject(msg.sender, tokenId);
+        phiClaimedLists[_msgSender()][contractAddress][tokenId] = _CLAIMED;
+        _questObject.getObject(_msgSender(), tokenId);
+        emit LogClaimObject(_msgSender(), tokenId);
     }
 
     /*
