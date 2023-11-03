@@ -13,6 +13,7 @@
 pragma solidity ^0.8.16;
 import { IQuestObject } from "./interfaces/IQuestObject.sol";
 import { AccessControlUpgradeable } from "@openzeppelin/contracts-upgradeable/access/AccessControlUpgradeable.sol";
+import { ECDSA } from "@openzeppelin/contracts/utils/cryptography/ECDSA.sol";
 
 /// @title Users claim Quest Objects
 contract PhiClaim is AccessControlUpgradeable {
@@ -129,7 +130,7 @@ contract PhiClaim is AccessControlUpgradeable {
 
     /// @dev check that the coupon sent was signed by the admin signer
     function isVerifiedCoupon(bytes32 digest, Coupon memory coupon) internal view returns (bool) {
-        address signer = ecrecover(digest, coupon.v, coupon.r, coupon.s);
+        address signer = ECDSA.recover(digest, coupon.v, coupon.r, coupon.s);
         if (signer == address(0)) {
             revert ECDSAInvalidSignature({ sender: _msgSender(), signer: signer, digest: digest, coupon: coupon });
         }
