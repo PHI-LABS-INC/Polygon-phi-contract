@@ -16,6 +16,10 @@ import {
   CantSetAdminSigner,
   CantSetAdminSignerAddress0,
   CantSetCouponType,
+  CantUpdateFee,
+  CantUpdateTreasuryAddress,
+  ShouldUpdateFee,
+  ShouldUpdateTreasuryAddress,
   shouldAdminItself,
   shouldBehaveClaimObject,
   shouldBehaveGetAdminSigner,
@@ -71,6 +75,8 @@ describe("Unit tests PhiClaim", function () {
       const phiClaim = await upgrades.deployProxy(PhiClaim, [this.signers.admin.address, this.signers.admin.address]);
       this.phiClaim = <PhiClaim>await phiClaim.deployed();
       await this.questObject.connect(this.signers.admin).setOwner(this.phiClaim.address);
+      const newTreasuryAddress = this.signers.bob.address;
+      await this.phiClaim.connect(this.signers.admin).updateTreasuryAddress(newTreasuryAddress);
     });
     shouldBehaveGetOwner();
     shouldAdminItself();
@@ -86,5 +92,9 @@ describe("Unit tests PhiClaim", function () {
     shouldBehaveSetAdminSigner();
     CantSetAdminSigner();
     CantSetAdminSignerAddress0();
+    ShouldUpdateFee();
+    CantUpdateFee();
+    ShouldUpdateTreasuryAddress();
+    CantUpdateTreasuryAddress();
   });
 });

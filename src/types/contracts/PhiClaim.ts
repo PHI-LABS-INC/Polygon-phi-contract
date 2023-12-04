@@ -23,6 +23,7 @@ import type {
   CallOverrides,
   ContractTransaction,
   Overrides,
+  PayableOverrides,
   PopulatedTransaction,
   Signer,
   utils,
@@ -42,6 +43,7 @@ export interface PhiClaimInterface extends utils.Interface {
   functions: {
     "DEFAULT_ADMIN_ROLE()": FunctionFragment;
     "checkClaimedStatus(address,address,uint256)": FunctionFragment;
+    "claimFee()": FunctionFragment;
     "claimQuestObject(address,uint256,string,(bytes32,bytes32,uint8))": FunctionFragment;
     "getAdminSigner()": FunctionFragment;
     "getCouponType(string)": FunctionFragment;
@@ -55,12 +57,16 @@ export interface PhiClaimInterface extends utils.Interface {
     "setAdminSigner(address)": FunctionFragment;
     "setCouponType(string,uint256)": FunctionFragment;
     "supportsInterface(bytes4)": FunctionFragment;
+    "treasuryAddress()": FunctionFragment;
+    "updateFee(uint256)": FunctionFragment;
+    "updateTreasuryAddress(address)": FunctionFragment;
   };
 
   getFunction(
     nameOrSignatureOrTopic:
       | "DEFAULT_ADMIN_ROLE"
       | "checkClaimedStatus"
+      | "claimFee"
       | "claimQuestObject"
       | "getAdminSigner"
       | "getCouponType"
@@ -74,6 +80,9 @@ export interface PhiClaimInterface extends utils.Interface {
       | "setAdminSigner"
       | "setCouponType"
       | "supportsInterface"
+      | "treasuryAddress"
+      | "updateFee"
+      | "updateTreasuryAddress"
   ): FunctionFragment;
 
   encodeFunctionData(
@@ -84,6 +93,7 @@ export interface PhiClaimInterface extends utils.Interface {
     functionFragment: "checkClaimedStatus",
     values: [string, string, BigNumberish]
   ): string;
+  encodeFunctionData(functionFragment: "claimFee", values?: undefined): string;
   encodeFunctionData(
     functionFragment: "claimQuestObject",
     values: [string, BigNumberish, string, PhiClaim.CouponStruct]
@@ -136,6 +146,18 @@ export interface PhiClaimInterface extends utils.Interface {
     functionFragment: "supportsInterface",
     values: [BytesLike]
   ): string;
+  encodeFunctionData(
+    functionFragment: "treasuryAddress",
+    values?: undefined
+  ): string;
+  encodeFunctionData(
+    functionFragment: "updateFee",
+    values: [BigNumberish]
+  ): string;
+  encodeFunctionData(
+    functionFragment: "updateTreasuryAddress",
+    values: [string]
+  ): string;
 
   decodeFunctionResult(
     functionFragment: "DEFAULT_ADMIN_ROLE",
@@ -145,6 +167,7 @@ export interface PhiClaimInterface extends utils.Interface {
     functionFragment: "checkClaimedStatus",
     data: BytesLike
   ): Result;
+  decodeFunctionResult(functionFragment: "claimFee", data: BytesLike): Result;
   decodeFunctionResult(
     functionFragment: "claimQuestObject",
     data: BytesLike
@@ -183,6 +206,15 @@ export interface PhiClaimInterface extends utils.Interface {
   ): Result;
   decodeFunctionResult(
     functionFragment: "supportsInterface",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
+    functionFragment: "treasuryAddress",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(functionFragment: "updateFee", data: BytesLike): Result;
+  decodeFunctionResult(
+    functionFragment: "updateTreasuryAddress",
     data: BytesLike
   ): Result;
 
@@ -324,12 +356,14 @@ export interface PhiClaim extends BaseContract {
       overrides?: CallOverrides
     ): Promise<[BigNumber]>;
 
+    claimFee(overrides?: CallOverrides): Promise<[BigNumber]>;
+
     claimQuestObject(
       contractAddress: string,
       tokenId: BigNumberish,
       condition: string,
       coupon: PhiClaim.CouponStruct,
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: PayableOverrides & { from?: string | Promise<string> }
     ): Promise<ContractTransaction>;
 
     getAdminSigner(overrides?: CallOverrides): Promise<[string]>;
@@ -393,6 +427,18 @@ export interface PhiClaim extends BaseContract {
       interfaceId: BytesLike,
       overrides?: CallOverrides
     ): Promise<[boolean]>;
+
+    treasuryAddress(overrides?: CallOverrides): Promise<[string]>;
+
+    updateFee(
+      newClaimFee: BigNumberish,
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<ContractTransaction>;
+
+    updateTreasuryAddress(
+      newTreasuryAddress: string,
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<ContractTransaction>;
   };
 
   DEFAULT_ADMIN_ROLE(overrides?: CallOverrides): Promise<string>;
@@ -404,12 +450,14 @@ export interface PhiClaim extends BaseContract {
     overrides?: CallOverrides
   ): Promise<BigNumber>;
 
+  claimFee(overrides?: CallOverrides): Promise<BigNumber>;
+
   claimQuestObject(
     contractAddress: string,
     tokenId: BigNumberish,
     condition: string,
     coupon: PhiClaim.CouponStruct,
-    overrides?: Overrides & { from?: string | Promise<string> }
+    overrides?: PayableOverrides & { from?: string | Promise<string> }
   ): Promise<ContractTransaction>;
 
   getAdminSigner(overrides?: CallOverrides): Promise<string>;
@@ -474,6 +522,18 @@ export interface PhiClaim extends BaseContract {
     overrides?: CallOverrides
   ): Promise<boolean>;
 
+  treasuryAddress(overrides?: CallOverrides): Promise<string>;
+
+  updateFee(
+    newClaimFee: BigNumberish,
+    overrides?: Overrides & { from?: string | Promise<string> }
+  ): Promise<ContractTransaction>;
+
+  updateTreasuryAddress(
+    newTreasuryAddress: string,
+    overrides?: Overrides & { from?: string | Promise<string> }
+  ): Promise<ContractTransaction>;
+
   callStatic: {
     DEFAULT_ADMIN_ROLE(overrides?: CallOverrides): Promise<string>;
 
@@ -483,6 +543,8 @@ export interface PhiClaim extends BaseContract {
       tokenId: BigNumberish,
       overrides?: CallOverrides
     ): Promise<BigNumber>;
+
+    claimFee(overrides?: CallOverrides): Promise<BigNumber>;
 
     claimQuestObject(
       contractAddress: string,
@@ -553,6 +615,18 @@ export interface PhiClaim extends BaseContract {
       interfaceId: BytesLike,
       overrides?: CallOverrides
     ): Promise<boolean>;
+
+    treasuryAddress(overrides?: CallOverrides): Promise<string>;
+
+    updateFee(
+      newClaimFee: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<void>;
+
+    updateTreasuryAddress(
+      newTreasuryAddress: string,
+      overrides?: CallOverrides
+    ): Promise<void>;
   };
 
   filters: {
@@ -626,12 +700,14 @@ export interface PhiClaim extends BaseContract {
       overrides?: CallOverrides
     ): Promise<BigNumber>;
 
+    claimFee(overrides?: CallOverrides): Promise<BigNumber>;
+
     claimQuestObject(
       contractAddress: string,
       tokenId: BigNumberish,
       condition: string,
       coupon: PhiClaim.CouponStruct,
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: PayableOverrides & { from?: string | Promise<string> }
     ): Promise<BigNumber>;
 
     getAdminSigner(overrides?: CallOverrides): Promise<BigNumber>;
@@ -698,6 +774,18 @@ export interface PhiClaim extends BaseContract {
       interfaceId: BytesLike,
       overrides?: CallOverrides
     ): Promise<BigNumber>;
+
+    treasuryAddress(overrides?: CallOverrides): Promise<BigNumber>;
+
+    updateFee(
+      newClaimFee: BigNumberish,
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<BigNumber>;
+
+    updateTreasuryAddress(
+      newTreasuryAddress: string,
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<BigNumber>;
   };
 
   populateTransaction: {
@@ -712,12 +800,14 @@ export interface PhiClaim extends BaseContract {
       overrides?: CallOverrides
     ): Promise<PopulatedTransaction>;
 
+    claimFee(overrides?: CallOverrides): Promise<PopulatedTransaction>;
+
     claimQuestObject(
       contractAddress: string,
       tokenId: BigNumberish,
       condition: string,
       coupon: PhiClaim.CouponStruct,
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: PayableOverrides & { from?: string | Promise<string> }
     ): Promise<PopulatedTransaction>;
 
     getAdminSigner(overrides?: CallOverrides): Promise<PopulatedTransaction>;
@@ -783,6 +873,18 @@ export interface PhiClaim extends BaseContract {
     supportsInterface(
       interfaceId: BytesLike,
       overrides?: CallOverrides
+    ): Promise<PopulatedTransaction>;
+
+    treasuryAddress(overrides?: CallOverrides): Promise<PopulatedTransaction>;
+
+    updateFee(
+      newClaimFee: BigNumberish,
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<PopulatedTransaction>;
+
+    updateTreasuryAddress(
+      newTreasuryAddress: string,
+      overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<PopulatedTransaction>;
   };
 }
