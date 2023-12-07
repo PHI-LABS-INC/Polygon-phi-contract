@@ -142,6 +142,9 @@ contract PhiClaim is AccessControlUpgradeable {
     /* -------------------------------------------------------------------------- */
     /*                                   OBJECT                                   */
     /* -------------------------------------------------------------------------- */
+    uint256 public claimFee;
+    address payable public treasuryAddress;
+
     /*
      * @title claimPhiObject
      * @notice Send create Message to PhiObject
@@ -156,7 +159,8 @@ contract PhiClaim is AccessControlUpgradeable {
         uint256 tokenId,
         string calldata condition,
         Coupon memory coupon
-    ) external onlyIfAllreadyClaimedObject(contractAddress, tokenId) {
+    ) external payable onlyIfAllreadyClaimedObject(contractAddress, tokenId) {
+        require(msg.value == claimFee, "Incorrect fee amount");
         require(tokenId == couponType[condition]);
         IQuestObject _questObject = IQuestObject(contractAddress);
         // Check that the coupon sent was signed by the admin signer
@@ -165,6 +169,10 @@ contract PhiClaim is AccessControlUpgradeable {
         // Register as an already CLAIMED ADDRESS
         phiClaimedLists[_msgSender()][contractAddress][tokenId] = _CLAIMED;
         _questObject.getObject(_msgSender(), tokenId);
+
+        (bool sent, ) = treasuryAddress.call{ value: claimFee }("");
+        require(sent, "Failed to send Matic");
+
         emit LogClaimObject(_msgSender(), tokenId);
     }
 
@@ -181,5 +189,14 @@ contract PhiClaim is AccessControlUpgradeable {
         uint256 tokenId
     ) external view returns (uint256) {
         return phiClaimedLists[sender][contractAddress][tokenId];
+    }
+
+    function updateFee(uint256 newClaimFee) external onlyOwner {
+        claimFee = newClaimFee;
+    }
+
+    function updateTreasuryAddress(address payable newTreasuryAddress) external onlyOwner {
+        require(newTreasuryAddress != address(0), "cant set address(0)");
+        treasuryAddress = newTreasuryAddress;
     }
 }

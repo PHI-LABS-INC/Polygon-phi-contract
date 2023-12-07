@@ -1,4 +1,5 @@
 import { expect } from "chai";
+import { ethers } from "ethers";
 
 import { getCoupon } from "../helpers";
 
@@ -30,6 +31,12 @@ export function shouldBehaveSetCouponType(): void {
 
 export function shouldBehaveClaimObject(): void {
   it("mint loot object", async function () {
+    const newFee = ethers.utils.parseEther("0.1");
+
+    const initialTreasuryBalance = await this.signers.bob.getBalance();
+
+    await this.phiClaim.connect(this.signers.admin).updateFee(newFee);
+
     await this.phiClaim.connect(this.signers.admin).setCouponType("lootbalance", 1);
     const fakeCoupon = getCoupon(this.signers.alice.address, this.questObject.address);
     expect(
@@ -44,7 +51,12 @@ export function shouldBehaveClaimObject(): void {
         1,
         "lootbalance",
         fakeCoupon[(this.questObject.address, this.signers.alice.address)]["coupon"],
+        { value: newFee },
       );
+    const newTreasuryBalance = await this.signers.bob.getBalance();
+
+    expect(newTreasuryBalance).to.equal(initialTreasuryBalance.add(newFee));
+
     expect(await this.questObject.connect(this.signers.admin).balanceOf(this.signers.alice.address, 1)).to.equal(1);
     expect(
       await this.phiClaim
@@ -147,5 +159,39 @@ export function CantSetAdminSignerAddress0(): void {
   it("Cant setAdminSigner", async function () {
     await expect(this.phiClaim.connect(this.signers.admin).setAdminSigner("0x0000000000000000000000000000000000000000"))
       .to.be.reverted;
+  });
+}
+
+export function ShouldUpdateFee(): void {
+  it("should update the fee", async function () {
+    const newFee = ethers.utils.parseEther("0.05");
+    await this.phiClaim.connect(this.signers.admin).updateFee(newFee);
+    expect(await this.phiClaim.claimFee()).to.equal(newFee);
+  });
+}
+
+export function CantUpdateFee(): void {
+  it("should prevent non-owners from updating the fee", async function () {
+    const newFee = ethers.utils.parseEther("0.1");
+    const expectedErrorMessage = "NotAdminCall";
+    await expect(this.phiClaim.connect(this.signers.alice).updateFee(newFee)).revertedWith(expectedErrorMessage);
+  });
+}
+
+export function ShouldUpdateTreasuryAddress(): void {
+  it("should update the treasury address", async function () {
+    const newTreasuryAddress = "0x5037e7747fAa78fc0ECF8DFC526DcD19f73076ce";
+    await this.phiClaim.connect(this.signers.admin).updateTreasuryAddress(newTreasuryAddress);
+    expect(await this.phiClaim.treasuryAddress()).to.equal(newTreasuryAddress);
+  });
+}
+
+export function CantUpdateTreasuryAddress(): void {
+  it("should prevent non-owners from updating the treasury address", async function () {
+    const newTreasuryAddress = "0x5037e7747fAa78fc0ECF8DFC526DcD19f73076ce";
+    const expectedErrorMessage = "NotAdminCall";
+    await expect(
+      this.phiClaim.connect(this.signers.alice).updateTreasuryAddress(newTreasuryAddress),
+    ).to.be.revertedWith(expectedErrorMessage);
   });
 }
